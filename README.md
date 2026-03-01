@@ -1,118 +1,196 @@
-# A Snowflake-Centered Personalized Research Assistant
-### with Retrieval-Augmented Generation, Knowledge Graphs, and Evaluation
+# Snowflake-Centered Personalized Research Assistant
+### CS 5542 – Big Data Analytics and Applications
 
-**Course:** CS 5542 – Big Data Analytics and Applications  
-**Project Type:** Team Project Proposal
+A RAG + Knowledge Graph research assistant powered by Snowflake, FastAPI, and Streamlit.
 
 ---
 
 ## Team
-- **Ron** (GitHub: @your-github-username)
-- **Kenneth Kakie** (GitHub: @kenneth-github-username)
-- **Blake Simpson** (GitHub: @blake-github-username)
-- **Rohan Ashraf Hashmi** (GitHub: @rohan-github-username)
-
----
-
-## Project Overview
-Researchers face increasing difficulty navigating and synthesizing information across growing collections of scientific literature. Traditional keyword-based search tools lack semantic understanding, while large language model (LLM)–based assistants often hallucinate when not grounded in source material.
-
-This project builds a **Personalized Research Assistant** that allows users to upload scientific papers and ask natural language questions over their own document corpus. The system returns **grounded answers with explicit citations and confidence indicators**, combining **Retrieval-Augmented Generation (RAG)** with **knowledge-graph–enhanced retrieval**. Snowflake serves as the central platform for data storage, retrieval, evaluation, and reproducibility.
-
----
-
-## Objectives
-- Enable question answering over **user-uploaded research papers**
-- Ground all responses using **Retrieval-Augmented Generation (RAG)**
-- Enhance retrieval with **knowledge graph structure**
-- Provide **explicit citations** and **confidence indicators**
-- Compare **standard RAG**, **fine-tuned RAG**, and **graph-enhanced RAG**
-- Support **reproducible evaluation** in a Snowflake-centered pipeline
+| Name | Role | GitHub |
+|---|---|---|
+| Rohan Ashraf Hashmi | Engineer 1 — Data & Ingestion | @rohanhashmi2 |
+| Kenneth Kakie | Engineer 2 — Backend & Retrieval | @kenneth-github |
+| Blake Simpson | Engineer 3 — Frontend & Evaluation | @blake-github |
 
 ---
 
 ## System Architecture
-The system is designed as a modular pipeline separating ingestion, retrieval, generation, and evaluation.
 
-```mermaid
-flowchart TD
-    A[User] --> B[Web UI]
-    B --> C[Backend API]
-    C --> D[Snowflake\nDocuments, Chunks, Embeddings]
-    D --> E[Knowledge Graph Tables]
-    C --> F[Retrieval Layer\nVector + Graph]
-    D --> F
-    E --> F
-    F --> G[LLM\nRAG Generation]
-    G --> H[Answer + Citations + Confidence]
-    H --> B
-    C --> I[Evaluation & Logs\nSnowflake]
 ```
-
-**Core components include:**
-- Snowflake data layer (documents, chunks, embeddings, knowledge graph, evaluation metrics)
-- Vector- and graph-based retrieval layer
-- LLM-based generation constrained to retrieved context
-- Evaluation and monitoring pipelines
-
----
-
-## Datasets
-The system leverages publicly available research corpora for ingestion and evaluation:
-
-- **arXiv Scientific Papers Dataset**  
-  https://www.kaggle.com/datasets/Cornell-University/arxiv
-
-- **Scientific Papers (arXiv + PubMed OpenAccess)**  
-  https://huggingface.co/datasets/armanc/scientific_papers
-
-- **3M+ Academic Papers: Titles & Abstracts**  
-  https://www.kaggle.com/datasets/beta3logic/3m-academic-papers-titles-and-abstracts
-
-Datasets are ingested using Snowflake stages and processed via Snowpark.
-
----
-
-## Related Work (NeurIPS 2025)
-This project builds on recent advances in retrieval-augmented and structured reasoning systems:
-
-- **GFM-RAG: Graph Foundation Models for Retrieval-Augmented Generation**  
-  https://github.com/RManLuo/gfm-rag
-
-- **GraphFlow / Knowledge-Graph–Based RAG**  
-  https://neurips.cc/
-
-- **Chain-of-Retrieval Augmented Generation**  
-  https://neurips.cc/
-
-These works inform the graph-enhanced retrieval strategy and evaluation design used in this project.
-
----
-
-## Reproducibility
-Reproducibility artifacts are documented in the `/reproducibility` directory.
-
-- Dataset sources and versions are recorded
-- Preprocessing and retrieval pipelines are scripted
-- Experiments are configuration-driven
-- Retrieval and evaluation metrics are logged in Snowflake
-- Results can be reproduced using documented procedures
-
----
-
-## Repository Structure
-```
-/README.md
-/proposal        # Project proposal PDF
-/docs            # Architecture diagrams and design notes
-/data            # Dataset references and preprocessing scripts
-/reproducibility # Experiment and environment setup
-/backend         # API and retrieval orchestration
-/frontend        # Web UI
-/evaluation      # Benchmarks and metrics
+HuggingFace Dataset
+        ↓
+  data/ingestion.py  (Stages 1–6)
+        ↓
+  Snowflake (CS5542_PROJECT_ROHAN_BLAKE_KENNETH)
+  ├── RAW.PAPERS        — paper metadata
+  ├── RAW.CHUNKS        — text chunks + embeddings (JSON)
+  ├── GRAPH.KNOWLEDGE_NODES  — extracted entities
+  ├── GRAPH.KNOWLEDGE_EDGES  — co-occurrence edges
+  ├── GRAPH.CHUNK_ENTITY_MAP — chunk ↔ entity links
+  ├── APP.CHUNKS_V      — retrieval view
+  └── APP.EVAL_METRICS  — query logs
+        ↓
+  backend/app.py  (FastAPI, port 3001)
+        ↓
+  frontend/app.py  (Streamlit, port 3000)
 ```
 
 ---
 
-## Project Status
-This repository will be updated throughout the semester with system implementations, evaluation results, and documentation artifacts as the project progresses.
+## Quickstart
+
+### 1. Clone and set up environment
+```bash
+git clone <repo-url>
+cd snowflake-research-assistant
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Configure environment
+```bash
+cp .env.example .env
+```
+
+Required `.env` variables:
+```
+SNOWFLAKE_ACCOUNT=your_account
+SNOWFLAKE_USER=your_username
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_ROLE=your_role
+SNOWFLAKE_WAREHOUSE=ROHAN_BLAKE_KENNETH_WH
+SNOWFLAKE_DATABASE=CS5542_PROJECT_ROHAN_BLAKE_KENNETH
+SNOWFLAKE_SCHEMA=RAW
+```
+
+### 3. Create Snowflake schema
+```bash
+python scripts/run_sql_file.py sql/01_create_schema.sql
+```
+
+### 4. Run ingestion pipeline (populates all Snowflake tables)
+```bash
+python data/ingestion.py
+# Stages 1–4 run automatically (~1 hour for 1000 papers)
+# Will prompt for MFA before Snowflake upload
+```
+
+To run with fewer papers for testing:
+```bash
+python data/ingestion.py --n 10
+```
+
+To resume from checkpoints (skip completed stages):
+```bash
+python data/ingestion.py --resume
+```
+
+### 5. Start backend
+```bash
+uvicorn backend.app:app --reload --port 3001
+```
+
+### 6. Start frontend
+```bash
+streamlit run frontend/app.py --server.port 3000
+```
+
+---
+
+## Project Structure
+```
+snowflake-research-assistant/
+├── sql/
+│   └── 01_create_schema.sql       # Snowflake schema (RAW, GRAPH, APP)
+├── data/
+│   ├── config.py                  # Central config (model, chunking, paths)
+│   ├── ingestion.py               # 6-stage ingestion pipeline
+│   └── checkpoints/               # Parquet checkpoints (gitignored)
+├── scripts/
+│   ├── sf_connect.py              # Snowflake connection helper (MFA-aware)
+│   └── run_sql_file.py            # Run SQL files against Snowflake
+├── backend/
+│   ├── app.py                     # FastAPI app (port 3001)
+│   └── retrieval.py               # Vector + graph retrieval
+├── frontend/
+│   └── app.py                     # Streamlit UI (port 3000)
+├── evaluation/
+│   └── evaluate.py                # RAGAS evaluation + Snowflake logging
+├── docs/
+│   └── architecture.png           # Pipeline diagram
+├── reproducibility/
+│   └── README.md                  # Reproducibility notes
+├── requirements.txt
+├── .env.example
+├── CONTRIBUTIONS.md
+└── README.md
+```
+
+---
+
+## Ingestion Pipeline Details
+
+The pipeline runs in 6 stages, each with checkpoint support:
+
+| Stage | Script Function | Output |
+|---|---|---|
+| 1. Load | `load_and_clean_dataset()` | 1000 arXiv papers, cleaned text |
+| 2. Chunk | `chunk_documents()` | ~36,000 chunks (200 words, 30 overlap) |
+| 3. Embed | `generate_embeddings()` | 768-dim vectors (all-mpnet-base-v2) |
+| 4. KG Extract | `extract_knowledge_graph()` | Entities, edges, chunk-entity map |
+| 5. Upload | `upload_to_snowflake()` | All tables populated in Snowflake |
+| 6. Verify | `verify_ingestion()` | Row count validation |
+
+**Embedding model:** `sentence-transformers/all-mpnet-base-v2` (768-dim, L2-normalized)  
+**Dataset:** `ccdv/arxiv-summarization` (arXiv papers, HuggingFace)  
+**KG extraction:** scispaCy `en_core_sci_sm` (scientific NER)
+
+---
+
+## Snowflake Schema
+
+Database: `CS5542_PROJECT_ROHAN_BLAKE_KENNETH`  
+Warehouse: `ROHAN_BLAKE_KENNETH_WH`
+
+```sql
+-- Verify all tables
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA IN ('RAW', 'GRAPH', 'APP')
+ORDER BY TABLE_SCHEMA, TABLE_NAME;
+```
+
+---
+
+## Configuration
+
+All pipeline parameters are in `data/config.py`:
+
+```python
+NUM_PAPERS          = 1000    # papers to ingest
+CHUNK_SIZE_WORDS    = 200     # words per chunk
+CHUNK_OVERLAP_WORDS = 30      # overlap between chunks
+EMBEDDING_MODEL     = "sentence-transformers/all-mpnet-base-v2"
+EMBEDDING_DIM       = 768
+SPACY_MODEL         = "en_core_sci_sm"
+```
+
+---
+
+## Requirements
+
+Key dependencies (see `requirements.txt` for full list):
+- `snowflake-snowpark-python>=1.12.0`
+- `sentence-transformers>=2.2.2`
+- `datasets>=2.14.0`
+- `scispacy>=0.6.0`
+- `fastapi>=0.109.2`
+- `streamlit>=1.30.0`
+- `langchain>=0.1.0`
+
+---
+
+## Individual Contributions
+
+See [CONTRIBUTIONS.md](CONTRIBUTIONS.md) for detailed breakdown.
