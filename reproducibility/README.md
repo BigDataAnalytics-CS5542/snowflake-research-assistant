@@ -88,6 +88,12 @@ SNOWFLAKE_DATABASE
 SNOWFLAKE_SCHEMA
 ```
 
+Optional (recommended):
+```
+HF_TOKEN=your_huggingface_token   # For higher rate limits when loading datasets and models
+```
+Create a token at https://huggingface.co/settings/tokens
+
 ---
 
 ## Full Reproduction Steps
@@ -101,7 +107,7 @@ pip install -r requirements.txt
 
 # 2. Configure credentials
 cp .env.example .env
-# Edit .env with your Snowflake credentials
+# Edit .env with Snowflake credentials and optionally HF_TOKEN
 
 # 3. Create Snowflake schema
 python scripts/run_sql_file.py sql/01_create_schema.sql
