@@ -1,15 +1,17 @@
 # CONTRIBUTIONS.md
 ## CS 5542 – Phase 2 Individual Contributions
 
-| Member | Role |
-|---|---|
-| Rohan Ashraf Hashmi | Engineer 1 — Data & Ingestion
-| Kenneth Kakie | Engineer 2 — Backend & Retrieval
-| Blake Simpson | Engineer 3 — Frontend & Evaluation
+| Member | Role | Contribution % |
+|---|---|---|
+| Rohan Ashraf Hashmi | Engineer 1 — Data & Ingestion | 40% |
+| Kenneth Kakie | Engineer 2 — Backend & Retrieval | 35% |
+| Blake Simpson | Engineer 3 — Frontend & Evaluation | 25% |
+
+**Total: 100%**
 
 ---
 
-## Rohan Ashraf Hashmi
+## Rohan Ashraf Hashmi — 40%
 
 **Data Infrastructure & Ingestion Pipeline**
 
@@ -29,11 +31,11 @@
 - Built `scripts/run_sql_file.py` — SQL file executor with env-based context
 - Populated Snowflake with 1000 arXiv papers corpus
 
-**Commit evidence:** All files in `data/`, `sql/`, `scripts/` directories, snowflake
+**Commit evidence:** All files in `data/`, `sql/`, `scripts/` directories, snowflake tables
 
 ---
 
-## Kenneth Kakie
+## Kenneth Kakie — 35%
 
 **Backend API & Retrieval Engine**
 
@@ -52,7 +54,7 @@
 
 ---
 
-## Blake Simpson
+## Blake Simpson — 25%
 
 **Frontend Interface & Evaluation**
 
