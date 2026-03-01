@@ -25,7 +25,7 @@ CREATE OR REPLACE TABLE RAW.CHUNKS (
     SECTION_NAME        VARCHAR,                -- e.g. "abstract", "introduction"
     TEXT_CONTENT        STRING,
     WORD_COUNT          INT,
-    EMBEDDING           VECTOR(FLOAT, 768),     -- all-mpnet-base-v2 output
+    EMBEDDING           VARCHAR,     -- all-mpnet-base-v2 output
     INGESTED_AT         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -47,7 +47,7 @@ CREATE OR REPLACE TABLE GRAPH.KNOWLEDGE_NODES (
     NAME                VARCHAR,                -- e.g. "Retrieval-Augmented Generation"
     NAME_NORMALIZED     VARCHAR,                -- lowercased, no punctuation
     PAPER_COUNT         INT DEFAULT 0,          -- distinct papers mentioning this node
-    EMBEDDING           VECTOR(FLOAT, 768)      -- for node-level similarity search
+    EMBEDDING           VARCHAR      -- for node-level similarity search
 );
 
 -- ── GRAPH.KNOWLEDGE_EDGES ────────────────────────────────────
