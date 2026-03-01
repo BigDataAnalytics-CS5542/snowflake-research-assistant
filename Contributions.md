@@ -1,4 +1,3 @@
-# CONTRIBUTIONS.md
 ## CS 5542 – Phase 2 Individual Contributions
 
 | Member | Role | Contribution % |
