@@ -2,69 +2,115 @@ CREATE SCHEMA IF NOT EXISTS RAW;
 CREATE SCHEMA IF NOT EXISTS GRAPH;
 CREATE SCHEMA IF NOT EXISTS APP;
 
--- 1. PAPERS: basic metadata for the academic documents
+-- ── RAW.PAPERS ──────────────────────────────────────────────
+-- One row per source paper
 CREATE OR REPLACE TABLE RAW.PAPERS (
-    PAPER_ID VARCHAR,
-    TITLE VARCHAR,
-    AUTHORS VARCHAR,
-    ABSTRACT STRING,
-    PUBLICATION_YEAR INT,
-    SOURCE_URL VARCHAR,
-    PRIMARY KEY (PAPER_ID)
+    PAPER_ID            VARCHAR PRIMARY KEY,    -- arXiv ID e.g. "2305.14283"
+    TITLE               VARCHAR,
+    AUTHORS             VARCHAR,                -- comma-separated string
+    ABSTRACT            STRING,
+    PUBLICATION_YEAR    INT,
+    SOURCE              VARCHAR DEFAULT 'arxiv',-- 'arxiv', 'pubmed', 'user_upload'
+    SOURCE_URL          VARCHAR,
+    CATEGORIES          VARCHAR,                -- e.g. "cs.IR cs.CL"
+    INGESTED_AT         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
--- 2. CHUNKS: the text segments for Vector RAG, with Snowflake VECTOR data type support
+-- ── RAW.CHUNKS ───────────────────────────────────────────────
+-- Text segments for vector RAG. One paper → many chunks.
 CREATE OR REPLACE TABLE RAW.CHUNKS (
-    CHUNK_ID VARCHAR,
-    PAPER_ID VARCHAR,
-    CHUNK_INDEX INT,
-    TEXT_CONTENT STRING,
-    EMBEDDING VECTOR(FLOAT, 768), -- Default dimensionality assuming e.g. an OpenAI or HF model
-    PRIMARY KEY (CHUNK_ID),
-    FOREIGN KEY (PAPER_ID) REFERENCES RAW.PAPERS(PAPER_ID)
+    CHUNK_ID            VARCHAR PRIMARY KEY,    -- e.g. "2305.14283_abstract_c001"
+    PAPER_ID            VARCHAR REFERENCES RAW.PAPERS(PAPER_ID),
+    CHUNK_INDEX         INT,                    -- position within paper
+    SECTION_NAME        VARCHAR,                -- e.g. "abstract", "introduction"
+    TEXT_CONTENT        STRING,
+    WORD_COUNT          INT,
+    EMBEDDING           VECTOR(FLOAT, 768),     -- all-mpnet-base-v2 output
+    INGESTED_AT         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
--- 3. FIGURES: Metadata for figures extracted from papers
+-- ── RAW.FIGURES ──────────────────────────────────────────────
+-- Image metadata for future multimodal support
 CREATE OR REPLACE TABLE RAW.FIGURES (
-    FIGURE_ID VARCHAR,
-    PAPER_ID VARCHAR,
-    PAGE_NUMBER INT,
-    CAPTION STRING,
-    IMAGE_PATH VARCHAR,
-    PRIMARY KEY (FIGURE_ID),
-    FOREIGN KEY (PAPER_ID) REFERENCES RAW.PAPERS(PAPER_ID)
+    FIGURE_ID           VARCHAR PRIMARY KEY,
+    PAPER_ID            VARCHAR REFERENCES RAW.PAPERS(PAPER_ID),
+    PAGE_NUMBER         INT,
+    CAPTION             STRING,
+    IMAGE_PATH          VARCHAR
 );
 
--- 4. KNOWLEDGE_NODES: Entities extracted for the knowledge graph
+-- ── GRAPH.KNOWLEDGE_NODES ────────────────────────────────────
+-- Extracted entities: methods, datasets, concepts, tasks
 CREATE OR REPLACE TABLE GRAPH.KNOWLEDGE_NODES (
-    NODE_ID VARCHAR,
-    LABEL VARCHAR,      -- e.g., 'Concept', 'Method', 'Dataset', 'Task'
-    NAME VARCHAR,       -- e.g., 'Retrieval-Augmented Generation'
-    EMBEDDING VECTOR(FLOAT, 768), 
-    PRIMARY KEY (NODE_ID)
+    NODE_ID             VARCHAR PRIMARY KEY,    -- e.g. "node_retrieval_augmented_generation"
+    LABEL               VARCHAR,                -- 'Method', 'Dataset', 'Concept', 'Task'
+    NAME                VARCHAR,                -- e.g. "Retrieval-Augmented Generation"
+    NAME_NORMALIZED     VARCHAR,                -- lowercased, no punctuation
+    PAPER_COUNT         INT DEFAULT 0,          -- distinct papers mentioning this node
+    EMBEDDING           VECTOR(FLOAT, 768)      -- for node-level similarity search
 );
 
--- 5. KNOWLEDGE_EDGES: Relationships between entities
+-- ── GRAPH.KNOWLEDGE_EDGES ────────────────────────────────────
+-- Relationships between entities
 CREATE OR REPLACE TABLE GRAPH.KNOWLEDGE_EDGES (
-    EDGE_ID VARCHAR,
-    SOURCE_NODE_ID VARCHAR,
-    TARGET_NODE_ID VARCHAR,
-    RELATION_TYPE VARCHAR, -- e.g., 'USES', 'IMPROVES', 'EVALUATED_ON'
-    WEIGHT FLOAT,
-    PRIMARY KEY (EDGE_ID),
-    FOREIGN KEY (SOURCE_NODE_ID) REFERENCES GRAPH.KNOWLEDGE_NODES(NODE_ID),
-    FOREIGN KEY (TARGET_NODE_ID) REFERENCES GRAPH.KNOWLEDGE_NODES(NODE_ID)
+    EDGE_ID             VARCHAR PRIMARY KEY,
+    SOURCE_NODE_ID      VARCHAR REFERENCES GRAPH.KNOWLEDGE_NODES(NODE_ID),
+    TARGET_NODE_ID      VARCHAR REFERENCES GRAPH.KNOWLEDGE_NODES(NODE_ID),
+    RELATION_TYPE       VARCHAR,                -- 'USES', 'IMPROVES', 'EVALUATED_ON', 'CO_OCCURS'
+    PAPER_ID            VARCHAR REFERENCES RAW.PAPERS(PAPER_ID),
+    WEIGHT              FLOAT DEFAULT 1.0,
+    INGESTED_AT         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
--- 6. METRICS: Track evaluation scores and logging for generated answers
-CREATE OR REPLACE TABLE APP.EVAL_METRICS (
-    LOG_ID VARCHAR,
-    QUESTION STRING,
-    GENERATED_RESPONSE STRING,
-    CONTEXT_USED STRING,
-    FAITHFULNESS_SCORE FLOAT,
-    ANSWER_RELEVANCE_SCORE FLOAT,
-    CONFIDENCE FLOAT,
-    TIMESTAMP TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    PRIMARY KEY (LOG_ID)
+-- ── GRAPH.CHUNK_ENTITY_MAP ───────────────────────────────────
+-- Links chunks to entities they mention.
+-- Critical for Engineer 2's graph-enhanced retrieval.
+CREATE OR REPLACE TABLE GRAPH.CHUNK_ENTITY_MAP (
+    MAP_ID              VARCHAR PRIMARY KEY,
+    CHUNK_ID            VARCHAR REFERENCES RAW.CHUNKS(CHUNK_ID),
+    NODE_ID             VARCHAR REFERENCES GRAPH.KNOWLEDGE_NODES(NODE_ID),
+    CONFIDENCE          FLOAT DEFAULT 1.0
 );
+
+-- ── APP.CHUNKS_V ─────────────────────────────────────────────
+-- Application-facing view: chunks joined with paper metadata.
+-- This is what Engineer 2 queries for retrieval.
+CREATE OR REPLACE VIEW APP.CHUNKS_V AS
+SELECT
+    c.CHUNK_ID,
+    c.PAPER_ID,
+    c.CHUNK_INDEX,
+    c.SECTION_NAME,
+    c.TEXT_CONTENT,
+    c.WORD_COUNT,
+    c.EMBEDDING,
+    p.TITLE,
+    p.AUTHORS,
+    p.PUBLICATION_YEAR,
+    p.CATEGORIES,
+    p.SOURCE_URL
+FROM RAW.CHUNKS c
+JOIN RAW.PAPERS p ON c.PAPER_ID = p.PAPER_ID;
+
+-- ── APP.EVAL_METRICS ─────────────────────────────────────────
+-- Every query the system answers gets logged here by Engineer 3.
+CREATE OR REPLACE TABLE APP.EVAL_METRICS (
+    LOG_ID                  VARCHAR PRIMARY KEY,
+    QUESTION                STRING,
+    GENERATED_RESPONSE      STRING,
+    CONTEXT_USED            STRING,
+    RETRIEVAL_MODE          VARCHAR,
+    FAITHFULNESS_SCORE      FLOAT,
+    ANSWER_RELEVANCE_SCORE  FLOAT,
+    CONFIDENCE              FLOAT,
+    LATENCY_MS              INT,
+    TIMESTAMP               TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- ── Verification ─────────────────────────────────────────────
+SELECT 'Schema setup complete' AS STATUS;
+
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA IN ('RAW', 'GRAPH', 'APP')
+ORDER BY TABLE_SCHEMA, TABLE_NAME;
