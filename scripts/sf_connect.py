@@ -1,3 +1,15 @@
+"""
+Snowflake connection helper.
+Reads config from .env (account, user, password, warehouse, database, schema).
+Provides get_conn() for use by other scripts.
+
+Usage:
+    from scripts.sf_connect import get_conn
+    conn = get_conn()
+
+    # Or run directly to test connection:
+    python scripts/sf_connect.py
+"""
 import os
 import snowflake.connector
 from dotenv import load_dotenv

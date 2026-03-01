@@ -1,5 +1,4 @@
 """
-scripts/run_sql_file.py
 Run a SQL file against Snowflake.
 Context (warehouse, database) is set from .env — no hardcoded names in SQL files.
 
