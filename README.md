@@ -191,6 +191,18 @@ Key dependencies (see `requirements.txt` for full list):
 
 ---
 
+## Backend - Query Screenshots
+
+# Retrieved Chunks
+![alt text](image.png)
+
+# LLM Formatted Response
+![alt text](image-1.png)
+
+# Query 2 LLM Response:
+![alt text](image-2.png)
+---
+
 ## Individual Contributions
 
 See [CONTRIBUTIONS.md](CONTRIBUTIONS.md) for detailed breakdown.

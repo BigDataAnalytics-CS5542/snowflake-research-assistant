@@ -1,14 +1,55 @@
 from typing import List, Dict
 
 import json, os, numpy as np
-from scripts.sf_connect import get_conn
 
-def get_top_chunks(query_text, top_k=5, passcode=''):
+
+import spacy
+import data.config as config
+
+
+
+# Load the scientific NLP model once to avoid overhead on every request
+# We disable 'parser' and 'linker' to speed up the extraction process
+nlp = spacy.load(config.SPACY_MODEL, disable=["parser", "ner"])
+# We add the entity ruler or use the default pipe depending on needs
+# For scientific entities, the default pipe usually suffices:
+nlp_ner = spacy.load(config.SPACY_MODEL)
+
+def extract_query_entities(query: str) -> List[str]:
+    """
+    Extracts and normalizes scientific entities from a natural language query.
+    
+    Args:
+        query: The user's search string.
+        
+    Returns:
+        A list of unique, normalized (uppercase) entity strings.
+    """
+    if not query:
+        return []
+
+    # Process the text
+    doc = nlp_ner(query)
+    
+    entities = []
+    for ent in doc.ents:
+        # 1. Basic Cleaning
+        cleaned_ent = ent.text.strip()
+        
+        # 2. Filter by length based on config.py (KG_MIN_NAME_LENGTH = 3)
+        if len(cleaned_ent) >= config.KG_MIN_NAME_LENGTH:
+            # 3. Normalize for database lookup (matching the ingestion logic)
+            entities.append(cleaned_ent.upper())
+            
+    # Return unique entities only
+    return list(set(entities))
+
+
+def get_top_chunks(conn, query_text, top_k=5, passcode=''):
     from sentence_transformers import SentenceTransformer
     model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
     query_vec = model.encode([query_text], normalize_embeddings=True)[0]
 
-    conn = get_conn(passcode=passcode)
     cur = conn.cursor()
     cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
     cur.execute('USE DATABASE CS5542_PROJECT_ROHAN_BLAKE_KENNETH')
@@ -16,7 +57,7 @@ def get_top_chunks(query_text, top_k=5, passcode=''):
         'SELECT CHUNK_ID, PAPER_ID, TITLE, SECTION_NAME, TEXT_CONTENT, EMBEDDING FROM APP.CHUNKS_V'
     )
     rows = cur.fetchall()
-    conn.close()
+    
 
     results = []
     for chunk_id, paper_id, title, section, text, emb_json in rows:
@@ -29,15 +70,16 @@ def get_top_chunks(query_text, top_k=5, passcode=''):
 
 
 
-def graph_search(entities: List[str], passcode: str = '') -> List[Dict]:
+def graph_search(conn, query: str) -> List[Dict]:
     '''
     Query GRAPH.KNOWLEDGE_EDGES and KNOWLEDGE_NODES to find relations 
     connected to the extracted entities.
     '''
+    entities = extract_query_entities(query=query)
     if not entities:
         return []
 
-    conn = get_conn(passcode=passcode)
+    
     cur = conn.cursor()
     
     # 1. Setup session context
@@ -79,7 +121,7 @@ def graph_search(entities: List[str], passcode: str = '') -> List[Dict]:
 
     cur.execute(query, normalized_entities + normalized_entities)
     rows = cur.fetchall()
-    conn.close()
+
 
     # 3. Format results into a list of dictionaries
     graph_results = []

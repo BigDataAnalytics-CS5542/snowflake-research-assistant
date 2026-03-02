@@ -34,7 +34,7 @@
 
 ---
 
-## Kenneth Kakie — 35%
+## Kenneth Kakie — 30%
 
 **Backend API & Retrieval Engine**
 
@@ -53,7 +53,7 @@
 
 ---
 
-## Blake Simpson — 25%
+## Blake Simpson — 30%
 
 **Frontend Interface & Evaluation**
 
