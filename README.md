@@ -191,6 +191,15 @@ Key dependencies (see `requirements.txt` for full list):
 
 ---
 
+## Snowflake / SQL Screenshots
+
+# Snowflake Schema
+![alt text](image-3.png)
+
+(SQL File hosted in ./sql)
+
+---
+
 ## Backend - Query Screenshots
 
 # Retrieved Chunks
