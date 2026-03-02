@@ -154,8 +154,8 @@ After full ingestion of 1000 papers:
 | Table | Expected Rows |
 |---|---|
 | RAW.PAPERS | ~1,000 |
-| RAW.CHUNKS | ~36,000 |
-| GRAPH.KNOWLEDGE_NODES | ~200,000+ |
+| RAW.CHUNKS | ~35,000 |
+| GRAPH.KNOWLEDGE_NODES | ~190,000+ |
 | GRAPH.KNOWLEDGE_EDGES | ~25,000,000+ |
-| GRAPH.CHUNK_ENTITY_MAP | ~2,500,000+ |
+| GRAPH.CHUNK_ENTITY_MAP | ~1,600,000+ |
 | APP.EVAL_METRICS | 0 (populated at query time) |
