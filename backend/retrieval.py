@@ -1,10 +1,15 @@
 from typing import List, Dict
 
 import json, os, numpy as np
-
-
+from sentence_transformers import SentenceTransformer
 import spacy
 import data.config as config
+
+# --- Global Models ---
+# Load embedding model once to prevent latency spikes on every query
+print("Loading vector embedding model... This could take a moment on first boot.")
+EMBEDDING_MODEL = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+print("Vector model loaded successfully.")
 
 
 
@@ -46,9 +51,8 @@ def extract_query_entities(query: str) -> List[str]:
 
 
 def get_top_chunks(conn, query_text, top_k=5, passcode=''):
-    from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
-    query_vec = model.encode([query_text], normalize_embeddings=True)[0]
+    # Use the globally loaded model
+    query_vec = EMBEDDING_MODEL.encode([query_text], normalize_embeddings=True)[0]
 
     cur = conn.cursor()
     cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
@@ -119,7 +123,7 @@ def graph_search(conn, query: str) -> List[Dict]:
     JOIN GRAPH.KNOWLEDGE_NODES n2 ON e.SOURCE_NODE_ID = n2.NODE_ID
     """
 
-    cur.execute(query, normalized_entities + normalized_entities)
+    cur.execute(query, normalized_entities)
     rows = cur.fetchall()
 
 

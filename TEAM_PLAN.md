@@ -44,7 +44,6 @@ The architecture consists of four main domains:
 *   **Core Responsibilities:**
     *   **Dashboard Development:** Manage `frontend/app.py` in Streamlit. Ensure users can organically type queries and view the LLM's returned message.
     *   **Citation Viewer:** Build out the interactive "View Citations & Confidence" block, creating a seamless UX that links exact sources to the text.
-    *   **RAG Validation:** Implement scripts in `evaluation/evaluate.py` to compare standard Vector Search against Graph-Augmented Search using metrics like *Faithfulness* and *Answer Relevance*.
     *   **Metrics Logging:** Create the telemetry hooks. Every final answer rendered on the frontend needs its success metadata pushed to the `APP.EVAL_METRICS` table in Snowflake.
 
 ---

@@ -1,9 +1,26 @@
 import streamlit as st
+import requests
 
 st.set_page_config(page_title="Research Assistant", layout="wide")
 
-st.title("Research Assistant \U0001f9ec")
+st.title("Research Assistant 🧬")
 st.markdown("Welcome to your personalized research assistant powered by **Snowflake** and **Knowledge Graphs**.")
+
+with st.sidebar:
+    st.header("Settings")
+    passcode = st.text_input("Snowflake MFA Passcode", type="password", help="Enter your Duo MFA token if required.")
+    
+    if st.button("Verify Connection"):
+        with st.spinner("Connecting to Snowflake..."):
+            try:
+                res = requests.post("http://localhost:3001/auth", json={"passcode": passcode})
+                data = res.json()
+                if data.get("status") == "success":
+                    st.success("Successfully authenticated with Snowflake!")
+                else:
+                    st.error(data.get("message", "Authentication failed."))
+            except Exception as e:
+                st.error(f"Cannot reach backend: {str(e)}")
 
 # Chat Interface
 if "messages" not in st.session_state:
@@ -19,15 +36,44 @@ if prompt := st.chat_input("Ask a question about your research papers..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
     with st.chat_message("assistant"):
-        # Placeholder for backend integration
-        response = "This is a dummy response. In the future, this will hit `backend/retrieval.py`."
-        st.markdown(response)
+        message_placeholder = st.empty()
         
-        # Citation Display
-        with st.expander("View Citations & Confidence"):
-            st.write("**Confidence Score:** 0.95")
-            st.write("- Chunk ID: `CHK-123` from Paper `GraphFlow`")
-            st.write("- Node: `Retrieval-Augmented Generation`")
+        with st.spinner("Analyzing papers..."):
+            try:
+                # Call backend API
+                payload = {
+                    "question": prompt,
+                    "top_k": 5,
+                    "passcode": passcode
+                }
+                res = requests.post("http://localhost:3001/query", json=payload)
+                res.raise_for_status()
+                data = res.json()
+                
+                # FastAPI returns a list with a single dict for some reason: [{ 'answer': ..., 'citations': ... }]
+                if isinstance(data, list) and len(data) > 0:
+                    data = data[0]
+
+                answer = data.get("answer", "No answer provided.")
+                citations = data.get("citations", [])
+                confidence = data.get("confidence", 0.0)
+                
+                message_placeholder.markdown(answer)
+                
+                # Citation Display
+                if citations:
+                    with st.expander("View Citations & Confidence"):
+                        st.write(f"**Confidence Score:** {confidence}")
+                        for chunk in citations:
+                            st.markdown("---")
+                            st.write(f"**Score:** {round(chunk.get('score', 0), 3)}")
+                            st.write(f"- Chunk ID: `{chunk.get('chunk_id')}` from Paper `{chunk.get('title')}`")
+                            st.write(f"- Section: `{chunk.get('section')}`")
+                            st.write(f"> {chunk.get('text')}")
+                            
+            except Exception as e:
+                answer = f"Error connecting to backend: {e}"
+                message_placeholder.error(answer)
             
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 

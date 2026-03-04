@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from backend.retrieval import get_top_chunks, graph_search
+from evaluation.evaluate import log_metrics_to_snowflake
 import os, time
 from huggingface_hub import InferenceClient
 from scripts.sf_connect import get_conn
@@ -12,6 +13,34 @@ app = FastAPI(title="Research Assistant API")
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Research Assistant API"}
+
+# --- Connection Caching ---
+_GLOBAL_CONN = None
+
+def get_active_conn(passcode: str = ""):
+    global _GLOBAL_CONN
+    if _GLOBAL_CONN is not None and not _GLOBAL_CONN.is_closed():
+        return _GLOBAL_CONN
+        
+    # If no active connection, we must create one.
+    _GLOBAL_CONN = get_conn(passcode=passcode.strip())
+    return _GLOBAL_CONN
+
+class AuthRequest(BaseModel):
+    passcode: str = ""
+
+@app.post("/auth")
+def authenticate(req: AuthRequest):
+    global _GLOBAL_CONN
+    try:
+        # Force a new connection for fresh auth
+        if _GLOBAL_CONN is not None and not _GLOBAL_CONN.is_closed():
+            _GLOBAL_CONN.close()
+            
+        _GLOBAL_CONN = get_conn(passcode=req.passcode.strip())
+        return {"status": "success", "message": "Successfully authenticated with Snowflake."}
+    except Exception as e:
+        return {"status": "error", "message": f"Authentication failed: {str(e)}"}
 
 
 def save_to_history(query_text: str, answer: str, citations: list):
@@ -50,11 +79,12 @@ def save_to_history(query_text: str, answer: str, citations: list):
 class QueryRequest(BaseModel):
     question: str
     top_k: int = 5
+    passcode: str = ""
 
 @app.post('/query')
 def query(req: QueryRequest):
     start = time.time()
-    conn = get_conn(passcode=input("OTP : ").strip())
+    conn = get_active_conn(passcode=req.passcode.strip())
     chunks = get_top_chunks(conn=conn, query_text=req.question, top_k=req.top_k)
     # 1. Format each chunk to include its index, title, section, and text
     formatted_chunks = []
@@ -101,13 +131,26 @@ def query(req: QueryRequest):
         citations=result['citations']
     )
 
-    return {
-        result
+    context_used = "\n".join([c['text'] for c in result['citations']])
+    log_data = {
+        'question': req.question,
+        'answer': result['answer'],
+        'context_used': context_used[:10000], # max length to be safe
+        'retrieval_mode': result['retrieval_mode'],
+        'confidence': result['confidence'],
+        'latency_ms': result['latency_ms']
     }
+    try:
+        log_metrics_to_snowflake(log_data, conn=conn)
+        print("Successfully logged metrics to Snowflake.")
+    except Exception as e:
+        print(f"Failed to log metrics: {e}")
+
+    return result
 
 @app.get('/papers')
-def papers():
-    conn = get_conn(input("OPT : ").strip())
+def papers(passcode: str = ""):
+    conn = get_active_conn(passcode=passcode.strip())
     cur = conn.cursor()
     
     # 1. Setup session context
