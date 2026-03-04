@@ -45,5 +45,193 @@
                 "score": 0.40191514343739543
             }
         ]
+    },
+    {
+        "timestamp": "2026-03-03T21:33:42.840337",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a robust regression method that is defined as [1] for a probability measure @xmath164 on @xmath165 and @xmath166 . A real number @xmath167 is called @xmath159-quantile of @xmath164, if and only if @xmath167 belongs to the set @xmath168 ) q ([t , ) ) 1- \\}\\,.\\ ] ].\n\nIn other words, a @xmath159-quantile of type @xmath170 * of a probability measure @xmath164 on @xmath165 is a real number @xmath171 that belongs to a compact interval @xmath169 and has a constant @xmath172 such that for all @xmath173 $ ] , we have @xmath174 2 . This implies that @xmath164 has a @xmath159-quantile of type @xmath170 * if and only if there exists a @xmath159-quantile @xmath171 and a constant @xmath172 such that for all @xmath173 $ ] , we have @xmath174 2 .\n\nFurthermore, @xmath164 has a @xmath159-quantile of type @xmath170 if and only if it has a unique @xmath159-quantile @xmath183 . This is because if @xmath164 has a @xmath159-quantile of type @xmath170, then it has a unique @xmath159-quantile @xmath183.\n\nAdditionally, if @xmath164 has a Lebesgue density @xmath184 that is bounded away from zero on @xmath185, then @xmath164 has a @xmath159-quantile of type @xmath170 if and only if @xmath184 is bounded away from zero on @xmath185 [tauquantileoftype2formula].\n\nQuantile regression is a special case of regression analysis where the goal is to estimate a function that maps the input variables to a @xmath159-quantile of the output variable. The quantile regression function is defined as a value @xmath158 that is a @xmath159-quantile of @xmath160.\n\nIn practice, quantile regression is used to estimate the quantile regression function, which is a function that maps the input variables to a @xmath159-quantile of the output variable. The",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-03T21:38:20.510036",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a statistical technique that is defined in [1] as a method for estimating the conditional quantile of a random variable, given a set of covariates. It is based on the idea that the quantile of a distribution is the value below which a certain proportion of the data falls. In other words, a real number is called a q-quantile of a probability measure if and only if it belongs to the interval (t, ∞] with probability q, for t ≤ 1.\n\nThe concept of q-quantile is used to extend the traditional regression analysis, which focuses on the mean. In quantile regression, the goal is to estimate the conditional quantile of the response variable, rather than the mean. This allows for a more nuanced understanding of the relationship between the covariates and the response variable.\n\nTo achieve this, quantile regression assumes that the distribution of the response variable has a bounded support, i.e., it has a Lebesgue density that is bounded away from zero [2]. This assumption is general enough to cover many distributions used in parametric statistics, such as Gaussian, Student's t, and logistic distributions.\n\nThe quantile regression function is defined as the value that is a q-quantile of the conditional distribution of the response variable, given the covariates. The regularization scheme for quantile regression is based on the pinball loss function, which is a loss function that is commonly used in regression analysis.\n\nThe learning rate for the regularization scheme in quantile regression is given by Theorem [quantilethm], which provides a bound on the approximation error of the quantile regression function. The theorem assumes that the kernel function is bounded and that the data is noisy with respect to the hypothesis space.\n\nIn addition to the regularity assumptions, quantile regression also requires a condition on the noise level in the measure [4]. This condition is similar to the one used in definition [noisecond] and is necessary to ensure that the quantile regression function converges to the true value.\n\nOverall, quantile regression is a powerful technique for estimating the conditional quantile of a random variable, given a set of covariates. It is based on the concept of q-quantile and uses a regularization scheme that is similar to that used in traditional regression analysis.",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-03T21:42:13.200377",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a statistical technique used to estimate the conditional quantile of a continuous random variable. For a probability measure P on a measurable space (Ω, Σ), a real number x is called a P-quantile of order α, denoted as P^{α}, if and only if it belongs to the set {x ∈ ℝ : P({x} ≤ x) ≥ α} [1]. This set is called the α-quantile set.\n\nA probability measure P on Ω has a P-quantile of type α if there exist a P-quantile P^{α} and a constant c such that, for all x ∈ ℝ, we have P^{α} ≤ x ≤ c P^{α} [1].\n\nIn the context of quantile regression, a distribution P has a P-quantile of type α-average if the conditional probability measure P|X has P^{α}-almost surely a P-quantile of type α and the function f(x) = P^{α} + (c - P^{α})I_{(-∞, x]}(X), where c is the constant defined in part (1), satisfies P-I(0, f(x)) ≤ 0 [1].\n\nThe assumption of an additive model is satisfied if the distribution P can be written as an expectation of a mixture of probability measures, each concentrated on a single component of the additive decomposition [2].\n\nIn the special case of quantile regression, the quantile regression function f(x) is defined by its value x to be a P-quantile of order α, i.e., a value x satisfying P({x} ≤ x) ≥ α [4]. The regularization scheme for quantile regression considered here takes the form (algor) with the loss function given by the pinball loss [4].\n\nA noise condition on P for quantile regression is defined as follows: for a probability measure P on Ω and a quantile parameter α, let P^{α} be the P-quantile of order α. Then, for any x ∈ ℝ and ε > 0, with confidence at least 1 - ε, we have P^{α} - ε ≤ f(x) ≤ P^{α} + ε, where f(x) is the quantile regression function [5].\n\nThe learning rate for the regularization scheme (algor) in the special case of quantile regression is given by theorem [quantilethm], which states",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-03T21:56:36.133649",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a method used to estimate the conditional quantile of a response variable given a set of predictor variables. It is defined as the value of the response variable that corresponds to a certain quantile of the distribution of the response variable, given the predictor variables [1]. \n\nIn other words, the conditional quantile of a response variable is the value of the response variable that falls within a certain percentage of the distribution of the response variable, given the predictor variables. This can be denoted as E[Y ≤ q(X)] or E[Y ≥ (1-q)(X)], where q is the quantile parameter, Y is the response variable, and X is the set of predictor variables.\n\nThe concept of a quantile regression is closely related to the concept of a conditional expectation, but unlike conditional expectation, which estimates the expected value of the response variable, quantile regression estimates a specific quantile of the response variable [2].\n\nIn the context of machine learning, quantile regression is often used to model the relationship between a response variable and a set of predictor variables, where the goal is to estimate the conditional quantile of the response variable. This can be particularly useful in situations where the relationship between the variables is non-linear, or where the data is heavily skewed [3].\n\nOne of the key advantages of quantile regression is its ability to handle non-linear relationships and non-normal data. This is because quantile regression estimates a specific quantile of the response variable, rather than estimating the expected value of the response variable [4].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
     }
 ]
