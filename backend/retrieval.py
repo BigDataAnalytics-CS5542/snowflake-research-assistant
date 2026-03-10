@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-import json, os, numpy as np
+import os
 from sentence_transformers import SentenceTransformer
 import spacy
 import data.config as config
@@ -54,23 +54,31 @@ def get_top_chunks(conn, query_text, top_k=5, passcode=''):
     # Use the globally loaded model
     query_vec = EMBEDDING_MODEL.encode([query_text], normalize_embeddings=True)[0]
 
+    # Format as a Snowflake vector literal, e.g. "[0.1,0.2,...]"
+    vec_literal = "[" + ",".join(str(float(v)) for v in query_vec) + "]"
+
     cur = conn.cursor()
     cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
     cur.execute('USE DATABASE CS5542_PROJECT_ROHAN_BLAKE_KENNETH')
     cur.execute(
-        'SELECT CHUNK_ID, PAPER_ID, TITLE, SECTION_NAME, TEXT_CONTENT, EMBEDDING FROM APP.CHUNKS_V'
+        f"""
+        SELECT
+            VECTOR_COSINE_SIMILARITY(cv.EMBEDDING,
+                PARSE_JSON('{vec_literal}')::VECTOR(FLOAT, 768)) AS score,
+            cv.CHUNK_ID,
+            cv.PAPER_ID,
+            cv.TITLE,
+            cv.SECTION_NAME,
+            cv.TEXT_CONTENT
+        FROM APP.CHUNKS_V cv
+        ORDER BY score DESC
+        LIMIT {int(top_k)}
+        """
     )
     rows = cur.fetchall()
-    
 
-    results = []
-    for chunk_id, paper_id, title, section, text, emb_json in rows:
-        emb = np.array(json.loads(emb_json))
-        score = float(np.dot(query_vec, emb))
-        results.append((score, chunk_id, paper_id, title, section, text))
-
-    results.sort(reverse=True)
-    return results[:top_k]
+    return [(float(score), chunk_id, paper_id, title, section, text)
+            for score, chunk_id, paper_id, title, section, text in rows]
 
 
 

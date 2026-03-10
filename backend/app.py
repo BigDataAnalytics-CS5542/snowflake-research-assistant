@@ -3,11 +3,16 @@ from pydantic import BaseModel
 from backend.retrieval import get_top_chunks, graph_search
 from evaluation.evaluate import log_metrics_to_snowflake
 import os, time
-from huggingface_hub import InferenceClient
+from google import genai
+from google.genai import types
 from scripts.sf_connect import get_conn
 import json
 from datetime import datetime
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 
 app = FastAPI(title="Research Assistant API")
 @app.get("/")
@@ -83,47 +88,181 @@ class QueryRequest(BaseModel):
 
 @app.post('/query')
 def query(req: QueryRequest):
+    try:
+        return _query_logic(req)
+    except Exception as e:
+        import traceback
+        print("\n=== CRITICAL ERROR IN /query ===")
+        traceback.print_exc()
+        print("================================\n")
+        raise e
+
+def _query_logic(req: QueryRequest):
     start = time.time()
     conn = get_active_conn(passcode=req.passcode.strip())
-    chunks = get_top_chunks(conn=conn, query_text=req.question, top_k=req.top_k)
-    # 1. Format each chunk to include its index, title, section, and text
-    formatted_chunks = []
-    for i, chunk in enumerate(chunks, start=1):
-        title = chunk[3]
-        section = chunk[4]
-        text = chunk[5]
-        
-        # Bundle the metadata with the text using a clear structure
-        formatted_string = f"[{i}] Paper Title: {title}\nSection: {section}\nText: {text}"
-        formatted_chunks.append(formatted_string)
 
-    # 2. Join the structured chunks with newlines to separate them clearly
-    context = '\n\n'.join(formatted_chunks)
-    print(context)
-   
-    model_id = "meta-llama/Llama-3.2-3B-Instruct"
-    client = InferenceClient(token=os.getenv('HF_TOKEN'))
-    messages = [{"role": "user", "content": f"Answer: {req.question}\nYou absolutely need to cite the context. You must cite the text excerpts using their bracketed index (e.g., \"This method is highly scalable [1].\" You don't need to list references at the end). Never invent facts, and never invent citations. Context: {context}"}]
-    
-    response = client.chat_completion(
-        model=model_id,
-        messages=messages,
-        max_tokens=500
+    gemini_client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+    model_id = "gemini-2.5-flash"
+
+    # Define the tools available to the model using Gemini's format
+    search_vector_db = types.FunctionDeclaration(
+        name="search_vector_database",
+        description="Searches a database of academic papers to find contextually relevant text chunks based on semantic similarity.",
+        parameters=types.Schema(
+            type=types.Type.OBJECT,
+            properties={
+                "query": types.Schema(type=types.Type.STRING, description="The search string to use for finding relevant text in the database."),
+                "top_k": types.Schema(type=types.Type.INTEGER, description="The number of top results to return. Keep this small (e.g., 5-10) to avoid overloading context.")
+            },
+            required=["query", "top_k"]
+        )
     )
-    print(f"\n\n\n\n\n\n\n{response.choices[0].message.content}\n\n")
-    answer =response.choices[0].message.content
-    
+
+    search_kg = types.FunctionDeclaration(
+        name="search_knowledge_graph",
+        description="Searches a knowledge graph of scientific concepts extracted from academic papers. Returns CO_OCCURS relationships showing which methods, models, and techniques appear together. Use this tool to discover connections between concepts that may not appear in the same text chunk.",
+        parameters=types.Schema(
+            type=types.Type.OBJECT,
+            properties={
+                "query": types.Schema(type=types.Type.STRING, description="A natural language query describing the relationships or entities you are investigating.")
+            },
+            required=["query"]
+        )
+    )
+
+    gemini_tools = types.Tool(function_declarations=[search_vector_db, search_kg])
+
+    # Setup the robust system prompt for the Autonomous RAG Agent
+    system_prompt = (
+        "You are an autonomous Research Assistant specialized in analyzing academic papers and their relationships.\n\n"
+        "You have access to two tools:\n"
+        "  1. search_vector_database — finds relevant text passages from papers via semantic similarity.\n"
+        "  2. search_knowledge_graph — finds relationships between scientific concepts (e.g., which methods co-occur with which datasets).\n"
+        "When the user asks a question, act as an autonomous agent. You MUST use BOTH tools at least once to gather comprehensive evidence before answering.\n"
+        "Start with a vector search, then use the knowledge graph to discover related concepts, then optionally refine with another vector search.\n\n"
+        "CRITICAL INSTRUCTIONS FOR ANSWERING:\n"
+        "1. You MUST explicitly cite the sources of your claims using the index number of the text chunks provided via the vector database.\n"
+        "2. Format citations as [1], [2], etc.\n"
+        "3. Never invent facts, and never invent citations.\n"
+        "4. If you use information from the knowledge graph, explicitly state the relationship."
+    )
+
+    contents = [types.Content(role="user", parts=[types.Part.from_text(text=req.question)])]
+
+    max_iterations = 5
+    iterations = 0
+    all_citations = []
+
+    # Track the highest chunk confidence seen during the loop
+    max_confidence = 0.0
+
+    print(f"\n--- Starting Agentic Loop for query: '{req.question}' ---")
+
+    while iterations < max_iterations:
+        iterations += 1
+        print(f"\n[Iteration {iterations}/{max_iterations}] Calling LLM...")
+
+        response = gemini_client.models.generate_content(
+            model=model_id,
+            contents=contents,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                tools=[gemini_tools],
+                max_output_tokens=600,
+            )
+        )
+
+        candidate = response.candidates[0]
+
+        # Check if the model wants to call tools
+        function_calls = [part for part in candidate.content.parts if part.function_call]
+
+        if function_calls:
+            # Append the model's response (with function calls) to conversation
+            contents.append(candidate.content)
+
+            tool_response_parts = []
+
+            for fc_part in function_calls:
+                fc = fc_part.function_call
+                function_name = fc.name
+                arguments = dict(fc.args) if fc.args else {}
+
+                print(f"  -> Tool Call: {function_name}({arguments})")
+
+                if function_name == "search_vector_database":
+                    search_query = arguments.get("query", req.question)
+                    k = int(arguments.get("top_k", req.top_k))
+                    chunks = get_top_chunks(conn=conn, query_text=search_query, top_k=k)
+
+                    if chunks and chunks[0][0] > max_confidence:
+                        max_confidence = chunks[0][0]
+
+                    formatted_chunks = []
+                    start_idx = len(all_citations) + 1
+
+                    for i, chunk in enumerate(chunks, start=start_idx):
+                        title = chunk[3]
+                        section = chunk[4]
+                        text = chunk[5]
+
+                        formatted_string = f"[{i}] Paper Title: {title}\nSection: {section}\nText: {text}"
+                        formatted_chunks.append(formatted_string)
+
+                        all_citations.append({
+                            'chunk_id': chunk[1],
+                            'paper_id': chunk[2],
+                            'title': chunk[3],
+                            'section': chunk[4],
+                            'text': chunk[5][:200],
+                            'score': chunk[0]
+                        })
+
+                    tool_result = '\n\n'.join(formatted_chunks) if formatted_chunks else "No results found in the vector database."
+
+                elif function_name == "search_knowledge_graph":
+                    search_query = arguments.get("query", req.question)
+                    graph_data = graph_search(conn=conn, query=search_query)
+
+                    if graph_data:
+                        formatted_rels = [f"{r['source']} -[{r['relation']}]-> {r['target']} (Weight: {r['weight']})" for r in graph_data]
+                        tool_result = "Knowledge Graph Matches Found:\n" + "\n".join(formatted_rels)
+                    else:
+                        tool_result = "No relationships found in the knowledge graph for the given query."
+
+                else:
+                    tool_result = f"Error: Tool '{function_name}' is not recognized."
+
+                print(f"  <- Tool Returning {len(tool_result)} characters of context.")
+                tool_response_parts.append(
+                    types.Part.from_function_response(name=function_name, response={"result": tool_result})
+                )
+
+            # Append all tool results back to the conversation
+            contents.append(types.Content(role="user", parts=tool_response_parts))
+
+        # If the model replies with text (final answer phase)
+        else:
+            text_parts = [part.text for part in candidate.content.parts if part.text]
+            if text_parts:
+                print(f"  -> Model provided a text response. Exiting loop.")
+                answer = "\n".join(text_parts)
+                break
+
+    else:
+        # If we broke out of the while loop because of iterations
+        print("  -> Hit max iterations without a final text answer. Forcing generation.")
+        answer = "I apologize, but I was unable to compile a complete answer after searching the databases."
+        if all_citations:
+             answer += "\nHowever, I did find some relevant sources, though I couldn't synthesize them in time."
+
     result = {
         'answer': answer,
-        'citations': [
-            {'chunk_id': c[1], 'paper_id': c[2], 'title': c[3],
-             'section': c[4], 'text': c[5][:200], 'score': c[0]}
-            for c in chunks
-        ],
-        'confidence': round(chunks[0][0], 3) if chunks else 0,
-        'retrieval_mode': 'vector',
+        'citations': all_citations,
+        'confidence': round(max_confidence, 3),
+        'retrieval_mode': 'agentic',
         'latency_ms': int((time.time() - start) * 1000)
-        }
+    }
 
     save_to_history(
         query_text=req.question, 
@@ -140,6 +279,7 @@ def query(req: QueryRequest):
         'confidence': result['confidence'],
         'latency_ms': result['latency_ms']
     }
+    
     try:
         log_metrics_to_snowflake(log_data, conn=conn)
         print("Successfully logged metrics to Snowflake.")
@@ -163,6 +303,17 @@ def papers(passcode: str = ""):
     cur.execute(query)
     rows = cur.fetchall()
     return rows
+
+@app.get('/history')
+def history():
+    history_path = Path("backend/history.json")
+    if not history_path.exists():
+        return []
+    with open(history_path, "r", encoding="utf-8") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return []
 
 @app.get('/health')
 def health(): return {'status': 'ok'}

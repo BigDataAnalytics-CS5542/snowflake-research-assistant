@@ -6,7 +6,7 @@ def run_ragas_evaluation():
     '''
     pass
 
-def log_metrics_to_snowflake(log_data: dict):
+def log_metrics_to_snowflake(log_data: dict, conn=None):
     '''
     Automatically capture Q&A pairs, retrieval latency, and confidence scores back to APP.EVAL_METRICS.
     '''

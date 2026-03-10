@@ -22,6 +22,25 @@ with st.sidebar:
             except Exception as e:
                 st.error(f"Cannot reach backend: {str(e)}")
 
+    st.markdown("---")
+    st.header("Chat History")
+    try:
+        hist_res = requests.get("http://localhost:3001/history")
+        hist_data = hist_res.json()
+        if hist_data:
+            for entry in reversed(hist_data):
+                ts = entry.get("timestamp", "")[:19].replace("T", " ")
+                with st.expander(f"{ts} — {entry.get('query', '')[:60]}"):
+                    st.markdown(f"**Q:** {entry.get('query', '')}")
+                    st.markdown(f"**A:** {entry.get('answer', '')}")
+                    chunks = entry.get("chunks", [])
+                    if chunks:
+                        st.caption(f"{len(chunks)} citation(s)")
+        else:
+            st.caption("No history yet. Ask a question to get started.")
+    except Exception:
+        st.caption("Could not load history.")
+
 # Chat Interface
 if "messages" not in st.session_state:
     st.session_state.messages = []
