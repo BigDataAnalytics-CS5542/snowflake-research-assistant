@@ -1,56 +1,61 @@
 # Snowflake-Centered Personalized Research Assistant
 ### CS 5542 – Big Data Analytics and Applications
 
-A RAG + Knowledge Graph research assistant powered by Snowflake, FastAPI, and Streamlit.
+A RAG + Knowledge Graph research assistant powered by Snowflake, FastAPI, and Streamlit.  
+**Lab 7 Update:** Upgraded to an Agentic RAG loop using Gemini 2.5 Flash with full reproducibility infrastructure.
 
 ---
 
 ## Team
-| Name | Role | GitHub |
-|---|---|---|
-| Rohan Ashraf Hashmi | Engineer 1 — Data & Ingestion | @rohanhashmi2 |
-| Kenneth Kakie | Engineer 2 — Backend & Retrieval | @kenneth-github |
-| Blake Simpson | Engineer 3 — Frontend & Evaluation | @blake-github |
+| Name | GitHub |
+|---|---|
+| Rohan Ashraf Hashmi | @rohanhashmi2 |
+| Kenneth Kakie | @kenneth-github |
+| Blake Simpson | @blake-github |
 
 ---
 
-## System Architecture
+## Lab 7 Changes (Reproducibility by Design)
 
-```
-HuggingFace Dataset
-        ↓
-  data/ingestion.py  (Stages 1–6)
-        ↓
-  Snowflake (CS5542_PROJECT_ROHAN_BLAKE_KENNETH)
-  ├── RAW.PAPERS        — paper metadata
-  ├── RAW.CHUNKS        — text chunks + embeddings (JSON)
-  ├── GRAPH.KNOWLEDGE_NODES  — extracted entities
-  ├── GRAPH.KNOWLEDGE_EDGES  — co-occurrence edges
-  ├── GRAPH.CHUNK_ENTITY_MAP — chunk ↔ entity links
-  ├── APP.CHUNKS_V      — retrieval view
-  └── APP.EVAL_METRICS  — query logs
-        ↓
-  backend/app.py  (FastAPI, port 3001)
-        ↓
-  frontend/app.py  (Streamlit, port 3000)
-```
+| What Changed | Who | Details |
+|---|---|---|
+| Agentic RAG loop in `/query` | Blake | LLM now runs up to 5 reasoning iterations using `search_vector_database` and `search_knowledge_graph` tools before answering |
+| Switched LLM to Gemini 2.5 Flash | Blake | Replaced Llama-3.2-3B with `google-genai` for tool calling support |
+| Snowflake VECTOR migration | Blake | `EMBEDDING` column migrated from VARCHAR to native `VECTOR(FLOAT, 768)` for server-side similarity search |
+| `reproduce.sh` | Rohan | Single command runs the full pipeline, smoke test, and both servers |
+| `RUN.md` | Rohan | Step-by-step setup guide for a fresh clone |
+| `tests/smoke_test.py` | Rohan | Smoke tests for `/health`, `/`, `/history` endpoints |
+| Random seeds & determinism | Kenneth | Fixed seeds across ingestion and embedding stages |
+| `REPRO_AUDIT.md` | Kenneth | Full audit of reproducibility checklist |
 
 ---
 
 ## Quickstart
 
-### 1. Clone and set up environment
+> **For full step-by-step instructions see [RUN.md](RUN.md)**
+
+### Option A — Single command (recommended)
+```bash
+bash reproduce.sh           # full run (~1 hour)
+bash reproduce.sh --smoke   # skip ingestion, start backend, run smoke tests, start frontend with 10 papers
+bash reproduce.sh --resume  # resume from existing checkpoints
+```
+
+### Option B — Manual steps
+
+#### 1. Clone and set up environment
 ```bash
 git clone <repo-url>
 cd snowflake-research-assistant
-python -m venv venv
+python3.12 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Configure environment
+#### 2. Configure environment
 ```bash
 cp .env.example .env
+# Fill in your credentials — see .env.example for all required variables
 ```
 
 Required `.env` variables:
@@ -62,38 +67,62 @@ SNOWFLAKE_ROLE=your_role
 SNOWFLAKE_WAREHOUSE=ROHAN_BLAKE_KENNETH_WH
 SNOWFLAKE_DATABASE=CS5542_PROJECT_ROHAN_BLAKE_KENNETH
 SNOWFLAKE_SCHEMA=RAW
+GEMINI_API_KEY=your_gemini_key        # https://aistudio.google.com/app/apikey
+HF_TOKEN=your_hf_token               # optional
 ```
 
-### 3. Create Snowflake schema
+#### 3. Create Snowflake schema
 ```bash
 python scripts/run_sql_file.py sql/01_create_schema.sql
 ```
 
-### 4. Run ingestion pipeline (populates all Snowflake tables)
+> **Note:** If you already had the database set up before Lab 7 (with VARCHAR embeddings),
+> also run the migration script to convert to native VECTOR type:
+> ```bash
+> python scripts/run_sql_file.py sql/02_migrate_to_vector_type.sql
+> ```
+> Fresh installs do not need this — `01_create_schema.sql` already uses `VECTOR(FLOAT, 768)`.
+
+#### 4. Run ingestion pipeline
 ```bash
-python data/ingestion.py
-# Stages 1–4 run automatically (~1 hour for 1000 papers)
-# Will prompt for MFA before Snowflake upload
+python data/ingestion.py              # full run (~1 hour, 1000 papers)
+python data/ingestion.py --resume     # resume from checkpoints
 ```
 
-To run with fewer papers for testing:
-```bash
-python data/ingestion.py --n 10
-```
-
-To resume from checkpoints (skip completed stages):
-```bash
-python data/ingestion.py --resume
-```
-
-### 5. Start backend
+#### 5. Start backend
 ```bash
 uvicorn backend.app:app --reload --port 3001
 ```
 
-### 6. Start frontend
+#### 6. Start frontend
 ```bash
 streamlit run frontend/app.py --server.port 3000
+```
+
+---
+
+## System Architecture
+
+```
+HuggingFace Dataset
+        ↓
+  data/ingestion.py  (Stages 1–6)
+        ↓
+  Snowflake (CS5542_PROJECT_ROHAN_BLAKE_KENNETH)
+  ├── RAW.PAPERS             — paper metadata
+  ├── RAW.CHUNKS             — text chunks + VECTOR(FLOAT, 768) embeddings
+  ├── GRAPH.KNOWLEDGE_NODES  — extracted entities
+  ├── GRAPH.KNOWLEDGE_EDGES  — co-occurrence edges
+  ├── GRAPH.CHUNK_ENTITY_MAP — chunk ↔ entity links
+  ├── APP.CHUNKS_V           — retrieval view
+  └── APP.EVAL_METRICS       — query logs
+        ↓
+  backend/app.py  (FastAPI, port 3001)
+  └── Agentic RAG loop (Gemini 2.5 Flash, up to 5 iterations)
+      ├── search_vector_database  — VECTOR_COSINE_SIMILARITY server-side
+      └── search_knowledge_graph  — entity relationship lookup
+        ↓
+  frontend/app.py  (Streamlit, port 3000)
 ```
 
 ---
@@ -102,7 +131,8 @@ streamlit run frontend/app.py --server.port 3000
 ```
 snowflake-research-assistant/
 ├── sql/
-│   └── 01_create_schema.sql       # Snowflake schema (RAW, GRAPH, APP)
+│   ├── 01_create_schema.sql       # Snowflake schema (RAW, GRAPH, APP)
+│   └── 02_migrate_to_vector_type.sql  # One-time VECTOR migration (Lab 7)
 ├── data/
 │   ├── config.py                  # Central config (model, chunking, paths)
 │   ├── ingestion.py               # 6-stage ingestion pipeline
@@ -111,18 +141,26 @@ snowflake-research-assistant/
 │   ├── sf_connect.py              # Snowflake connection helper (MFA-aware)
 │   └── run_sql_file.py            # Run SQL files against Snowflake
 ├── backend/
-│   ├── app.py                     # FastAPI app (port 3001)
-│   └── retrieval.py               # Vector + graph retrieval
+│   ├── app.py                     # FastAPI app — Agentic RAG loop (port 3001)
+│   ├── retrieval.py               # Vector + graph retrieval (server-side VECTOR)
+│   └── history.json               # Auto-generated query history
 ├── frontend/
 │   └── app.py                     # Streamlit UI (port 3000)
 ├── evaluation/
 │   └── evaluate.py                # RAGAS evaluation + Snowflake logging
+├── tests/
+│   └── smoke_test.py              # Smoke tests for backend endpoints (Lab 7)
+├── artifacts/                     # Run outputs and summaries (Lab 7)
+├── logs/                          # Ingestion and server logs (Lab 7)
 ├── docs/
 │   └── architecture.png           # Pipeline diagram
 ├── reproducibility/
 │   └── README.md                  # Reproducibility notes
-├── requirements.txt
-├── .env.example
+├── reproduce.sh                   # Single-command runner (Lab 7)
+├── RUN.md                         # Full setup instructions (Lab 7)
+├── REPRO_AUDIT.md                 # Reproducibility audit checklist (Lab 7)
+├── requirements.txt               # Pinned dependencies (Lab 7)
+├── .env.example                   # Environment variable template
 ├── CONTRIBUTIONS.md
 └── README.md
 ```
@@ -180,14 +218,16 @@ SPACY_MODEL         = "en_core_sci_sm"
 
 ## Requirements
 
+- **Python:** 3.12
+- **Snowflake:** EDU or Enterprise account (must support `VECTOR` type)
+
 Key dependencies (see `requirements.txt` for full list):
+- `google-genai>=1.0.0` — Gemini 2.5 Flash for Agentic RAG (added Lab 7)
 - `snowflake-snowpark-python>=1.12.0`
 - `sentence-transformers>=2.2.2`
-- `datasets>=2.14.0`
-- `scispacy>=0.6.0`
 - `fastapi>=0.109.2`
 - `streamlit>=1.30.0`
-- `langchain>=0.1.0`
+- `scispacy>=0.6.0`
 
 ---
 
@@ -210,6 +250,7 @@ Key dependencies (see `requirements.txt` for full list):
 
 # Query 2 LLM Response:
 ![alt text](image-2.png)
+
 ---
 
 ## Individual Contributions
