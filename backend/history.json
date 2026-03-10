@@ -233,5 +233,614 @@
                 "score": 0.5283054925011862
             }
         ]
+    },
+    {
+        "timestamp": "2026-03-09T22:49:11.073720",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a statistical method used to estimate conditional quantile functions. The quantile regression function is defined by its value to be a τ-quantile of a conditional probability distribution [4]. A real number is considered a τ-quantile of a probability measure if it belongs to a specific set defined by the probability measure [1]. The regularization scheme for quantile regression typically uses the pinball loss function [4].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T22:52:17.213584",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a type of regression analysis used to estimate the conditional quantile functions of a response variable [4]. Unlike ordinary least squares (OLS) regression, which focuses on estimating the conditional mean, quantile regression aims to model the relationship between a set of predictor variables and specific quantiles (e.g., median, 25th percentile, 75th percentile) of the response variable [4].\n\nFormally, for a given quantile parameter (denoted as τ), the quantile regression function is defined such that its value is a τ-quantile of a conditional probability measure [4]. A real number is considered a τ-quantile of a probability measure if it falls within a specific set defined by the probability distribution [1]. The regularization scheme for quantile regression often utilizes the pinball loss function [4].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.674109729486299
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035438362190096
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255703865169
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842834008929
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283054925011862
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T23:19:00.476026",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a statistical method used to estimate conditional quantile functions. The quantile regression function (denoted as @xmath157) is defined by its value @xmath158, which is a @xmath159-quantile of @xmath160 [4]. In a broader sense, a real number @xmath167 is considered a @xmath159-quantile of a probability measure @xmath164 if it belongs to a specific set [1].\n\nThe regularization scheme for quantile regression typically employs the pinball loss function [4]. This approach is used to analyze the relationship between variables at different quantiles of the response variable, rather than just focusing on the conditional mean as in ordinary least squares regression [4].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.6741096169817904
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035436504703203
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255765914921
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341841856131453
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283053798493526
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T23:20:22.488263",
+        "query": "What is quantile regression?",
+        "answer": "Quantile regression is a statistical method where the regression function is defined by its value being a specific quantile of a conditional distribution [4]. Unlike traditional regression methods that focus on modeling the conditional mean, quantile regression allows for the modeling of conditional quantiles (e.g., the 0.1, 0.5, or 0.9 quantiles) of the response variable [4].\n\nA key aspect is the definition of a quantile. A real number is considered a τ-quantile of a probability measure if it belongs to a specific set defined by the probability measure [1]. Distributions with a certain \"quantile of type\" can have a unique quantile [1], [2]. The regularization scheme for quantile regression often utilizes the pinball loss function [4].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.6741096169817904
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.6035436504703203
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.560255765914921
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341841856131453
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283053798493526
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T23:21:51.522796",
+        "query": "What methods improve retrieval-augmented generation and how are they evaluated?",
+        "answer": "I apologize, but I was unable to find specific information regarding methods to improve retrieval-augmented generation (RAG) in the context of large language models and their evaluation within the provided database. The search results primarily focused on statistical machine translation (SMT) and related evaluation metrics like BLEU scores [21, 22, 28, 30], rather than modern RAG techniques.",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000286_body_c009",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
+                "score": 0.41514558611565094
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c012",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
+                "score": 0.40769050625676134
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c018",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "of the 2003 conference of the north american chapter of the association for computational linguistics on human language technology , pages 4854 . edmonton , canada . p. koehn and h. hoang and a. birch",
+                "score": 0.4023314176600334
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c011",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
+                "score": 0.388135171643784
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c013",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "better performance , this depends on the choice of the test sets which are not made of news data but of data that is fairly homogeneous in terms of style and genre with the training sets . the impact ",
+                "score": 0.3776009678840637
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c004",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "see @xcite . this allows us to maintain a database containing over 1,15 million named entities and 200,000 variants . the major part of this resource can be downloaded from all news items are categori",
+                "score": 0.37562410525988543
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c008",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
+                "score": 0.3732555321829181
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c010",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
+                "score": 0.3708310502272225
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c005",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
+                "score": 0.36938343552897696
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c017",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "parsing with stack long short - term memory . in _ acl-2015 _ , pages 334343 , beijing , china , july 2015 . acl . wenbin jiang , meng sun , yajuan l , yating yang , and qun liu . discriminative learn",
+                "score": 0.3679338255007501
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c012",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
+                "score": 0.44139658438594376
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c011",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
+                "score": 0.421184378231039
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c013",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "better performance , this depends on the choice of the test sets which are not made of news data but of data that is fairly homogeneous in terms of style and genre with the training sets . the impact ",
+                "score": 0.4156187598591675
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c009",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
+                "score": 0.41113045116093155
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c010",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
+                "score": 0.3983585119736654
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c006",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "translation _ @xcite and _ syntax - based statistical machine translation _ @xcite . to identify the most suitable system for our requirements , we run a set of experiments training the three models w",
+                "score": 0.38459947017428103
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c005",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
+                "score": 0.37073739592655874
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c008",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
+                "score": 0.3663240591480767
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c007",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "is four times faster . * which training data can we use ? * it is known in statistical machine translation that more training data implies better translation . although , the number of parallel corpor",
+                "score": 0.3649740110345494
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c012",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "is the fine - tuning of segment embeddings . fine - tuning can learn a task - specific segment embeddings for the segments that occur in the training data , but it breaks their relations with the un -",
+                "score": 0.3643574308050459
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c006",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "translation _ @xcite and _ syntax - based statistical machine translation _ @xcite . to identify the most suitable system for our requirements , we run a set of experiments training the three models w",
+                "score": 0.46635071832986846
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c011",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
+                "score": 0.44807109546237694
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c014",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "- processes it . each news item is split into sentences , each sentence is tokenized , lowercased , passed through a statistical compound word splitter , @xcite , and the named entity annotator module",
+                "score": 0.445509797869948
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c008",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
+                "score": 0.4411644769061948
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c009",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
+                "score": 0.4395228696438261
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c005",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
+                "score": 0.43799088710519357
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c017",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "our in - house system can be fed with a large number of articles per day and sensitive data without including third parties in the translation process . performance and translation time vary according",
+                "score": 0.43591351080972135
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c010",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
+                "score": 0.4263710125463605
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c018",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "of the 2003 conference of the north american chapter of the association for computational linguistics on human language technology , pages 4854 . edmonton , canada . p. koehn and h. hoang and a. birch",
+                "score": 0.42507458179744667
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c012",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
+                "score": 0.4203805422329286
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T23:23:37.316920",
+        "query": "How are neural networks used for text summarization?",
+        "answer": "Based on the provided search results, the information primarily focuses on the application of neural networks in conjunction with Semi-CRF models for segmentation problems in Natural Language Processing (NLP), such as Chinese Word Segmentation (CWS) and Named Entity Recognition (NER) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].\n\nWhile the papers highlight the general strengths of neural networks in NLP, such as their ability to model language compositionality and learn distributed representations from large datasets [4, 6], they do not contain specific details on how neural networks are used for text summarization.",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.4610643661656606
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.45782673107545047
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c015",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
+                "score": 0.45620626211166704
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.44723577325663944
+            },
+            {
+                "chunk_id": "arxiv_000968_abstract_c000",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "abstract",
+                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
+                "score": 0.41497805207837013
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.46989096790877266
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c015",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
+                "score": 0.4448666638294859
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.439682517070621
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.4332173208464797
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c006",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
+                "score": 0.43154344778735065
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-09T23:25:05.468070",
+        "query": "What methods relate to attention mechanisms?",
+        "answer": "Based on the searches conducted, the available tools did not directly link specific methods to \"attention mechanisms\" in the context of deep learning or machine learning.\n\nThe initial vector database search for \"methods related to attention mechanisms\" yielded results [1], [2], [3], [4], [5] that discussed biological and psychological concepts like long-term potentiation (LTP), short-term potentiation (STP), short-term memory (STM), long-term memory (LTM) models, and the perception/recognition of stimuli. These results relate more to neuroscience and cognitive science than to computational methods.\n\nSubsequent searches using the knowledge graph for \"attention mechanisms\" and even the broader term \"attention\" did not yield any co-occurrence relationships.\n\nA more specific vector database search for \"deep learning methods with attention mechanisms\" returned results [6], [7], [8], [9], [10] that mentioned deep learning techniques such as Bi-LSTMs (bidirectional Long Short-Term Memory), neural semi-CRF models, segment embeddings, and conditional random fields. However, these passages did not explicitly describe how these particular methods relate to or incorporate attention mechanisms.",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000007_body_c004",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "junction . this phenomenon is termed as long - term potentiation ( ltp ) . while stp is a meta - stable state and lasts for a very small time duration , ltp is a stable synaptic state which can last f",
+                "score": 0.4534402219390745
+            },
+            {
+                "chunk_id": "arxiv_000007_body_c014",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "hence , stimulation rate indeed plays a critical role in the mtj synapse to determine the probability of ltp transition . the psychological model of stm and ltm utilizing such mtj synapses was further",
+                "score": 0.4344301223754914
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c035",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "by the intentionality - of - perception slogan : `` seeing is seeing - as '' ) of the stimulus as a perception of , say , a tree where the internal re - cognition is represented by the homomorphism @x",
+                "score": 0.423682021388949
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c044",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "understanding while the words in a familiar language prompt an internal process of generating a meaning so that we understand the words . thus it could be said that `` understanding a language '' mean",
+                "score": 0.42317608914660343
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c034",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "the adjunction in a het - free manner . another payoff from analyzing the important but molecular concept of an adjunction into two atomic representations is that we can then reassemble those atomic p",
+                "score": 0.3974655155899206
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c006",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
+                "score": 0.47309411053166883
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c013",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "the input unit representation @xmath36 + b^ )\\ ] ] where the notation of @xmath37 $ ] equals to @xmath38 s linear combination @xmath39 and @xmath40 is the bias . after obtaining the representation for",
+                "score": 0.44585565378002795
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c012",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "is the fine - tuning of segment embeddings . fine - tuning can learn a task - specific segment embeddings for the segments that occur in the training data , but it breaks their relations with the un -",
+                "score": 0.42067991125346893
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c016",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "boundary and the entire segment was not considered in their work . our model explicitly uses the entire segment . in this paper , we systematically study the problem of representing a segment in neura",
+                "score": 0.4196957743530572
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c017",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "parsing with stack long short - term memory . in _ acl-2015 _ , pages 334343 , beijing , china , july 2015 . acl . wenbin jiang , meng sun , yajuan l , yating yang , and qun liu . discriminative learn",
+                "score": 0.41019018645520533
+            }
+        ]
     }
 ]

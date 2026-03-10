@@ -25,7 +25,7 @@ CREATE OR REPLACE TABLE RAW.CHUNKS (
     SECTION_NAME        VARCHAR,                -- e.g. "abstract", "introduction"
     TEXT_CONTENT        STRING,
     WORD_COUNT          INT,
-    EMBEDDING           VARCHAR,     -- all-mpnet-base-v2 output
+    EMBEDDING           VECTOR(FLOAT, 768),  -- all-mpnet-base-v2 output
     INGESTED_AT         TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
