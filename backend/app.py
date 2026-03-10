@@ -304,6 +304,17 @@ def papers(passcode: str = ""):
     rows = cur.fetchall()
     return rows
 
+@app.get('/history')
+def history():
+    history_path = Path("backend/history.json")
+    if not history_path.exists():
+        return []
+    with open(history_path, "r", encoding="utf-8") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return []
+
 @app.get('/health')
 def health(): return {'status': 'ok'}
 
