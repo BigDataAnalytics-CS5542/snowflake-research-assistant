@@ -73,3 +73,85 @@
 ---
 
 *Contributions verified by commit history in GitHub repository.*
+
+---
+---
+
+## CS 5542 – Lab 7 Individual Contributions (Reproducibility by Design)
+
+| Member | Role | Contribution % |
+|---|---|---|
+| Rohan Ashraf Hashmi | Teammate 1 — Infrastructure & Environment Setup | 33% |
+| Blake Simpson | Teammate 2 — Related Work & System Enhancement | 34% |
+| Kenneth Kakie | Teammate 3 — Determinism & Documentation | 33% |
+
+**Total: 100%**
+
+---
+
+## Rohan Ashraf Hashmi — 33%
+
+**Infrastructure & Reproducibility**
+
+- Fixed `.env.example` — added missing `GEMINI_API_KEY` introduced by Teammate 2's Gemini upgrade; without this fix the `/query` endpoint crashes silently for anyone cloning the repo
+- Wrote `RUN.md` — complete step-by-step setup guide covering Python 3.12 requirement, Snowflake VECTOR type prerequisite, MFA handling, and a troubleshooting table
+- Built `reproduce.sh` — single-command runner that:
+  - Validates Python 3.12+ and all required `.env` variables before doing anything
+  - Creates `venv`, installs dependencies, creates `artifacts/` `logs/` `tests/` directories
+  - Runs ingestion and saves log to `logs/ingestion.log`
+  - Starts backend with health check polling loop before proceeding
+  - Runs smoke test and saves log to `logs/smoke_test.log`
+  - Saves `artifacts/run_summary.json` with timestamp and run metadata
+  - Starts frontend and cleanly kills both servers on exit via `trap`
+  - `--smoke` flag skips ingestion entirely to protect existing Snowflake data
+  - `--resume` flag passes through to ingestion checkpoint system
+- Wrote `tests/smoke_test.py` — 4 pytest tests for `/health`, `/`, `/history` endpoints that run without a live Snowflake connection
+
+**Commit evidence:** `.env.example`, `requirements.txt`, `RUN.md`, `reproduce.sh`, `tests/smoke_test.py`
+
+---
+
+## Blake Simpson — 34%
+
+**Related Work Reproduction & System Enhancement**
+
+- Reproduced OpenPaper (NeurIPS-adjacent tool) locally:
+  - Orchestrated full infrastructure via `docker-compose` (PostgreSQL, Redis, RabbitMQ)
+  - Resolved silent hang in Celery worker by fixing queue routing (`-Q pdf_processing`)
+  - Fixed Cloudflare R2 endpoint configuration
+  - Successfully uploaded and processed PDFs through the full stack
+- Implemented Agentic RAG loop in `backend/app.py` inspired by OpenPaper's `gather_evidence` pattern:
+  - Replaced single-shot retrieval with an autonomous `while` loop (up to 5 iterations)
+  - Switched LLM from Llama-3.2-3B to Gemini 2.5 Flash (`google-genai`)
+  - Defined two tool schemas: `search_vector_database` and `search_knowledge_graph`
+  - LLM autonomously decides which tool to call and when to stop
+  - Responses include bracketed citations (`[1]`, `[2]`) tied to retrieved chunks
+- Migrated Snowflake embeddings from VARCHAR to native `VECTOR(FLOAT, 768)`:
+  - `get_top_chunks()` now uses `VECTOR_COSINE_SIMILARITY()` server-side
+  - Eliminates fetching all 35,000 rows to Python for dot product computation
+  - Added `_migrate_embeddings_to_vector()` post-upload helper in `ingestion.py`
+  - Created `sql/02_migrate_to_vector_type.sql` for existing databases
+- Added `/auth` endpoint for Snowflake MFA passcode handling
+- Added `save_to_history()` — persists every Q&A to `backend/history.json`
+- Documented all work in `RELATED_WORK_REPRO.md` and `OPENPAPER_LOCAL_SETUP.md`
+
+**Commit evidence:** `backend/app.py`, `backend/retrieval.py`, `sql/02_migrate_to_vector_type.sql`, `data/ingestion.py`, `RELATED_WORK_REPRO.md`, `OPENPAPER_LOCAL_SETUP.md`
+
+---
+
+## Kenneth Kakie — 33%
+
+**Determinism & Documentation**
+
+- Fixed random seeds across ingestion and embedding stages for deterministic output
+- Verified all data paths and removed hardcoded directory references
+- Set up and verified `artifacts/`, `logs/`, `tests/` directory structure
+- Ran full integration smoke test to confirm end-to-end pipeline works
+- Compiled `REPRO_AUDIT.md` — complete reproducibility audit checklist
+- Wrote two-page team reproducibility report (submitted separately)
+
+**Commit evidence:** `REPRO_AUDIT.md`, seed fixes in `data/ingestion.py`, team report
+
+---
+
+*Contributions verified by commit history in GitHub repository.*
