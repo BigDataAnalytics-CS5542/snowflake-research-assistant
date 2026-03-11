@@ -101,12 +101,14 @@ log "Smoke test complete. Log saved to logs/smoke_test.log ✓"
 
 # ── Step 7: Save artifacts ────────────────────────────────────
 log "Saving run artifacts..."
+pip freeze > artifacts/requirements_frozen.txt 
 echo "{
   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
   \"python_version\": \"$PYTHON_VERSION\",
   \"backend_pid\": $BACKEND_PID
 }" > artifacts/run_summary.json
 log "Run summary saved to artifacts/run_summary.json ✓"
+
 
 # ── Step 8: Start frontend ────────────────────────────────────
 log "Starting Streamlit frontend on port 3000..."

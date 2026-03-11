@@ -10,6 +10,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+import csv
 
 # Load .env file
 load_dotenv()
@@ -47,6 +48,35 @@ def authenticate(req: AuthRequest):
     except Exception as e:
         return {"status": "error", "message": f"Authentication failed: {str(e)}"}
 
+
+def save_to_csv_log(req_question: str, result: dict):
+    """
+    Appends query metrics and results to /logs/query_log.csv.
+    """
+    log_dir = Path("logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / "query_log.csv"
+    
+    # Define the columns we want to track
+    fieldnames = ['timestamp', 'question', 'answer_preview', 'confidence', 'retrieval_mode', 'latency_ms']
+    
+    file_exists = log_file.exists()
+    
+    with open(log_file, mode='a', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        
+        # Write header only if we are creating the file for the first time
+        if not file_exists:
+            writer.writeheader()
+        
+        writer.writerow({
+            'timestamp': datetime.now().isoformat(),
+            'question': req_question,
+            'answer_preview': result['answer'][:100].replace('\n', ' ') + "...", # Keep CSV tidy
+            'confidence': result['confidence'],
+            'retrieval_mode': result['retrieval_mode'],
+            'latency_ms': result['latency_ms']
+        })
 
 def save_to_history(query_text: str, answer: str, citations: list):
     """
@@ -264,6 +294,8 @@ def _query_logic(req: QueryRequest):
         'latency_ms': int((time.time() - start) * 1000)
     }
 
+    save_to_csv_log(req.question, result)
+    
     save_to_history(
         query_text=req.question, 
         answer=result['answer'], 

@@ -89,7 +89,7 @@
 
 ---
 
-## Rohan Ashraf Hashmi — 33%
+## Rohan Ashraf Hashmi — 40%
 
 **Infrastructure & Reproducibility**
 
@@ -109,7 +109,7 @@
 
 ---
 
-## Blake Simpson — 34%
+## Blake Simpson — 40%
 
 **Related Work Reproduction & System Enhancement**
 
@@ -137,7 +137,7 @@
 
 ---
 
-## Kenneth Kakie — 33%
+## Kenneth Kakie — 20%
 
 **Determinism & Documentation**
 

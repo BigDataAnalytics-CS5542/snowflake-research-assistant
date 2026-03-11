@@ -34,8 +34,13 @@ import spacy
 from sentence_transformers import SentenceTransformer
 from snowflake.connector.pandas_tools import write_pandas
 from tqdm import tqdm
-
+import random
+import numpy as np
 load_dotenv()
+
+# Set seeds for reproducibility
+random.seed(100)
+np.random.seed(100)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from data.config import (
