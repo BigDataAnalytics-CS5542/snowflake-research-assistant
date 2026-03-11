@@ -94,17 +94,15 @@
 **Infrastructure & Reproducibility**
 
 - Fixed `.env.example` — added missing `GEMINI_API_KEY` introduced by Teammate 2's Gemini upgrade; without this fix the `/query` endpoint crashes silently for anyone cloning the repo
-- Wrote `RUN.md` — complete step-by-step setup guide covering Python 3.12 requirement, Snowflake VECTOR type prerequisite, MFA handling, and a troubleshooting table
+- Wrote `RUN.md` — complete step-by-step setup guide covering Python 3.12 requirement, Snowflake setup, MFA handling, and a troubleshooting table
 - Built `reproduce.sh` — single-command runner that:
   - Validates Python 3.12+ and all required `.env` variables before doing anything
   - Creates `venv`, installs dependencies, creates `artifacts/` `logs/` `tests/` directories
-  - Runs ingestion and saves log to `logs/ingestion.log`
   - Starts backend with health check polling loop before proceeding
   - Runs smoke test and saves log to `logs/smoke_test.log`
   - Saves `artifacts/run_summary.json` with timestamp and run metadata
   - Starts frontend and cleanly kills both servers on exit via `trap`
-  - `--smoke` flag skips ingestion entirely to protect existing Snowflake data
-  - `--resume` flag passes through to ingestion checkpoint system
+  - Does not run ingestion — run `python data/ingestion.py` manually to populate Snowflake (due to MFA expiring quickly; upload needs interactive prompt)
 - Wrote `tests/smoke_test.py` — 4 pytest tests for `/health`, `/`, `/history` endpoints that run without a live Snowflake connection
 
 **Commit evidence:** `.env.example`, `requirements.txt`, `RUN.md`, `reproduce.sh`, `tests/smoke_test.py`

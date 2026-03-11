@@ -5,7 +5,7 @@
 | Requirement | Version |
 |---|---|
 | Python | 3.12 |
-| Snowflake Account | EDU or Enterprise (must support `VECTOR` type) |
+| Snowflake Account | Required for schema/database |
 | Google Gemini API Key | Free — see Step 3 |
 
 ---
@@ -61,20 +61,7 @@ HF_TOKEN=                  # Optional — https://huggingface.co/settings/tokens
 
 ---
 
-## Step 5 — Verify Snowflake Supports VECTOR Type
-
-Run this in a Snowflake worksheet before proceeding:
-
-```sql
-SELECT [1.0, 2.0, 3.0]::VECTOR(FLOAT, 3);
-```
-
-If this errors, your Snowflake account does not support the `VECTOR` type
-and the project cannot run. You need an EDU or Enterprise account.
-
----
-
-## Step 6 — Create Snowflake Schema
+## Step 5 — Create Snowflake Schema
 
 ```bash
 python scripts/run_sql_file.py sql/01_create_schema.sql
@@ -83,35 +70,7 @@ python scripts/run_sql_file.py sql/01_create_schema.sql
 
 ---
 
-## Step 7 — Run the Ingestion Pipeline
-
-This loads 1000 arXiv papers, chunks them, generates embeddings, builds the
-knowledge graph, and uploads everything to Snowflake. Takes ~1 hour.
-
-```bash
-python data/ingestion.py
-# You will be prompted for your MFA code before the Snowflake upload
-```
-
-To run a quick test with fewer papers (e.g. 10):
-
-```bash
-python data/ingestion.py --n 10
-```
-
-> **Warning:** Running ingestion always truncates all Snowflake tables before uploading.
-> Do not run `--n 10` if you already have a full 1000-paper database you want to keep.
-> Use `bash reproduce.sh --smoke` instead — it skips ingestion and only tests the backend.
-
-To resume from a previous run (skips completed stages):
-
-```bash
-python data/ingestion.py --resume
-```
-
----
-
-## Step 8 — Start the Backend
+## Step 6 — Start the Backend
 
 Open a new terminal tab, activate the venv, then run:
 
@@ -125,7 +84,7 @@ You should see: `{"status": "ok"}`
 
 ---
 
-## Step 9 — Start the Frontend
+## Step 7 — Start the Frontend
 
 Open another new terminal tab, activate the venv, then run:
 
@@ -137,7 +96,7 @@ The UI will open automatically at: [http://localhost:3000](http://localhost:3000
 
 ---
 
-## Step 10 — Authenticate and Query
+## Step 8 — Authenticate and Query
 
 1. In the sidebar, enter your Snowflake MFA passcode (or leave blank if no MFA)
 2. Click **Verify Connection**
@@ -153,6 +112,21 @@ To verify the backend is up and responding correctly:
 ```bash
 pytest tests/smoke_test.py -v
 ```
+
+---
+
+## Optional — Populate Snowflake (Ingestion)
+
+To load papers into Snowflake (e.g. 1000 arXiv papers, ~1 hour), run the ingestion pipeline manually.  
+**Note:** This is not part of `reproduce.sh` because MFA codes expire quickly (e.g. Duo every 30s); the upload stage needs an interactive prompt.
+
+```bash
+python data/ingestion.py              # full run
+python data/ingestion.py --resume     # resume from checkpoints
+```
+
+You will be prompted for your Snowflake MFA code before the upload stage.  
+**Warning:** Ingestion truncates all Snowflake tables before uploading.
 
 ---
 
@@ -179,6 +153,6 @@ Checkpoints are gitignored — each team member runs ingestion independently.
 |---|---|
 | `Missing env vars` | Make sure `.env` is filled in and you ran `cp .env.example .env` |
 | `GEMINI_API_KEY not set` | Add your Gemini key to `.env` |
-| `Unknown function VECTOR_COSINE_SIMILARITY` | Your Snowflake account doesn't support VECTOR type |
+| `Unknown function VECTOR_COSINE_SIMILARITY` | Upgrade Snowflake or check VECTOR support in your region |
 | `Cannot reach backend` | Make sure `uvicorn` is running on port 3001 before starting the frontend |
 | `MFA error` | Enter your current Duo token — it expires every 30 seconds |

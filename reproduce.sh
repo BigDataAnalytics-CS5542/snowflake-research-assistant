@@ -4,9 +4,8 @@
 # CS 5542 — Lab 7: Reproducibility by Design
 #
 # Usage:
-#   bash reproduce.sh            # full run (1000 papers, ~1 hour)
-#   bash reproduce.sh --smoke    # smoke test only — skips ingestion, safe for existing database
-#   bash reproduce.sh --resume   # resume ingestion from existing checkpoints
+#   bash reproduce.sh   # validate env, start backend, run smoke test, start frontend
+# Ingestion is not run here — MFA expires quickly; run python data/ingestion.py manually for upload.
 # =============================================================================
 
 set -e  # exit immediately on any error
@@ -21,18 +20,6 @@ NC='\033[0m' # No Colour
 log()  { echo -e "${GREEN}[reproduce.sh]${NC} $1"; }
 warn() { echo -e "${YELLOW}[reproduce.sh]${NC} $1"; }
 fail() { echo -e "${RED}[reproduce.sh] ERROR:${NC} $1"; exit 1; }
-
-# ── Parse arguments ──────────────────────────────────────────
-SMOKE=false
-RESUME=false
-N_PAPERS=1000
-
-for arg in "$@"; do
-  case $arg in
-    --smoke)  SMOKE=true; N_PAPERS=10 ;;
-    --resume) RESUME=true ;;
-  esac
-done
 
 # ── Step 0: Check Python version ────────────────────────────
 log "Checking Python version..."
@@ -82,28 +69,12 @@ log "Creating output directories..."
 mkdir -p artifacts logs tests
 log "Directories ready: artifacts/ logs/ tests/ ✓"
 
-# ── Step 5: Run ingestion pipeline ───────────────────────────
-if [ "$SMOKE" = true ]; then
-  warn "Smoke mode: skipping ingestion to protect existing Snowflake data."
-  warn "The smoke test only verifies the backend starts and endpoints respond correctly."
-else
-  log "Starting ingestion pipeline (n=$N_PAPERS papers)..."
-  warn "You will be prompted for your Snowflake MFA code before the upload step."
-  warn "Press Enter if you do not use MFA."
-
-  INGESTION_FLAGS="--n $N_PAPERS"
-  if [ "$RESUME" = true ]; then
-    INGESTION_FLAGS="$INGESTION_FLAGS --resume"
-  fi
-
-  python data/ingestion.py $INGESTION_FLAGS 2>&1 | tee logs/ingestion.log
-  log "Ingestion complete. Log saved to logs/ingestion.log ✓"
-fi
-
-# ── Step 6: Start backend ─────────────────────────────────────
+# ── Step 5: Start backend ─────────────────────────────────────
 log "Starting FastAPI backend on port 3001..."
 if command -v lsof >/dev/null 2>&1 && lsof -i :3001 -sTCP:LISTEN -t >/dev/null 2>&1; then
-  warn "Port 3001 is already in use. Stop the process (e.g. kill \$(cat logs/backend.pid)) or use another port."
+  warn "Port 3001 already in use — killing existing process..."
+  kill $(lsof -i :3001 -sTCP:LISTEN -t) 2>/dev/null || true
+  sleep 1
 fi
 uvicorn backend.app:app --port 3001 >> logs/backend.log 2>&1 &
 BACKEND_PID=$!
@@ -123,23 +94,21 @@ for i in {1..45}; do
   sleep 2
 done
 
-# ── Step 7: Run smoke test ────────────────────────────────────
+# ── Step 6: Run smoke test ────────────────────────────────────
 log "Running smoke test..."
 pytest tests/smoke_test.py -v 2>&1 | tee logs/smoke_test.log
 log "Smoke test complete. Log saved to logs/smoke_test.log ✓"
 
-# ── Step 8: Save artifacts ────────────────────────────────────
+# ── Step 7: Save artifacts ────────────────────────────────────
 log "Saving run artifacts..."
 echo "{
   \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
-  \"n_papers\": $N_PAPERS,
-  \"smoke_mode\": $SMOKE,
   \"python_version\": \"$PYTHON_VERSION\",
   \"backend_pid\": $BACKEND_PID
 }" > artifacts/run_summary.json
 log "Run summary saved to artifacts/run_summary.json ✓"
 
-# ── Step 9: Start frontend ────────────────────────────────────
+# ── Step 8: Start frontend ────────────────────────────────────
 log "Starting Streamlit frontend on port 3000..."
 warn "Press Ctrl+C to stop both servers when done."
 streamlit run frontend/app.py --server.port 3000 >> logs/frontend.log 2>&1 &
