@@ -426,32 +426,6 @@ def truncate_tables(conn):
         print(f"  -> Truncated {table}")
     print("[Stage 5] Tables cleared.")
 
-
-def _migrate_embeddings_to_vector(conn):
-    """
-    After write_pandas uploads chunks with VARCHAR embeddings, convert the
-    EMBEDDING column to native VECTOR(FLOAT, 768) in-place.  This keeps
-    write_pandas compatibility while enabling server-side similarity search.
-    """
-    cur = conn.cursor()
-    print("[Stage 5] Converting EMBEDDING column VARCHAR → VECTOR(FLOAT, 768)...")
-    cur.execute("ALTER TABLE RAW.CHUNKS ADD COLUMN EMBEDDING_VEC VECTOR(FLOAT, 768)")
-    cur.execute("UPDATE RAW.CHUNKS SET EMBEDDING_VEC = PARSE_JSON(EMBEDDING)::VECTOR(FLOAT, 768)")
-    cur.execute("ALTER TABLE RAW.CHUNKS DROP COLUMN EMBEDDING")
-    cur.execute("ALTER TABLE RAW.CHUNKS RENAME COLUMN EMBEDDING_VEC TO EMBEDDING")
-    # Recreate the application view so it picks up the new column type
-    cur.execute("""
-        CREATE OR REPLACE VIEW APP.CHUNKS_V AS
-        SELECT
-            c.CHUNK_ID, c.PAPER_ID, c.CHUNK_INDEX, c.SECTION_NAME,
-            c.TEXT_CONTENT, c.WORD_COUNT, c.EMBEDDING,
-            p.TITLE, p.AUTHORS, p.PUBLICATION_YEAR, p.CATEGORIES, p.SOURCE_URL
-        FROM RAW.CHUNKS c
-        JOIN RAW.PAPERS p ON c.PAPER_ID = p.PAPER_ID
-    """)
-    print("[Stage 5] EMBEDDING column migrated to VECTOR type.")
-
-
 def upload_to_snowflake(papers_df, chunks_df, nodes_df, edges_df, map_df, passcode=""):
     """
     Upload all DataFrames to Snowflake in correct foreign key order:
@@ -486,18 +460,32 @@ def upload_to_snowflake(papers_df, chunks_df, nodes_df, edges_df, map_df, passco
     write_pandas(conn, upload_df, "PAPERS", schema="RAW", overwrite=True, auto_create_table=False)
     print(f"[Stage 5] RAW.PAPERS done.")
 
-    # ── 2. RAW.CHUNKS (embedding stored as JSON string) ──────
-    print(f"[Stage 5] Uploading {len(chunks_df)} rows → RAW.CHUNKS...")
-    chunks_upload = chunks_df[[
+    # ── 2. RAW.CHUNKS (batched INSERT directly as VECTOR) ────
+    print(f"[Stage 5] Uploading {len(chunks_df)} rows → RAW.CHUNKS (batched VECTOR insert)...")
+    cur = conn.cursor()
+    BATCH_SIZE = 500
+    rows = chunks_df[[
         "chunk_id", "paper_id", "chunk_index",
         "section_name", "text_content", "word_count", "embedding"
-    ]].copy()
-    chunks_upload.columns = [c.upper() for c in chunks_upload.columns]
-    chunks_upload["EMBEDDING"] = chunks_upload["EMBEDDING"].apply(
-        lambda x: json.dumps(list(x))
-    )
-    write_pandas(conn, chunks_upload, "CHUNKS", schema="RAW", overwrite=True, auto_create_table=False)
-    _migrate_embeddings_to_vector(conn)
+    ]].values.tolist()
+
+    for i in tqdm(range(0, len(rows), BATCH_SIZE), desc="Uploading chunks"):
+        batch = rows[i:i + BATCH_SIZE]
+        select_parts = " UNION ALL ".join(
+            ["SELECT %s, %s, %s, %s, %s, %s, PARSE_JSON(%s)::VECTOR(FLOAT, 768)"] * len(batch)
+        )
+        params = []
+        for r in batch:
+            params.extend([r[0], r[1], int(r[2]), r[3], r[4], int(r[5]), json.dumps(list(r[6]))])
+        cur.execute(
+            f"""
+            INSERT INTO RAW.CHUNKS
+                (CHUNK_ID, PAPER_ID, CHUNK_INDEX, SECTION_NAME, TEXT_CONTENT, WORD_COUNT, EMBEDDING)
+            {select_parts}
+            """,
+            params,
+        )
+
     print(f"[Stage 5] RAW.CHUNKS done.")
 
     # ── 3. GRAPH.KNOWLEDGE_NODES ─────────────────────────────
