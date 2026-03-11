@@ -9,9 +9,10 @@ This document describes how to fully reproduce the system from scratch.
 ## Quickest Path (Lab 7)
 
 ```bash
-bash reproduce.sh --smoke   # validates env, installs deps, starts backend, runs smoke tests, starts frontend
-bash reproduce.sh           # full run including ingestion (~1 hour)
+bash reproduce.sh   # validates env, installs deps, starts backend, runs smoke tests, starts frontend
 ```
+
+Ingestion is not run by `reproduce.sh` (due to MFA expiring quickly — upload needs an interactive prompt). To populate Snowflake, run `python data/ingestion.py` manually (see RUN.md).
 
 See `RUN.md` for full step-by-step manual instructions.
 
@@ -67,7 +68,7 @@ Get a HuggingFace token at https://huggingface.co/settings/tokens
 | Split | train |
 | Format | Parquet (no loading script required) |
 | Fields used | article, abstract |
-| Papers ingested | 1000 (configurable via NUM_PAPERS in data/config.py) |
+| Papers ingested | 1000 when running ingestion (configurable via NUM_PAPERS in data/config.py) |
 | Streaming | Yes — no full download required |
 
 Dataset is deterministic — same first N papers are always returned in the same order from the train split.
@@ -111,8 +112,6 @@ Warehouse: ROHAN_BLAKE_KENNETH_WH
 Schemas:   RAW, GRAPH, APP
 ```
 
-Snowflake EDU or Enterprise required — must support native `VECTOR(FLOAT, 768)` type.
-
 ---
 
 ## Full Manual Reproduction Steps
@@ -132,7 +131,7 @@ cp .env.example .env
 # 3. Create Snowflake schema
 python scripts/run_sql_file.py sql/01_create_schema.sql
 
-# 4. Run full ingestion pipeline
+# 4. (Optional) Run ingestion to populate Snowflake
 python data/ingestion.py
 # Prompts for MFA before Snowflake upload (~1 hour total)
 
@@ -158,18 +157,18 @@ data/checkpoints/
 └── chunk_entity_map.parquet  # Stage 4 output
 ```
 
-To resume from checkpoints:
+To resume from checkpoints (when running ingestion manually):
 ```bash
 python data/ingestion.py --resume
 ```
 
-Checkpoints are gitignored — each team member runs ingestion independently.
+Checkpoints are gitignored — each team member runs ingestion independently when populating Snowflake.
 
 ---
 
 ## Expected Output
 
-After full ingestion of 1000 papers:
+After running ingestion (e.g. `python data/ingestion.py`), Snowflake tables should look like:
 
 | Table | Expected Rows |
 |---|---|

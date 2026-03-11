@@ -22,7 +22,7 @@ A RAG + Knowledge Graph research assistant powered by Snowflake, FastAPI, and St
 | Agentic RAG loop in `/query` | Blake | LLM now runs up to 5 reasoning iterations using `search_vector_database` and `search_knowledge_graph` tools before answering |
 | Switched LLM to Gemini 2.5 Flash | Blake | Replaced Llama-3.2-3B with `google-genai` for tool calling support |
 | Snowflake VECTOR migration | Blake | `EMBEDDING` column migrated from VARCHAR to native `VECTOR(FLOAT, 768)` for server-side similarity search |
-| `reproduce.sh` | Rohan | Single command runs the full pipeline, smoke test, and both servers |
+| `reproduce.sh` | Rohan | Single command: env check, backend, smoke test, frontend (ingestion run separately) |
 | `RUN.md` | Rohan | Step-by-step setup guide for a fresh clone |
 | `tests/smoke_test.py` | Rohan | Smoke tests for `/health`, `/`, `/history` endpoints |
 | Random seeds & determinism | Kenneth | Fixed seeds across ingestion and embedding stages |
@@ -36,9 +36,7 @@ A RAG + Knowledge Graph research assistant powered by Snowflake, FastAPI, and St
 
 ### Option A — Single command (recommended)
 ```bash
-bash reproduce.sh           # full run (~1 hour)
-bash reproduce.sh --smoke   # skip ingestion, start backend, run smoke tests, start frontend with 10 papers
-bash reproduce.sh --resume  # resume from existing checkpoints
+bash reproduce.sh   # validate env, start backend, run smoke tests, start frontend
 ```
 
 ### Option B — Manual steps
@@ -83,18 +81,12 @@ python scripts/run_sql_file.py sql/01_create_schema.sql
 > ```
 > Fresh installs do not need this — `01_create_schema.sql` already uses `VECTOR(FLOAT, 768)`.
 
-#### 4. Run ingestion pipeline
-```bash
-python data/ingestion.py              # full run (~1 hour, 1000 papers)
-python data/ingestion.py --resume     # resume from checkpoints
-```
-
-#### 5. Start backend
+#### 4. Start backend
 ```bash
 uvicorn backend.app:app --reload --port 3001
 ```
 
-#### 6. Start frontend
+#### 5. Start frontend
 ```bash
 streamlit run frontend/app.py --server.port 3000
 ```
@@ -169,6 +161,13 @@ snowflake-research-assistant/
 
 ## Ingestion Pipeline Details
 
+To populate Snowflake with papers, run the pipeline manually (not part of `reproduce.sh` — MFA expires quickly, so the upload stage needs an interactive prompt):
+
+```bash
+python data/ingestion.py              # full run (~1 hour, 1000 papers)
+python data/ingestion.py --resume     # resume from checkpoints
+```
+
 The pipeline runs in 6 stages, each with checkpoint support:
 
 | Stage | Script Function | Output |
@@ -219,7 +218,6 @@ SPACY_MODEL         = "en_core_sci_sm"
 ## Requirements
 
 - **Python:** 3.12
-- **Snowflake:** EDU or Enterprise account (must support `VECTOR` type)
 
 Key dependencies (see `requirements.txt` for full list):
 - `google-genai>=1.0.0` — Gemini 2.5 Flash for Agentic RAG (added Lab 7)
