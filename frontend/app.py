@@ -1,8 +1,20 @@
 import os
-import streamlit as st
+from pathlib import Path
+
 import requests
+import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:3001").rstrip("/")
+
+
+def _show_snowflake_mfa_ui() -> bool:
+    """Hide Duo/passcode UI when `SNOWFLAKE_PRIVATE_KEY` is set (key-pair auth)."""
+    pk = (os.getenv("SNOWFLAKE_PRIVATE_KEY") or "").strip()
+    return not bool(pk)
+
 
 st.set_page_config(page_title="Research Assistant", layout="wide")
 
@@ -10,22 +22,33 @@ st.title("Research Assistant 🧬")
 st.markdown("Welcome to your personalized research assistant powered by **Snowflake** and **Knowledge Graphs**.")
 
 with st.sidebar:
-    st.header("Settings")
-    passcode = st.text_input("Snowflake MFA Passcode", type="password", help="Enter your Duo MFA token if required.")
-
-    if st.button("Verify Connection"):
-        with st.spinner("Connecting to Snowflake..."):
-            try:
-                res = requests.post(f"{BACKEND_URL}/auth", json={"passcode": passcode})
-                data = res.json()
-                if data.get("status") == "success":
-                    st.success("Successfully authenticated with Snowflake!")
+    if _show_snowflake_mfa_ui():
+        with st.expander("Snowflake MFA (password + Duo)", expanded=False):
+            st.caption(
+                "Use this **only** if you sign in with **Snowflake password + Duo** (not key-pair). "
+                "After you **start or restart** the backend, send a **fresh** 6-digit code once, then chat."
+            )
+            mfa_code = st.text_input("Duo / MFA code", type="password", key="mfa_passcode", label_visibility="visible")
+            if st.button("Send code to backend", key="mfa_submit"):
+                if not mfa_code.strip():
+                    st.warning("Enter your current MFA code.")
                 else:
-                    st.error(data.get("message", "Authentication failed."))
-            except Exception as e:
-                st.error(f"Cannot reach backend: {str(e)}")
+                    try:
+                        res = requests.post(
+                            f"{BACKEND_URL}/auth",
+                            json={"passcode": mfa_code.strip()},
+                            timeout=60,
+                        )
+                        data = res.json()
+                        if data.get("status") == "success":
+                            st.success("Snowflake session ready. You can chat below.")
+                        else:
+                            st.error(data.get("message", "Authentication failed."))
+                    except Exception as e:
+                        st.error(f"Cannot reach backend: {e}")
 
-    st.markdown("---")
+        st.markdown("---")
+
     st.header("Chat History")
     try:
         hist_res = requests.get(f"{BACKEND_URL}/history")
@@ -66,7 +89,7 @@ if prompt := st.chat_input("Ask a question about your research papers..."):
                 payload = {
                     "question": prompt,
                     "top_k": 5,
-                    "passcode": passcode
+                    "passcode": "",
                 }
                 res = requests.post(f"{BACKEND_URL}/query", json=payload)
                 res.raise_for_status()

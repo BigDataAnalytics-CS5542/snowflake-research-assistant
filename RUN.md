@@ -1,115 +1,122 @@
-# RUN.md — How to Run the Snowflake Research Assistant
+# Runbook — Snowflake Research Assistant
 
-## Requirements
+Operational steps to install, configure, and run the application locally or in a split deployment (API + Streamlit).
 
-| Requirement | Version |
-|---|---|
+---
+
+## Prerequisites
+
+| Item | Notes |
+|------|--------|
 | Python | 3.12 |
-| Snowflake Account | Required for schema/database |
-| Google Gemini API Key | Free — see Step 3 |
+| Snowflake | Account with database/warehouse access; VECTOR support for embeddings |
+| Google Gemini API | API key ([Google AI Studio](https://aistudio.google.com/app/apikey)) for `/query` |
 
 ---
 
-## Step 1 — Clone the Repository
+## 1. Clone and environment
 
 ```bash
-git clone <repo-url>
+git clone <repository-url>
 cd snowflake-research-assistant
-```
-
----
-
-## Step 2 — Create and Activate a Virtual Environment
-
-```bash
 python3.12 -m venv venv
-source venv/bin/activate        # macOS / Linux
-# venv\Scripts\activate         # Windows
+source venv/bin/activate   # Linux / macOS
+# venv\Scripts\activate   # Windows
 ```
 
 ---
 
-## Step 3 — Install Dependencies
+## 2. Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> Uses loose `>=` version pins so pip resolves compatible versions automatically.
+Version constraints use `>=`; resolve conflicts in your environment as needed.
 
 ---
 
-## Step 4 — Configure Environment Variables
+## 3. Configuration
 
 ```bash
 cp .env.example .env
 ```
 
-Open `.env` and fill in your credentials:
+Edit `.env`. Required variables:
 
-```
-SNOWFLAKE_ACCOUNT=         # e.g. abc123.us-east-1
-SNOWFLAKE_USER=            # your Snowflake username
-SNOWFLAKE_PASSWORD=        # local dev (or leave empty if using key-pair below)
-SNOWFLAKE_PRIVATE_KEY=     # optional — PEM as one line (\\n for newlines); Railway / CI key-pair auth
-SNOWFLAKE_ROLE=            # e.g. SYSADMIN
-SNOWFLAKE_WAREHOUSE=       # e.g. ROHAN_BLAKE_KENNETH_WH
-SNOWFLAKE_DATABASE=        # e.g. CS5542_PROJECT_ROHAN_BLAKE_KENNETH
-SNOWFLAKE_SCHEMA=          # e.g. RAW
-GEMINI_API_KEY=            # Get free key at https://aistudio.google.com/app/apikey
-BACKEND_URL=               # FastAPI base URL (required; must match where uvicorn listens)
-HF_TOKEN=                  # Optional — https://huggingface.co/settings/tokens
-```
+| Variable | Purpose |
+|----------|---------|
+| `SNOWFLAKE_ACCOUNT`, `SNOWFLAKE_USER`, `SNOWFLAKE_WAREHOUSE`, `SNOWFLAKE_DATABASE`, `SNOWFLAKE_SCHEMA` | Snowflake session context |
+| `GEMINI_API_KEY` | LLM for agentic RAG |
+| `BACKEND_URL` | FastAPI base URL used by Streamlit (no trailing slash); must match the API process |
+
+Authentication (choose one path):
+
+- **Key pair:** set `SNOWFLAKE_PRIVATE_KEY` (PEM; use `\n` for newlines in a single-line env value). Leave `SNOWFLAKE_PASSWORD` empty if unused.
+- **Password:** set `SNOWFLAKE_PASSWORD`. If the account enforces MFA, see **Snowflake MFA** below.
+
+Optional: `SNOWFLAKE_ROLE`, `HF_TOKEN` (Hugging Face, ingestion).
 
 ---
 
-## Step 5 — Create Snowflake Schema
+## 4. Snowflake schema
 
 ```bash
 python scripts/run_sql_file.py sql/01_create_schema.sql
-# You will be prompted for your MFA code — press Enter if you don't use MFA
 ```
+
+You may be prompted for an MFA passcode; press Enter if not applicable.
+
+For legacy databases still on VARCHAR embeddings, apply `sql/02_migrate_to_vector_type.sql` per project documentation.
 
 ---
 
-## Step 6 — Start the Backend
+## 5. Snowflake MFA (password-based accounts)
 
-Open a new terminal tab, activate the venv, then run:
+When the backend uses **username, password, and MFA** (e.g. Duo):
+
+- After **each API process start** (including restarts with `--reload`), establish a session **once** with a current passcode:
+  - **HTTP:** `POST /auth` with JSON body `{"passcode":"<code>"}`.
+  - **Streamlit:** use the sidebar expander **Snowflake MFA (password + Duo)** when it is visible.
+
+Example:
+
+```bash
+curl -s -X POST "http://localhost:3001/auth" \
+  -H "Content-Type: application/json" \
+  -d '{"passcode":"<mfa-code>"}'
+```
+
+**Streamlit sidebar:** The MFA expander is **not shown** when `SNOWFLAKE_PRIVATE_KEY` is non-empty in the Streamlit process environment. For deployments where only the API has the private key, the expander may still appear on the frontend; it can be ignored if the API authenticates with key pair.
+
+---
+
+## 6. API (FastAPI)
 
 ```bash
 uvicorn backend.app:app --reload --port 3001
 ```
 
-Verify it is running by visiting: [http://localhost:3001/health](http://localhost:3001/health)
-
-You should see: `{"status": "ok"}`
+| Endpoint | Use |
+|----------|-----|
+| `GET /health` | Process liveness |
+| `GET /health/snowflake` | Snowflake connectivity and `INFORMATION_SCHEMA` row counts; optional query `?passcode=` if MFA applies |
 
 ---
 
-## Step 7 — Start the Frontend
-
-Open another new terminal tab, activate the venv, then run:
+## 7. Frontend (Streamlit)
 
 ```bash
 streamlit run frontend/app.py --server.port 3000
 ```
 
-The UI will open automatically at: [http://localhost:3000](http://localhost:3000)
+Ensure `BACKEND_URL` in `.env` points at the running API. Load the URL shown in the terminal (default `http://localhost:3000`).
 
 ---
 
-## Step 8 — Authenticate and Query
+## 8. Smoke tests
 
-1. In the sidebar, enter your Snowflake MFA passcode (or leave blank if no MFA)
-2. Click **Verify Connection**
-3. Type a question in the chat box, e.g. *"How are neural networks used for text summarization?"*
-4. The Agentic RAG loop will run up to 5 iterations and return a cited answer
-
----
-
-## Running the Smoke Test
-
-To verify the backend is up and responding correctly:
+Requires the API running.
 
 ```bash
 pytest tests/smoke_test.py -v
@@ -117,45 +124,32 @@ pytest tests/smoke_test.py -v
 
 ---
 
-## Optional — Populate Snowflake (Ingestion)
+## 9. Data ingestion (optional)
 
-To load papers into Snowflake (e.g. 1000 arXiv papers, ~1 hour), run the ingestion pipeline manually.  
-**Note:** This is not part of `reproduce.sh` because MFA codes expire quickly (e.g. Duo every 30s); the upload stage needs an interactive prompt.
+Loads corpus into Snowflake. Not invoked by `reproduce.sh`; run manually when you need a fresh or resumed load. Upload stage prompts for MFA when applicable.
 
 ```bash
-python data/ingestion.py              # full run
-python data/ingestion.py --resume     # resume from checkpoints
+python data/ingestion.py
+python data/ingestion.py --resume
 ```
 
-You will be prompted for your Snowflake MFA code before the upload stage.  
-**Warning:** Ingestion truncates all Snowflake tables before uploading.
+**Behavior:** Truncates target Snowflake tables before upload. Plan accordingly.
 
----
-
-## Checkpoint System
-
-The ingestion pipeline saves progress after each stage so you can resume:
-
-```
-data/checkpoints/
-├── papers.parquet           # Stage 1 — loaded papers
-├── chunks.parquet           # Stage 2+3 — chunks with embeddings
-├── nodes.parquet            # Stage 4 — knowledge graph nodes
-├── edges.parquet            # Stage 4 — knowledge graph edges
-└── chunk_entity_map.parquet # Stage 4 — chunk to entity links
-```
-
-Checkpoints are gitignored — each team member runs ingestion independently.
+Checkpoints under `data/checkpoints/` (gitignored) support `--resume`.
 
 ---
 
 ## Troubleshooting
 
-| Error | Fix |
-|---|---|
-| `Missing env vars` | Make sure `.env` is filled in and you ran `cp .env.example .env` |
-| `GEMINI_API_KEY not set` | Add your Gemini key to `.env` |
-| `BACKEND_URL is required` (frontend) | Set `BACKEND_URL` to your API’s base URL (same host/port as uvicorn) in `.env` |
-| `Unknown function VECTOR_COSINE_SIMILARITY` | Upgrade Snowflake or check VECTOR support in your region |
-| `Cannot reach backend` | Make sure `uvicorn` is running on port 3001 before starting the frontend |
-| `MFA error` | Enter your current Duo token — it expires every 30 seconds |
+| Symptom | Action |
+|---------|--------|
+| Missing configuration errors | Confirm `.env` exists and required keys are set |
+| Frontend: `BACKEND_URL is required` | Set `BACKEND_URL` to the API base URL |
+| `VECTOR_COSINE_SIMILARITY` / VECTOR errors | Confirm Snowflake edition/region supports VECTOR; run migration SQL if needed |
+| Frontend cannot reach API | Confirm API is listening and host/port match `BACKEND_URL` |
+| Gemini `429` / quota | Reduce request rate; agentic flow issues multiple model calls per question |
+| Snowflake MFA failures | Use a new passcode; re-`POST /auth` after API restart |
+
+---
+
+*Further detail: root `README.md`, `reproducibility/README.md`.*
