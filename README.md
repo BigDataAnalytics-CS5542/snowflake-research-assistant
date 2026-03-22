@@ -47,7 +47,7 @@ git clone <repo-url>
 cd snowflake-research-assistant
 python3.12 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 ```
 
 #### 2. Configure environment
@@ -155,7 +155,7 @@ snowflake-research-assistant/
 ├── reproduce.sh                   # Single-command runner (Lab 7)
 ├── RUN.md                         # Full setup instructions (Lab 7)
 ├── REPRO_AUDIT.md                 # Reproducibility audit checklist (Lab 7)
-├── requirements.txt               # Pinned dependencies (Lab 7)
+├── requirements-full.txt          # Full stack dependencies (ingestion, backend, frontend, eval)
 ├── .env.example                   # Environment variable template
 ├── CONTRIBUTIONS.md
 └── README.md
@@ -223,7 +223,7 @@ SPACY_MODEL         = "en_core_sci_sm"
 
 - **Python:** 3.12
 
-Key dependencies (see `requirements.txt` for full list):
+Key dependencies (see `requirements-full.txt` for full list):
 - `google-genai>=1.0.0` — Gemini 2.5 Flash for Agentic RAG (added Lab 7)
 - `snowflake-snowpark-python>=1.12.0`
 - `sentence-transformers>=2.2.2`

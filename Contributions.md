@@ -105,7 +105,7 @@
   - Does not run ingestion — run `python data/ingestion.py` manually to populate Snowflake (due to MFA expiring quickly; upload needs interactive prompt)
 - Wrote `tests/smoke_test.py` — 4 pytest tests for `/health`, `/`, `/history` endpoints that run without a live Snowflake connection
 
-**Commit evidence:** `.env.example`, `requirements.txt`, `RUN.md`, `reproduce.sh`, `tests/smoke_test.py`
+**Commit evidence:** `.env.example`, `requirements-full.txt`, `RUN.md`, `reproduce.sh`, `tests/smoke_test.py`
 
 ---
 
