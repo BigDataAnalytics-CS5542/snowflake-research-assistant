@@ -32,7 +32,7 @@ source venv/bin/activate        # macOS / Linux
 ## Step 3 — Install Dependencies
 
 ```bash
-pip install -r requirements-full.txt
+pip install -r requirements.txt
 ```
 
 > Uses loose `>=` version pins so pip resolves compatible versions automatically.
