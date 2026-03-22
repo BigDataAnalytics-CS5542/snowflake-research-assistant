@@ -50,7 +50,8 @@ Open `.env` and fill in your credentials:
 ```
 SNOWFLAKE_ACCOUNT=         # e.g. abc123.us-east-1
 SNOWFLAKE_USER=            # your Snowflake username
-SNOWFLAKE_PASSWORD=        # your Snowflake password
+SNOWFLAKE_PASSWORD=        # local dev (or leave empty if using key-pair below)
+SNOWFLAKE_PRIVATE_KEY=     # optional — PEM as one line (\\n for newlines); Railway / CI key-pair auth
 SNOWFLAKE_ROLE=            # e.g. SYSADMIN
 SNOWFLAKE_WAREHOUSE=       # e.g. ROHAN_BLAKE_KENNETH_WH
 SNOWFLAKE_DATABASE=        # e.g. CS5542_PROJECT_ROHAN_BLAKE_KENNETH

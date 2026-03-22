@@ -40,11 +40,14 @@ fi
 
 # Check required variables are not empty
 source .env
-for var in SNOWFLAKE_ACCOUNT SNOWFLAKE_USER SNOWFLAKE_PASSWORD SNOWFLAKE_WAREHOUSE SNOWFLAKE_DATABASE SNOWFLAKE_SCHEMA GEMINI_API_KEY; do
+for var in SNOWFLAKE_ACCOUNT SNOWFLAKE_USER SNOWFLAKE_WAREHOUSE SNOWFLAKE_DATABASE SNOWFLAKE_SCHEMA GEMINI_API_KEY; do
   if [ -z "${!var}" ]; then
     fail "Missing required .env variable: $var"
   fi
 done
+if [ -z "${SNOWFLAKE_PASSWORD:-}" ] && [ -z "${SNOWFLAKE_PRIVATE_KEY:-}" ]; then
+  fail "Missing Snowflake credentials: set SNOWFLAKE_PASSWORD (local + MFA) or SNOWFLAKE_PRIVATE_KEY (key-pair; see .env.example)"
+fi
 log ".env variables verified ✓"
 
 # ── Step 2: Set up virtual environment ───────────────────────
