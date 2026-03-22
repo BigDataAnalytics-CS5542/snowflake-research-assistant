@@ -1,6 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from backend.retrieval import get_top_chunks, graph_search
+from backend.retrieval import get_top_chunks, graph_search, use_snowflake_session_context
 from evaluation.evaluate import log_metrics_to_snowflake
 import os, time
 from google import genai
@@ -325,9 +325,7 @@ def papers(passcode: str = ""):
     conn = get_active_conn(passcode=passcode.strip())
     cur = conn.cursor()
     
-    # 1. Setup session context
-    cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
-    cur.execute('USE DATABASE CS5542_PROJECT_ROHAN_BLAKE_KENNETH')
+    use_snowflake_session_context(cur)
 
     query = f"""
     SELECT * FROM RAW.PAPERS;
@@ -346,6 +344,50 @@ def history():
             return json.load(f)
         except json.JSONDecodeError:
             return []
+
+@app.get("/health/snowflake")
+def health_snowflake(passcode: str = ""):
+    """
+    Snowflake connectivity + row counts for RAW / GRAPH / APP tables (from INFORMATION_SCHEMA).
+
+    Uses the same optional MFA `passcode` query param as `/papers` if your account needs it.
+    Row counts are whatever Snowflake exposes in INFORMATION_SCHEMA (can be stale for very large tables).
+    """
+    try:
+        conn = get_active_conn(passcode=passcode.strip())
+        cur = conn.cursor()
+        use_snowflake_session_context(cur)
+        cur.execute(
+            """
+            SELECT TABLE_SCHEMA, TABLE_NAME, ROW_COUNT, TABLE_TYPE
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_SCHEMA IN ('RAW', 'GRAPH', 'APP')
+            ORDER BY TABLE_SCHEMA, TABLE_NAME
+            """
+        )
+        rows = cur.fetchall()
+        tables = [
+            {
+                "schema": r[0],
+                "name": r[1],
+                "row_count": r[2],
+                "table_type": r[3],
+            }
+            for r in rows
+        ]
+        return {
+            "status": "ok",
+            "warehouse": os.getenv("SNOWFLAKE_WAREHOUSE"),
+            "database": os.getenv("SNOWFLAKE_DATABASE"),
+            "tables": tables,
+            "note": "ROW_COUNT comes from INFORMATION_SCHEMA.TABLES (NULL for some views; may be approximate).",
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Snowflake health check failed: {e}",
+        ) from e
+
 
 @app.get('/health')
 def health(): return {'status': 'ok'}

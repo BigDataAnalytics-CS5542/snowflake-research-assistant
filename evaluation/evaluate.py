@@ -1,5 +1,3 @@
-import pandas as pd
-
 def run_ragas_evaluation():
     '''
     Run baseline Vector RAG vs Graph-RAG evaluation via Answer Relevance and Faithfulness metrics.

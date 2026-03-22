@@ -20,6 +20,19 @@ nlp = spacy.load(config.SPACY_MODEL, disable=["parser", "ner"])
 # For scientific entities, the default pipe usually suffices:
 nlp_ner = spacy.load(config.SPACY_MODEL)
 
+
+def use_snowflake_session_context(cur) -> None:
+    """Set warehouse and database from SNOWFLAKE_WAREHOUSE / SNOWFLAKE_DATABASE (.env)."""
+    wh = os.getenv("SNOWFLAKE_WAREHOUSE")
+    db = os.getenv("SNOWFLAKE_DATABASE")
+    if not wh or not db:
+        raise RuntimeError(
+            "SNOWFLAKE_WAREHOUSE and SNOWFLAKE_DATABASE must be set in the environment (.env)"
+        )
+    cur.execute(f"USE WAREHOUSE {wh}")
+    cur.execute(f"USE DATABASE {db}")
+
+
 def extract_query_entities(query: str) -> List[str]:
     """
     Extracts and normalizes scientific entities from a natural language query.
@@ -58,8 +71,7 @@ def get_top_chunks(conn, query_text, top_k=5, passcode=''):
     vec_literal = "[" + ",".join(str(float(v)) for v in query_vec) + "]"
 
     cur = conn.cursor()
-    cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
-    cur.execute('USE DATABASE CS5542_PROJECT_ROHAN_BLAKE_KENNETH')
+    use_snowflake_session_context(cur)
     cur.execute(
         f"""
         SELECT
@@ -93,12 +105,9 @@ def graph_search(conn, query: str) -> List[Dict]:
 
     
     cur = conn.cursor()
-    
-    # 1. Setup session context
-    cur.execute('USE WAREHOUSE ROHAN_BLAKE_KENNETH_WH')
-    cur.execute('USE DATABASE CS5542_PROJECT_ROHAN_BLAKE_KENNETH')
+    use_snowflake_session_context(cur)
 
-    # 2. Normalize entities for matching (assuming case-insensitive search)
+    # Normalize entities for matching (assuming case-insensitive search)
     # We use a parameterized query to prevent injection and handle the IN clause
     placeholders = ', '.join(['%s'] * len(entities))
     normalized_entities = [e.strip().upper() for e in entities]

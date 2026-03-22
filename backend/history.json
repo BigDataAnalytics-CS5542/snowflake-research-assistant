@@ -842,5 +842,219 @@
                 "score": 0.41019018645520533
             }
         ]
+    },
+    {
+        "timestamp": "2026-03-22T16:49:20.609655",
+        "query": "What methods relate to attention mechanisms?",
+        "answer": "I was unable to find specific methods related to attention mechanisms using the available tools. The vector database search, even with specific terms like \"self-attention mechanism transformer,\" returned results related to neuromorphic systems, magnetic tunnel junctions, and biological synaptic memory [6, 7, 8, 10]. These results discuss long-term potentiation (LTP) and short-term memory (STM) in biological synapses and their hardware implementations, but not the computational attention mechanisms typically found in AI models.\n\nAdditionally, searching the knowledge graph for relationships involving \"attention mechanisms\" did not yield any results. Therefore, based on the information accessible through the provided tools, I cannot identify specific computational methods related to attention mechanisms.",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000007_body_c004",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "junction . this phenomenon is termed as long - term potentiation ( ltp ) . while stp is a meta - stable state and lasts for a very small time duration , ltp is a stable synaptic state which can last f",
+                "score": 0.45344023267746686
+            },
+            {
+                "chunk_id": "arxiv_000007_body_c014",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "hence , stimulation rate indeed plays a critical role in the mtj synapse to determine the probability of ltp transition . the psychological model of stm and ltm utilizing such mtj synapses was further",
+                "score": 0.4344301016119215
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c035",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "by the intentionality - of - perception slogan : `` seeing is seeing - as '' ) of the stimulus as a perception of , say , a tree where the internal re - cognition is represented by the homomorphism @x",
+                "score": 0.42368205926907415
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c044",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "understanding while the words in a familiar language prompt an internal process of generating a meaning so that we understand the words . thus it could be said that `` understanding a language '' mean",
+                "score": 0.4231760673768517
+            },
+            {
+                "chunk_id": "arxiv_000745_body_c034",
+                "paper_id": "arxiv_000745",
+                "title": "arXiv Paper arxiv_000745",
+                "section": "body",
+                "text": "the adjunction in a het - free manner . another payoff from analyzing the important but molecular concept of an adjunction into two atomic representations is that we can then reassemble those atomic p",
+                "score": 0.39746555112610743
+            },
+            {
+                "chunk_id": "arxiv_000007_body_c016",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": ", that input stimulus magnitudes are usually in the range of volts ( 1.3v in @xcite and 80mv in @xcite ) and stimulus durations are of the order of a few msecs ( 1ms in @xcite and 0.5s in @xcite ) . i",
+                "score": 0.4432054493900874
+            },
+            {
+                "chunk_id": "arxiv_000007_body_c015",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "the simulation not only provides a visual depiction of the temporal evolution of a large array of mtj conductances as a function of stimulus but also provides inspiration for the realization of adapti",
+                "score": 0.4063850510623967
+            },
+            {
+                "chunk_id": "arxiv_000007_abstract_c000",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "abstract",
+                "text": "synaptic memory is considered to be the main element responsible for learning and cognition in humans . although traditionally non - volatile long - term plasticity changes have been implemented in na",
+                "score": 0.3948227229820066
+            },
+            {
+                "chunk_id": "arxiv_000339_body_c043",
+                "paper_id": "arxiv_000339",
+                "title": "arXiv Paper arxiv_000339",
+                "section": "body",
+                "text": "for the feedback mechanism depicted in fig . [ fig4 ] . 33ifxundefined [ 1 ] ifx#1 ifnum [ 1 ] # 1firstoftwo secondoftwo ifx [ 1 ] # 1firstoftwo secondoftwo `` `` # 1''''@noop [ 0]secondoftwosanitize@",
+                "score": 0.39374823644778295
+            },
+            {
+                "chunk_id": "arxiv_000007_body_c017",
+                "paper_id": "arxiv_000007",
+                "title": "arXiv Paper arxiv_000007",
+                "section": "body",
+                "text": "schemmel , j. fieres , and k. meier , in _ neural networks , 2008 . ijcnn 2008.(ieee world congress on computational intelligence ) . ieee international joint conference on_.1em plus 0.5em minus 0.4em",
+                "score": 0.3929568060688012
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-22T16:59:15.837935",
+        "query": "How are neural networks used for text summarization?",
+        "answer": "While direct information specifically on \"neural networks for text summarization\" was not found in the provided academic paper excerpts or the knowledge graph, the search results offer insights into how neural networks process sequential data for various NLP tasks, which can be extrapolated to summarization.\n\nNeural networks are utilized in NLP for their ability to model the compositionality of language and learn distributed representations from large-scale unlabeled data [3, 6]. This capability is crucial for tasks involving sequential inputs, such as text summarization.\n\nSpecifically, Recurrent Neural Networks (RNNs), including architectures like Long Short-Term Memory (LSTM) and Bidirectional LSTMs (Bi-LSTMs), are employed to compose input units and represent segments of text [3, 4, 7, 8, 10]. In the context of segmentation problems like Chinese Word Segmentation (CWS) and Named Entity Recognition (NER), these networks process sequences of input units (e.g., words or characters), encoding their contextual information [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14]. For instance, a Segmental Recurrent Neural Network (SRNN) represents a segment by composing input units with an RNN",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.4644439220428467
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c015",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
+                "score": 0.4616005741595888
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.45242364562820353
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.45127469301223755
+            },
+            {
+                "chunk_id": "arxiv_000968_abstract_c000",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "abstract",
+                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
+                "score": 0.4254690408706665
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.5104513320461315
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.48891666531562805
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c006",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
+                "score": 0.47328034202573727
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.46616941690444946
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c013",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "the input unit representation @xmath36 + b^ )\\ ] ] where the notation of @xmath37 $ ] equals to @xmath38 s linear combination @xmath39 and @xmath40 is the bias . after obtaining the representation for",
+                "score": 0.4637719988822937
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c004",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "subsequence @xmath3 . segment _ of @xmath4 is defined as @xmath5 which means the subsequence @xmath6 is associated with label @xmath7 . a _ segmentation _ of @xmath4 is a _ segment _ sequence @xmath8 ",
+                "score": 0.41373351730504604
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c004",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "see @xcite . this allows us to maintain a database containing over 1,15 million named entities and 200,000 variants . the major part of this resource can be downloaded from all news items are categori",
+                "score": 0.41268147599432375
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c005",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
+                "score": 0.41196699702838235
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c000",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "given an input sequence , _ segmentation _ is the problem of identifying and assigning tags to its subsequences . many natural language processing ( nlp ) tasks can be cast into the segmentation probl",
+                "score": 0.41071436341319373
+            },
+            {
+                "chunk_id": "arxiv_000286_body_c017",
+                "paper_id": "arxiv_000286",
+                "title": "arXiv Paper arxiv_000286",
+                "section": "body",
+                "text": "our in - house system can be fed with a large number of articles per day and sensitive data without including third parties in the translation process . performance and translation time vary according",
+                "score": 0.39921151413711725
+            }
+        ]
     }
 ]
