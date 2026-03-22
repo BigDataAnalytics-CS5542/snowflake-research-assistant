@@ -60,7 +60,8 @@ Required `.env` variables:
 ```
 SNOWFLAKE_ACCOUNT=your_account
 SNOWFLAKE_USER=your_username
-SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_PASSWORD=your_password   # local dev; or use SNOWFLAKE_PRIVATE_KEY for key-pair (e.g. Railway)
+SNOWFLAKE_PRIVATE_KEY=             # optional — raw PEM in one line, use \\n for newlines in env
 SNOWFLAKE_ROLE=your_role
 SNOWFLAKE_WAREHOUSE=ROHAN_BLAKE_KENNETH_WH
 SNOWFLAKE_DATABASE=CS5542_PROJECT_ROHAN_BLAKE_KENNETH

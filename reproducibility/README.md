@@ -41,7 +41,8 @@ Required `.env` variables:
 ```
 SNOWFLAKE_ACCOUNT
 SNOWFLAKE_USER
-SNOWFLAKE_PASSWORD
+SNOWFLAKE_PASSWORD        # local dev (omit if using SNOWFLAKE_PRIVATE_KEY)
+SNOWFLAKE_PRIVATE_KEY     # optional — key-pair PEM (e.g. Railway); see .env.example
 SNOWFLAKE_ROLE
 SNOWFLAKE_WAREHOUSE
 SNOWFLAKE_DATABASE
@@ -51,7 +52,7 @@ GEMINI_API_KEY        # Required for /query endpoint (Agentic RAG loop — added
 
 Optional:
 ```
-HF_TOKEN              # Higher rate limits when loading HuggingFace datasets
+HF_TOKEN                  # Higher rate limits when loading HuggingFace datasets
 ```
 
 Get a Gemini key at https://aistudio.google.com/app/apikey  
