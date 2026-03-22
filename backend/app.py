@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from backend.retrieval import get_top_chunks, graph_search, use_snowflake_session_context
+from retrieval import get_top_chunks, graph_search, use_snowflake_session_context
 from evaluation.evaluate import log_metrics_to_snowflake
 import os, time
 from google import genai
