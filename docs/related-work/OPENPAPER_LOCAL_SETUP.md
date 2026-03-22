@@ -1,5 +1,7 @@
 # OpenPaper Local Setup Guide
 
+> **Location:** This file lives under `docs/related-work/`. It documents how to run the **upstream** [OpenPaper](https://github.com/sabaimran/openpaper) repo, not this Snowflake project. For how OpenPaper influenced our app, see [RELATED_WORK_REPRO.md](RELATED_WORK_REPRO.md).
+
 This document outlines the steps taken to successfully run the OpenPaper project locally, bypassing several undocumented dependencies and port conflicts.
 
 ## 1. Prerequisites

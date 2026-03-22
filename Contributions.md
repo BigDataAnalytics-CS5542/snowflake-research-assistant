@@ -131,9 +131,9 @@
   - Created `sql/02_migrate_to_vector_type.sql` for existing databases
 - Added `/auth` endpoint for Snowflake MFA passcode handling
 - Added `save_to_history()` — persists every Q&A to `backend/history.json`
-- Documented all work in `RELATED_WORK_REPRO.md` and `OPENPAPER_LOCAL_SETUP.md`
+- Documented all work in `docs/related-work/RELATED_WORK_REPRO.md` and `docs/related-work/OPENPAPER_LOCAL_SETUP.md`
 
-**Commit evidence:** `backend/app.py`, `backend/retrieval.py`, `sql/02_migrate_to_vector_type.sql`, `data/ingestion.py`, `RELATED_WORK_REPRO.md`, `OPENPAPER_LOCAL_SETUP.md`
+**Commit evidence:** `backend/app.py`, `backend/retrieval.py`, `sql/02_migrate_to_vector_type.sql`, `data/ingestion.py`, `docs/related-work/`
 
 ---
 

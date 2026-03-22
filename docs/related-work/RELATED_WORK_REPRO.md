@@ -1,5 +1,7 @@
 # Related Work Reproduction: OpenPaper
 
+> **Location:** This file lives under `docs/related-work/`. For running OpenPaper itself locally, see [OPENPAPER_LOCAL_SETUP.md](OPENPAPER_LOCAL_SETUP.md).
+
 ## Phase 1: Repository Understanding
 **Repository:** [OpenPaper](https://github.com/sabaimran/openpaper)
 **Summary:** OpenPaper is an AI-powered copilot for reading and annotating research papers. It provides a web interface (Next.js client) and a Python backend (FastAPI server) that allows users to upload PDFs, run an agentic evidence-gathering loop over their corpus, and chat with the papers contextually.

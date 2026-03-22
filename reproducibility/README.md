@@ -48,6 +48,7 @@ SNOWFLAKE_WAREHOUSE
 SNOWFLAKE_DATABASE
 SNOWFLAKE_SCHEMA
 GEMINI_API_KEY        # Required for /query endpoint (Agentic RAG loop — added Lab 7)
+BACKEND_URL           # FastAPI base URL (required by Streamlit; no default — match your uvicorn URL)
 ```
 
 Optional:
@@ -127,7 +128,7 @@ pip install --no-deps https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/release
 
 # 2. Configure credentials
 cp .env.example .env
-# Edit .env — make sure GEMINI_API_KEY is set
+# Edit .env — make sure GEMINI_API_KEY and BACKEND_URL are set
 
 # 3. Create Snowflake schema
 python scripts/run_sql_file.py sql/01_create_schema.sql

@@ -40,7 +40,7 @@ fi
 
 # Check required variables are not empty
 source .env
-for var in SNOWFLAKE_ACCOUNT SNOWFLAKE_USER SNOWFLAKE_WAREHOUSE SNOWFLAKE_DATABASE SNOWFLAKE_SCHEMA GEMINI_API_KEY; do
+for var in SNOWFLAKE_ACCOUNT SNOWFLAKE_USER SNOWFLAKE_WAREHOUSE SNOWFLAKE_DATABASE SNOWFLAKE_SCHEMA GEMINI_API_KEY BACKEND_URL; do
   if [ -z "${!var}" ]; then
     fail "Missing required .env variable: $var"
   fi
