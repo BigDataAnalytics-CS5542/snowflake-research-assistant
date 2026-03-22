@@ -1,8 +1,20 @@
-from huggingface_hub import InferenceClient
-import os
-import json
+#!/usr/bin/env python3
+"""
+Optional dev script: Hugging Face Inference API tool-calling smoke test.
 
-client = InferenceClient(token=os.getenv('HF_TOKEN'))
+Not part of the app runtime and not related to OpenPaper.
+Requires HF_TOKEN in the environment.
+
+Run from repo root:
+    python scripts/dev/inspect_hf.py
+"""
+from __future__ import annotations
+
+import os
+
+from huggingface_hub import InferenceClient
+
+client = InferenceClient(token=os.getenv("HF_TOKEN"))
 model_id = "meta-llama/Llama-3.2-3B-Instruct"
 
 tools = [
@@ -14,9 +26,9 @@ tools = [
             "parameters": {
                 "type": "object",
                 "properties": {"city": {"type": "string"}},
-                "required": ["city"]
-            }
-        }
+                "required": ["city"],
+            },
+        },
     }
 ]
 
@@ -26,7 +38,7 @@ response = client.chat_completion(
     model=model_id,
     messages=messages,
     tools=tools,
-    max_tokens=100
+    max_tokens=100,
 )
 
 message = response.choices[0].message

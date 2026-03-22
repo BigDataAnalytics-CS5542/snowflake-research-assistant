@@ -1,0 +1,29 @@
+# Backend only — used by Railway deployment
+
+# Web & API
+fastapi>=0.109.2
+uvicorn>=0.27.0
+requests>=2.28.0
+
+# Snowflake
+snowflake-snowpark-python>=1.12.0
+cryptography>=41.0.0
+
+# Embeddings (needed for query-time vector encoding)
+sentence-transformers>=2.2.2
+numpy>=1.24.0
+
+# NLP (needed for graph_search entity extraction)
+spacy>=3.7.0,<3.9.0
+scispacy>=0.5.4
+https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_core_sci_sm-0.5.4.tar.gz
+
+# LLM
+google-genai>=1.0.0
+
+# Utilities
+python-dotenv>=1.0.1
+tqdm>=4.66.0
+
+# Testing
+pytest>=8.0.0

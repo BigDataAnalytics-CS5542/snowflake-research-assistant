@@ -57,6 +57,7 @@ SNOWFLAKE_WAREHOUSE=       # e.g. ROHAN_BLAKE_KENNETH_WH
 SNOWFLAKE_DATABASE=        # e.g. CS5542_PROJECT_ROHAN_BLAKE_KENNETH
 SNOWFLAKE_SCHEMA=          # e.g. RAW
 GEMINI_API_KEY=            # Get free key at https://aistudio.google.com/app/apikey
+BACKEND_URL=               # FastAPI base URL (required; must match where uvicorn listens)
 HF_TOKEN=                  # Optional — https://huggingface.co/settings/tokens
 ```
 
@@ -154,6 +155,7 @@ Checkpoints are gitignored — each team member runs ingestion independently.
 |---|---|
 | `Missing env vars` | Make sure `.env` is filled in and you ran `cp .env.example .env` |
 | `GEMINI_API_KEY not set` | Add your Gemini key to `.env` |
+| `BACKEND_URL is required` (frontend) | Set `BACKEND_URL` to your API’s base URL (same host/port as uvicorn) in `.env` |
 | `Unknown function VECTOR_COSINE_SIMILARITY` | Upgrade Snowflake or check VECTOR support in your region |
 | `Cannot reach backend` | Make sure `uvicorn` is running on port 3001 before starting the frontend |
 | `MFA error` | Enter your current Duo token — it expires every 30 seconds |

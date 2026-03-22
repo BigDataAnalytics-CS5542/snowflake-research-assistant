@@ -67,6 +67,7 @@ SNOWFLAKE_WAREHOUSE=ROHAN_BLAKE_KENNETH_WH
 SNOWFLAKE_DATABASE=CS5542_PROJECT_ROHAN_BLAKE_KENNETH
 SNOWFLAKE_SCHEMA=RAW
 GEMINI_API_KEY=your_gemini_key        # https://aistudio.google.com/app/apikey
+BACKEND_URL=                          # FastAPI base URL (required; set to match your API host/port)
 HF_TOKEN=your_hf_token               # optional
 ```
 
@@ -146,7 +147,9 @@ snowflake-research-assistant/
 ├── artifacts/                     # Run outputs and summaries (Lab 7)
 ├── logs/                          # Ingestion and server logs (Lab 7)
 ├── docs/
-│   └── architecture.png           # Pipeline diagram
+│   ├── architecture.png           # Pipeline diagram
+│   ├── images/                  # README screenshots (Snowflake / query UI)
+│   └── related-work/            # OpenPaper reproduction notes (optional reading)
 ├── reproducibility/
 │   └── README.md                  # Reproducibility notes
 ├── reproduce.sh                   # Single-command runner (Lab 7)
@@ -233,7 +236,7 @@ Key dependencies (see `requirements.txt` for full list):
 ## Snowflake / SQL Screenshots
 
 # Snowflake Schema
-![alt text](image-3.png)
+![alt text](docs/images/image-3.png)
 
 (SQL File hosted in ./sql)
 
@@ -242,13 +245,13 @@ Key dependencies (see `requirements.txt` for full list):
 ## Backend - Query Screenshots
 
 # Retrieved Chunks
-![alt text](image.png)
+![alt text](docs/images/image.png)
 
 # LLM Formatted Response
-![alt text](image-1.png)
+![alt text](docs/images/image-1.png)
 
 # Query 2 LLM Response:
-![alt text](image-2.png)
+![alt text](docs/images/image-2.png)
 
 ---
 

@@ -1,5 +1,8 @@
+import os
 import streamlit as st
 import requests
+
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:3001").rstrip("/")
 
 st.set_page_config(page_title="Research Assistant", layout="wide")
 
@@ -9,11 +12,11 @@ st.markdown("Welcome to your personalized research assistant powered by **Snowfl
 with st.sidebar:
     st.header("Settings")
     passcode = st.text_input("Snowflake MFA Passcode", type="password", help="Enter your Duo MFA token if required.")
-    
+
     if st.button("Verify Connection"):
         with st.spinner("Connecting to Snowflake..."):
             try:
-                res = requests.post("http://localhost:3001/auth", json={"passcode": passcode})
+                res = requests.post(f"{BACKEND_URL}/auth", json={"passcode": passcode})
                 data = res.json()
                 if data.get("status") == "success":
                     st.success("Successfully authenticated with Snowflake!")
@@ -25,7 +28,7 @@ with st.sidebar:
     st.markdown("---")
     st.header("Chat History")
     try:
-        hist_res = requests.get("http://localhost:3001/history")
+        hist_res = requests.get(f"{BACKEND_URL}/history")
         hist_data = hist_res.json()
         if hist_data:
             for entry in reversed(hist_data):
@@ -41,7 +44,8 @@ with st.sidebar:
     except Exception:
         st.caption("Could not load history.")
 
-# Chat Interface
+# ── Chat Interface ────────────────────────────────────────────────────────────
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -53,33 +57,30 @@ if prompt := st.chat_input("Ask a question about your research papers..."):
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
-    
+
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
-        
+
         with st.spinner("Analyzing papers..."):
             try:
-                # Call backend API
                 payload = {
                     "question": prompt,
                     "top_k": 5,
                     "passcode": passcode
                 }
-                res = requests.post("http://localhost:3001/query", json=payload)
+                res = requests.post(f"{BACKEND_URL}/query", json=payload)
                 res.raise_for_status()
                 data = res.json()
-                
-                # FastAPI returns a list with a single dict for some reason: [{ 'answer': ..., 'citations': ... }]
+
                 if isinstance(data, list) and len(data) > 0:
                     data = data[0]
 
                 answer = data.get("answer", "No answer provided.")
                 citations = data.get("citations", [])
                 confidence = data.get("confidence", 0.0)
-                
+
                 message_placeholder.markdown(answer)
-                
-                # Citation Display
+
                 if citations:
                     with st.expander("View Citations & Confidence"):
                         st.write(f"**Confidence Score:** {confidence}")
@@ -89,10 +90,9 @@ if prompt := st.chat_input("Ask a question about your research papers..."):
                             st.write(f"- Chunk ID: `{chunk.get('chunk_id')}` from Paper `{chunk.get('title')}`")
                             st.write(f"- Section: `{chunk.get('section')}`")
                             st.write(f"> {chunk.get('text')}")
-                            
+
             except Exception as e:
                 answer = f"Error connecting to backend: {e}"
                 message_placeholder.error(answer)
-            
-    st.session_state.messages.append({"role": "assistant", "content": answer})
 
+    st.session_state.messages.append({"role": "assistant", "content": answer})
