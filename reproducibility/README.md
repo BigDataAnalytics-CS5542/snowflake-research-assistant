@@ -30,7 +30,7 @@ See `RUN.md` for full step-by-step manual instructions.
 ```bash
 python3.12 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 ```
 
 ---
@@ -123,7 +123,7 @@ Schemas:   RAW, GRAPH, APP
 git clone <repo-url>
 cd snowflake-research-assistant
 python3.12 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 pip install --no-deps https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_core_sci_sm-0.5.4.tar.gz
 
 # 2. Configure credentials

@@ -63,8 +63,8 @@ source venv/bin/activate
 log "Virtual environment activated ✓"
 
 # ── Step 3: Install dependencies ─────────────────────────────
-log "Installing dependencies from requirements.txt..."
-pip install -q -r requirements.txt
+log "Installing dependencies from requirements-full.txt..."
+pip install -q -r requirements-full.txt
 log "Dependencies installed ✓"
 
 # ── Step 4: Create output directories ────────────────────────
