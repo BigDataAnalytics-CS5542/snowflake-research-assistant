@@ -11,6 +11,8 @@ from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
 import csv
+import uuid
+from backend.logger import logger, query_id_var, latency_var
 
 # Load .env file
 load_dotenv()
@@ -121,15 +123,17 @@ def query(req: QueryRequest):
     try:
         return _query_logic(req)
     except Exception as e:
-        import traceback
-        print("\n=== CRITICAL ERROR IN /query ===")
-        traceback.print_exc()
-        print("================================\n")
+        logger.error("CRITICAL ERROR IN /query", exc_info=True)
         raise e
 
 def _query_logic(req: QueryRequest):
     start = time.time()
     conn = get_active_conn(passcode=req.passcode.strip())
+    
+    # Setup Request Tracing
+    current_log_id = uuid.uuid4().hex
+    query_id_var.set(current_log_id)
+    latency_var.set("N/A")
 
     gemini_client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
     model_id = "gemini-2.5-flash"
@@ -182,15 +186,16 @@ def _query_logic(req: QueryRequest):
     max_iterations = 5
     iterations = 0
     all_citations = []
+    tool_calls = [] 
 
     # Track the highest chunk confidence seen during the loop
     max_confidence = 0.0
 
-    print(f"\n--- Starting Agentic Loop for query: '{req.question}' ---")
+    logger.info(f"Starting Agentic Loop for query: '{req.question}'")
 
     while iterations < max_iterations:
         iterations += 1
-        print(f"\n[Iteration {iterations}/{max_iterations}] Calling LLM...")
+        logger.info(f"[Iteration {iterations}/{max_iterations}] Calling LLM...")
 
         response = gemini_client.models.generate_content(
             model=model_id,
@@ -218,7 +223,8 @@ def _query_logic(req: QueryRequest):
                 function_name = fc.name
                 arguments = dict(fc.args) if fc.args else {}
 
-                print(f"  -> Tool Call: {function_name}({arguments})")
+                tool_calls.append(function_name)
+                logger.info(f"-> Tool Call: {function_name}({arguments})")
 
                 if function_name == "search_vector_database":
                     search_query = arguments.get("query", req.question)
@@ -263,7 +269,7 @@ def _query_logic(req: QueryRequest):
                 else:
                     tool_result = f"Error: Tool '{function_name}' is not recognized."
 
-                print(f"  <- Tool Returning {len(tool_result)} characters of context.")
+                logger.info(f"<- Tool Returning {len(tool_result)} characters of context.")
                 tool_response_parts.append(
                     types.Part.from_function_response(name=function_name, response={"result": tool_result})
                 )
@@ -275,23 +281,29 @@ def _query_logic(req: QueryRequest):
         else:
             text_parts = [part.text for part in candidate.content.parts if part.text]
             if text_parts:
-                print(f"  -> Model provided a text response. Exiting loop.")
+                logger.info("-> Model provided a text response. Exiting loop.")
                 answer = "\n".join(text_parts)
                 break
 
     else:
         # If we broke out of the while loop because of iterations
-        print("  -> Hit max iterations without a final text answer. Forcing generation.")
+        logger.warning("Hit max iterations without a final text answer. Forcing generation.")
         answer = "I apologize, but I was unable to compile a complete answer after searching the databases."
         if all_citations:
              answer += "\nHowever, I did find some relevant sources, though I couldn't synthesize them in time."
+
+    # Finalize metrics
+    final_latency = int((time.time() - start) * 1000)
+    latency_var.set(f"{final_latency}ms") # Update logger context
 
     result = {
         'answer': answer,
         'citations': all_citations,
         'confidence': round(max_confidence, 3),
         'retrieval_mode': 'agentic',
-        'latency_ms': int((time.time() - start) * 1000)
+        'latency_ms': final_latency,
+        'tool_calls': tool_calls,         
+        'num_iterations': iterations      
     }
 
     save_to_csv_log(req.question, result)
@@ -304,19 +316,22 @@ def _query_logic(req: QueryRequest):
 
     context_used = "\n".join([c['text'] for c in result['citations']])
     log_data = {
+        'log_id': current_log_id,
         'question': req.question,
         'answer': result['answer'],
-        'context_used': context_used[:10000], # max length to be safe
+        'context_used': context_used[:10000],
         'retrieval_mode': result['retrieval_mode'],
         'confidence': result['confidence'],
-        'latency_ms': result['latency_ms']
+        'latency_ms': result['latency_ms'],
+        'tool_calls': result['tool_calls'],
+        'num_iterations': result['num_iterations']
     }
     
     try:
         log_metrics_to_snowflake(log_data, conn=conn)
-        print("Successfully logged metrics to Snowflake.")
+        logger.info("Successfully logged metrics to Snowflake.")
     except Exception as e:
-        print(f"Failed to log metrics: {e}")
+        logger.error(f"Failed to log metrics to Snowflake: {e}")
 
     return result
 
@@ -388,7 +403,47 @@ def health_snowflake(passcode: str = ""):
             detail=f"Snowflake health check failed: {e}",
         ) from e
 
-
 @app.get('/health')
 def health(): return {'status': 'ok'}
 
+@app.get('/metrics')
+def get_metrics(passcode: str = ""):
+    """Returns aggregated stats for the Streamlit dashboard."""
+    conn = get_active_conn(passcode=passcode.strip())
+    try:
+        cur = conn.cursor()
+        use_snowflake_session_context(cur)
+        
+        # Core aggregates
+        query = """
+        SELECT 
+            COUNT(LOG_ID) as total_queries,
+            AVG(LATENCY_MS) as avg_latency,
+            AVG(CONFIDENCE) as avg_confidence,
+            AVG(NUM_ITERATIONS) as avg_iterations
+        FROM APP.EVAL_METRICS;
+        """
+        cur.execute(query)
+        row = cur.fetchone()
+        
+        # Grouped counts by retrieval mode
+        mode_query = """
+        SELECT RETRIEVAL_MODE, COUNT(*) as count 
+        FROM APP.EVAL_METRICS 
+        GROUP BY RETRIEVAL_MODE;
+        """
+        cur.execute(mode_query)
+        modes = {r[0]: r[1] for r in cur.fetchall()}
+        
+        return {
+            "total_queries": row[0] or 0,
+            "avg_latency_ms": round(row[1] or 0, 2),
+            "avg_confidence": round(row[2] or 0, 3),
+            "avg_iterations": round(row[3] or 0, 2),
+            "retrieval_modes": modes
+        }
+    except Exception as e:
+        logger.error(f"Metrics fetch failed: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch metrics")
+    finally:
+        cur.close()
