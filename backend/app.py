@@ -80,7 +80,10 @@ def save_to_csv_log(req_question: str, result: dict):
             'latency_ms': result['latency_ms']
         })
 
-def save_to_history(query_text: str, answer: str, citations: list):
+def save_to_history(query_text: str, answer: str, citations: list,
+                    confidence: float = 0.0, latency_ms: int = 0,
+                    retrieval_mode: str = "", tool_calls: list = None,
+                    num_iterations: int = 0):
     """
     Saves the query details to /backend/history.json.
     """
@@ -93,7 +96,12 @@ def save_to_history(query_text: str, answer: str, citations: list):
         "timestamp": datetime.now().isoformat(),
         "query": query_text,
         "answer": answer,
-        "chunks": citations  # citations contains the chunk metadata from your return
+        "chunks": citations,
+        "confidence": confidence,
+        "latency_ms": latency_ms,
+        "retrieval_mode": retrieval_mode,
+        "tool_calls": tool_calls or [],
+        "num_iterations": num_iterations,
     }
 
     # 3. Load existing data or initialize a new list
@@ -309,9 +317,14 @@ def _query_logic(req: QueryRequest):
     save_to_csv_log(req.question, result)
     
     save_to_history(
-        query_text=req.question, 
-        answer=result['answer'], 
-        citations=result['citations']
+        query_text=req.question,
+        answer=result['answer'],
+        citations=result['citations'],
+        confidence=result['confidence'],
+        latency_ms=result['latency_ms'],
+        retrieval_mode=result['retrieval_mode'],
+        tool_calls=result['tool_calls'],
+        num_iterations=result['num_iterations'],
     )
 
     context_used = "\n".join([c['text'] for c in result['citations']])
@@ -405,6 +418,29 @@ def health_snowflake(passcode: str = ""):
 
 @app.get('/health')
 def health(): return {'status': 'ok'}
+
+@app.get('/metrics/history')
+def get_metrics_history(passcode: str = "", limit: int = 100):
+    """Returns per-query rows from EVAL_METRICS for dashboard charts."""
+    conn = get_active_conn(passcode=passcode.strip())
+    try:
+        cur = conn.cursor()
+        use_snowflake_session_context(cur)
+        cur.execute("""
+            SELECT LOG_ID, QUESTION, CONFIDENCE, LATENCY_MS, RETRIEVAL_MODE,
+                   NUM_ITERATIONS, TOOL_CALLS, TIMESTAMP
+            FROM APP.EVAL_METRICS
+            ORDER BY TIMESTAMP DESC
+            LIMIT %s
+        """, (limit,))
+        columns = [desc[0] for desc in cur.description]
+        rows = [dict(zip(columns, row)) for row in cur.fetchall()]
+        return rows
+    except Exception as e:
+        logger.error(f"Metrics history fetch failed: {e}")
+        raise HTTPException(status_code=500, detail="Failed to fetch metrics history")
+    finally:
+        cur.close()
 
 @app.get('/metrics')
 def get_metrics(passcode: str = ""):
