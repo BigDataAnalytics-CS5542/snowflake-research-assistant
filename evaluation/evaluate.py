@@ -5,7 +5,7 @@ def run_ragas_evaluation():
     Run baseline Vector RAG vs Graph-RAG evaluation via Answer Relevance and Faithfulness metrics.
     '''
     pass
-
+#Gemini 3.1 Flash Lite
 def log_metrics_to_snowflake(log_data: dict, conn=None):
     '''
     Automatically capture Q&A pairs, retrieval latency, and confidence scores back to APP.EVAL_METRICS.
@@ -33,11 +33,9 @@ def log_metrics_to_snowflake(log_data: dict, conn=None):
         insert_query = """
         INSERT INTO APP.EVAL_METRICS (
             LOG_ID, QUESTION, GENERATED_RESPONSE, CONTEXT_USED, 
-            RETRIEVAL_MODE, CONFIDENCE, LATENCY_MS, 
-            TOOL_CALLS, NUM_ITERATIONS
-        ) VALUES (
-            %s, %s, %s, %s, %s, %s, %s, PARSE_JSON(%s), %s
-        )
+            RETRIEVAL_MODE, CONFIDENCE, LATENCY_MS, TOOL_CALLS, NUM_ITERATIONS
+        ) 
+        SELECT %s, %s, %s, %s, %s, %s, %s, PARSE_JSON(%s), %s
         """
         
         cur.execute(insert_query, (
