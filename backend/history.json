@@ -1056,5 +1056,139 @@
                 "score": 0.39921151413711725
             }
         ]
+    },
+    {
+        "timestamp": "2026-03-22T23:32:45.878537",
+        "query": " How are neural networks used for text summarization?",
+        "answer": "Based on the available information from the vector database and knowledge graph, there is no direct evidence explaining how neural networks are specifically",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.46106451749801636
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.4578268229961395
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c015",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
+                "score": 0.4562063243266159
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.4472358062039558
+            },
+            {
+                "chunk_id": "arxiv_000968_abstract_c000",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "abstract",
+                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
+                "score": 0.4149780869483948
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c014",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
+                "score": 0.4644440827766749
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c015",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
+                "score": 0.46160070483687154
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c001",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
+                "score": 0.4524238052873387
+            },
+            {
+                "chunk_id": "arxiv_000968_body_c005",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "body",
+                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
+                "score": 0.45127482276631975
+            },
+            {
+                "chunk_id": "arxiv_000968_abstract_c000",
+                "paper_id": "arxiv_000968",
+                "title": "arXiv Paper arxiv_000968",
+                "section": "abstract",
+                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
+                "score": 0.4254692577245185
+            }
+        ]
+    },
+    {
+        "timestamp": "2026-03-22T23:39:11.414565",
+        "query": " What is quantile regression?",
+        "answer": "Quantile regression defines the conditional quantile function, where its value is a τ-quantile of a conditional distribution [4]. Mathematically, for a probability measure on a given space, a real number is considered a τ-quantile if it belongs to a specific set defined by the probability measure [1]. A distribution can have a unique τ-quantile if it possesses a τ-quantile of a certain type [2]. If the distribution has a Lebesgue density, then it has a τ-quantile of type if the density is bounded away from zero [2].\n\nThe regularization scheme for quantile regression often utilizes the pinball loss function [4]. Support Vector Machines (SVM) can be used for quantile regression, and research explores learning rates for these models, particularly in the context of additive models [3].",
+        "chunks": [
+            {
+                "chunk_id": "arxiv_000000_body_c014",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                "score": 0.6741095768017346
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c015",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                "score": 0.603543614496323
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c019",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                "score": 0.5602558517303645
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c013",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                "score": 0.5341842729825687
+            },
+            {
+                "chunk_id": "arxiv_000000_body_c016",
+                "paper_id": "arxiv_000000",
+                "title": "arXiv Paper arxiv_000000",
+                "section": "body",
+                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                "score": 0.5283055867784553
+            }
+        ]
     }
 ]
