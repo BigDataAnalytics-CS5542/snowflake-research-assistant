@@ -1,0 +1,352 @@
+[
+  {
+    "id": "ld_001",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a legal demand letter based on the scenario.",
+    "input": "A tenant paid a $2,500 security deposit. After moving out, the landlord refused to return the deposit and did not provide an itemized explanation of damages.",
+    "output": "Dear [Landlord Name],\n\nI represent [Tenant Name] regarding the failure to return a $2,500 security deposit following move-out from the rental property. My client vacated the premises, and despite the passage of the required time, you neither returned the deposit nor provided an itemized statement explaining any lawful deductions.\n\nThis retention of funds without proper accounting may violate applicable landlord-tenant obligations. My client demands payment of the full $2,500 deposit within 14 days of your receipt of this letter. Please respond in writing by that date; otherwise my client will have no choice but to consider formal action to recover the deposit.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_002",
+    "task_type": "draft_demand_letter",
+    "instruction": "Write a professional demand letter for the dispute described below.",
+    "input": "A freelance designer completed branding work for a business, delivered the final files, and submitted an invoice for $3,200. The business used the work but never paid.",
+    "output": "Dear [Client Name],\n\nI represent [Designer Name] regarding the completed branding and design services provided to your business. My client delivered the agreed work product and submitted an invoice for $3,200, yet payment remains outstanding despite your use of the final materials.\n\nAccepting and using the work without payment constitutes a breach of the parties' agreement. My client demands payment of the full $3,200 within 7 business days of receipt of this letter. Failure to remit payment by that date will leave my client no option but to pursue collection and any applicable legal remedies.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_003",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a demand letter based on the following facts.",
+    "input": "A homeowner paid a contractor $8,000 for roof repairs. The contractor performed only partial work, stopped responding, and never completed the job.",
+    "output": "Dear [Contractor Name],\n\nI represent [Homeowner Name] regarding the roofing repair project for which you received $8,000. Although payment was made in full, you performed only partial work and failed to complete the agreed repairs, and you have ceased responding to requests for completion or refund.\n\nThis failure to perform may constitute breach of contract. My client demands that you either complete the work or refund the amount paid for incomplete work within 7 days of receipt of this letter. If we do not receive a written response and resolution by that date, my client intends to pursue all available remedies, including a claim for damages.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_004",
+    "task_type": "draft_demand_letter",
+    "instruction": "Prepare a formal demand letter for this legal dispute.",
+    "input": "A customer bought a refrigerator that stopped working within days. The seller ignored repeated requests for repair or refund, and the customer lost several hundred dollars in spoiled food.",
+    "output": "Dear [Seller Name],\n\nI represent [Customer Name] regarding the purchase of a refrigerator that became nonfunctional within days of delivery. Despite repeated requests for assistance, you have failed to provide a repair, replacement, or refund. As a result, my client incurred additional losses, including spoiled food and replacement expenses.\n\nYour failure to address this defective product may violate consumer protection and warranty obligations. My client demands a full refund or replacement of the refrigerator, plus reimbursement for documented related losses, within 21 days of your receipt of this letter. Please contact us in writing by that date; otherwise we will advise our client on filing a claim in small claims court or other appropriate venue.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_005",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a legal demand letter for the scenario below.",
+    "input": "An employee worked overtime for several weeks but was not paid the additional wages. The employer ignored the employee's written requests for correction.",
+    "output": "Dear [Employer Name],\n\nI represent [Employee Name] regarding unpaid overtime wages for work performed over several weeks. My client worked hours beyond the regular schedule but did not receive the compensation due despite written requests seeking correction.\n\nFailure to pay earned wages may violate wage payment obligations and has caused financial harm to my client. My client demands payment of all unpaid overtime compensation within 7 days of receipt of this letter, together with written confirmation that future wage payments will comply with applicable requirements. If payment is not made, my client may pursue further legal action.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_006",
+    "task_type": "draft_demand_letter",
+    "instruction": "Write a structured demand letter seeking compensation based on the facts provided.",
+    "input": "A neighbor's plumbing overflow caused water damage to the claimant's ceiling, walls, and flooring. Repair costs were estimated at $4,800, and the neighbor refused to pay.",
+    "output": "Dear [Neighbor Name],\n\nI represent [Claimant Name] regarding the water damage caused to my client's property when plumbing overflow from your unit resulted in damage to the ceiling, walls, and flooring. Repair estimates currently total $4,800, and you have refused to compensate my client for these losses.\n\nYour failure to resolve this matter may expose you to liability for property damage caused by your negligence. My client demands payment of $4,800 within 14 days of your receipt of this letter. If payment is not made within that time, my client may pursue all available legal remedies.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_007",
+    "task_type": "identify_claim",
+    "instruction": "Identify the strongest legal claim based on the scenario.",
+    "input": "A contractor accepted an $8,000 payment, performed minimal work, and then abandoned the project without returning the money.",
+    "output": "{\n  \"claim_type\": \"breach_of_contract\",\n  \"reasoning\": \"The contractor accepted payment under an agreement to perform work, failed to complete the promised performance, and did not refund the money after abandoning the project.\"\n}"
+  },
+  {
+    "id": "ld_008",
+    "task_type": "identify_claim",
+    "instruction": "Classify the dispute and explain the most likely legal claim.",
+    "input": "A seller knowingly told a buyer that a car had never been in an accident. After the sale, the buyer discovered major prior collision damage had been concealed.",
+    "output": "{\n  \"claim_type\": \"fraud_or_misrepresentation\",\n  \"reasoning\": \"The facts suggest the seller made a false statement about a material fact to induce the buyer to complete the purchase.\"\n}"
+  },
+  {
+    "id": "ld_009",
+    "task_type": "identify_claim",
+    "instruction": "What is the strongest likely legal claim in this scenario?",
+    "input": "A landlord kept a tenant's security deposit after move-out and did not provide any itemized list of damages or lawful deductions.",
+    "output": "{\n  \"claim_type\": \"security_deposit_violation\",\n  \"reasoning\": \"The landlord retained the tenant's deposit without providing the explanation or justification typically required for lawful deductions.\"\n}"
+  },
+  {
+    "id": "ld_010",
+    "task_type": "identify_claim",
+    "instruction": "Identify the primary legal claim supported by these facts.",
+    "input": "An employer failed to pay an employee for overtime hours worked, even after the employee raised the issue in writing.",
+    "output": "{\n  \"claim_type\": \"wage_violation\",\n  \"reasoning\": \"The employee performed compensable work but did not receive the wages owed for overtime hours.\"\n}"
+  },
+  {
+    "id": "ld_011",
+    "task_type": "extract_elements",
+    "instruction": "Extract the key legal elements from this demand letter.",
+    "input": "Dear Mr. Allen: My client, Sarah Kim, seeks payment of $4,800 for water damage caused to her property on January 8, 2026, when your negligence led to a plumbing overflow from your unit. Please remit payment within 14 days of this letter to avoid further action.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Sarah Kim\",\n    \"recipient\": \"Mr. Allen\"\n  },\n  \"claim_type\": \"negligence_property_damage\",\n  \"damages\": \"$4,800 for water damage\",\n  \"deadline\": \"14 days from the letter\",\n  \"remedy_requested\": \"Payment of $4,800\"\n}"
+  },
+  {
+    "id": "ld_012",
+    "task_type": "extract_elements",
+    "instruction": "Identify the claimant, recipient, damages, deadline, and requested remedy from this demand letter.",
+    "input": "Dear ABC Services, I represent Daniel Ortiz regarding unpaid wages in the amount of $1,950 for work completed during December 2025. Unless payment is received within 7 days, my client will consider further legal action. Please remit the full amount immediately.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Daniel Ortiz\",\n    \"recipient\": \"ABC Services\"\n  },\n  \"claim_type\": \"wage_violation\",\n  \"damages\": \"$1,950 in unpaid wages\",\n  \"deadline\": \"7 days\",\n  \"remedy_requested\": \"Immediate payment of $1,950\"\n}"
+  },
+  {
+    "id": "ld_013",
+    "task_type": "extract_elements",
+    "instruction": "Extract the main legal demand components from the letter below.",
+    "input": "Dear Blue Ridge Auto Sales, my client, Monica Reyes, seeks rescission of the vehicle purchase and reimbursement of $9,400 after discovering that the car sold to her had undisclosed accident damage. Please respond within 10 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Monica Reyes\",\n    \"recipient\": \"Blue Ridge Auto Sales\"\n  },\n  \"claim_type\": \"fraud_or_misrepresentation\",\n  \"damages\": \"$9,400 vehicle purchase amount\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Rescission and reimbursement of $9,400\"\n}"
+  },
+  {
+    "id": "ld_014",
+    "task_type": "extract_elements",
+    "instruction": "Extract the parties, claim type, damages, deadline, and remedy requested from this letter.",
+    "input": "Dear Greenfield Apartments, I represent Alicia Brooks concerning the $2,500 security deposit for Unit 3C. She vacated the premises on February 1, 2026, and no itemized statement of deductions was provided. Please return the full deposit within 10 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Alicia Brooks\",\n    \"recipient\": \"Greenfield Apartments\"\n  },\n  \"claim_type\": \"security_deposit_violation\",\n  \"damages\": \"$2,500 security deposit\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Return of the full $2,500 deposit\"\n}"
+  },
+  {
+    "id": "ld_015",
+    "task_type": "evaluate_letter",
+    "instruction": "Evaluate whether this demand letter is complete and effective.",
+    "input": "Dear Company, you owe me money for the broken product you sold me. I want compensation soon. Please fix this issue.",
+    "output": "{\n  \"is_adequate\": false,\n  \"strengths\": [\"States that compensation is being requested\"],\n  \"missing_elements\": [\"Specific facts\", \"Amount of damages\", \"Legal basis of the claim\", \"Clear deadline\", \"Specific remedy requested\"],\n  \"suggested_improvements\": [\"Identify the product and transaction details\", \"Describe the defect and resulting harm\", \"Request a specific refund or replacement\", \"Add a clear deadline for response\"]\n}"
+  },
+  {
+    "id": "ld_016",
+    "task_type": "evaluate_letter",
+    "instruction": "Assess whether this demand letter includes the key elements needed before escalation.",
+    "input": "Dear Property Manager, my client seeks return of a $1,800 security deposit for Apartment 2B. The tenant vacated the unit on February 1, 2026, and no itemized deductions were provided. Please return the deposit within 10 days or my client may pursue legal remedies.",
+    "output": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"Identifies the dispute clearly\", \"States the amount requested\", \"Includes relevant factual context\", \"Provides a deadline\", \"States possible next steps\"],\n  \"missing_elements\": [\"Could include more detail about communications or move-out condition\"],\n  \"suggested_improvements\": [\"Add sender contact information\", \"Include supporting documentation if available\"]\n}"
+  },
+  {
+    "id": "ld_017",
+    "task_type": "evaluate_letter",
+    "instruction": "Determine whether this demand letter is effective and explain what is missing if anything.",
+    "input": "Dear Contractor, you were paid $6,000 for kitchen repairs but left the job unfinished. My client demands refund of the unused deposit within 10 days. If not resolved, legal action may follow.",
+    "output": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"States the dispute\", \"Specifies the amount involved\", \"Requests a clear remedy\", \"Includes a deadline\", \"Mentions escalation\"],\n  \"missing_elements\": [\"Could provide more factual detail about the agreement and incomplete work\"],\n  \"suggested_improvements\": [\"Add date of payment or contract\", \"Describe the work left incomplete\"]\n}"
+  },
+  {
+    "id": "ld_018",
+    "task_type": "identify_claim",
+    "instruction": "Identify the strongest legal claim based on the scenario.",
+    "input": "A contractor took a $6,000 deposit, performed only minor work, and abandoned the project. The homeowner had to pay another contractor $4,500 to complete the repairs.",
+    "output": "{\n  \"claim_type\": \"breach_of_contract\",\n  \"reasoning\": \"The contractor accepted payment under an agreement to perform work, failed to complete the promised performance, and abandoned the project, causing the homeowner to incur additional completion costs.\"\n}"
+  },
+  {
+    "id": "ld_019",
+    "task_type": "evaluate_letter",
+    "instruction": "Evaluate whether this demand letter is complete and effective.",
+    "input": "Dear Seller, my client purchased a defective appliance from your store and has requested repair or refund multiple times with no response. We demand a full refund or replacement within 14 days.",
+    "output": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"Identifies the dispute\", \"Requests a specific remedy\", \"Provides a deadline\"],\n  \"missing_elements\": [\"Amount or product details\", \"Date of purchase\", \"Explicit escalation if unresolved\"],\n  \"suggested_improvements\": [\"Specify the product and purchase date\", \"State the amount paid if seeking refund\", \"Add that legal action may follow if not resolved\"]\n}"
+  },
+  {
+    "id": "ld_020",
+    "task_type": "recommend_remedy",
+    "instruction": "Suggest the most appropriate remedies for this situation.",
+    "input": "A freelance writer delivered contracted articles to a client, but the client published them and refused to pay the agreed fee of $1,500.",
+    "output": "{\n  \"recommended_remedies\": [\"Payment of the $1,500 contract amount\", \"Written confirmation of payment deadline\", \"Possible removal or nonuse demand if rights were not transferred\"],\n  \"reasoning\": \"The writer may seek payment for accepted work and may also assert rights relating to the use of the content depending on the agreement terms.\"\n}"
+  },
+  {
+    "id": "ld_021",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a professional demand letter based on the scenario provided.",
+    "input": "A consultant provided six months of marketing consulting services to a startup and invoiced $7,500. The startup acknowledged the work but has not paid the invoice.",
+    "output": "Dear [Startup Name],\n\nI represent [Consultant Name] regarding marketing consulting services provided to your company over a six-month period. My client delivered the agreed services and submitted an invoice in the amount of $7,500. Despite your acknowledgment of the work, payment has not been made.\n\nNonpayment for accepted services is a breach of the parties' agreement. My client demands payment of the full $7,500 within 21 days of receipt of this letter. Kindly remit payment or contact us with a proposed resolution by that date; otherwise we will recommend that our client pursue collection and any applicable legal action.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_022",
+    "task_type": "draft_demand_letter",
+    "instruction": "Write a formal demand letter seeking payment based on the facts below.",
+    "input": "A photographer completed wedding photography services and delivered the edited photos to the client, but the client has not paid the remaining $2,800 balance.",
+    "output": "Dear [Client Name],\n\nI represent [Photographer Name] regarding wedding photography services provided under your agreement. My client fulfilled all obligations by photographing the event and delivering the completed edited photographs. The outstanding balance of $2,800 remains unpaid.\n\nRetaining the benefit of the delivered work without paying the balance constitutes a breach of the service agreement. My client demands payment of $2,800 within 7 days of your receipt of this letter. If we do not receive payment or a written response by that date, my client reserves the right to refer this matter for collection or to file a claim for the balance due.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_023",
+    "task_type": "draft_demand_letter",
+    "instruction": "Prepare a legal demand letter for the following dispute.",
+    "input": "A tenant repeatedly notified the landlord about severe mold and water leaks in the apartment. The landlord ignored repair requests for months.",
+    "output": "Dear [Landlord Name],\n\nI represent [Tenant Name] regarding unsafe living conditions at the rental property, including ongoing water leaks and mold growth that were reported to you multiple times. Despite repeated written requests for repair, these conditions remain unresolved.\n\nFailure to maintain habitable premises may breach your obligations under the lease and applicable law. My client demands that you complete the necessary repairs and provide written confirmation of the repair schedule within 14 days of receipt of this letter. If the conditions are not corrected by that time, my client will consider exercising all rights under the lease and applicable housing laws, including withholding rent or seeking redress in court.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_024",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a structured demand letter addressing the dispute described.",
+    "input": "A homeowner paid a landscaping company $3,500 to install a patio. The company never began the work and stopped responding to messages.",
+    "output": "Dear [Company Name],\n\nI represent [Homeowner Name] regarding the landscaping services for which you received payment of $3,500 to install a patio. Despite receiving payment, you have not begun the agreed work and have stopped responding to communications.\n\nFailure to perform after receiving payment is a breach of contract. My client demands a full refund of the $3,500 within 7 days of your receipt of this letter. If the refund is not issued by that date, my client will have no alternative but to pursue recovery of the funds through appropriate legal channels.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_025",
+    "task_type": "draft_demand_letter",
+    "instruction": "Write a professional demand letter requesting compensation.",
+    "input": "A customer ordered custom furniture online for $4,200. The company delivered a different product and refused to provide a refund.",
+    "output": "Dear [Company Name],\n\nI represent [Customer Name] regarding the purchase of custom furniture for $4,200. The product delivered did not match the item ordered. Despite multiple requests, your company has refused to provide a refund or replacement.\n\nDelivery of nonconforming goods may breach the contract and violate consumer protection standards. My client demands a full refund of $4,200 within 14 days of receipt of this letter. Please respond in writing; if we do not receive a satisfactory resolution by that date, my client will consider filing a complaint with the relevant consumer agency and pursuing a claim for refund and damages.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_026",
+    "task_type": "draft_demand_letter",
+    "instruction": "Prepare a demand letter based on the following dispute.",
+    "input": "A real estate agent earned a $5,500 commission for closing a property sale, but the brokerage has not paid the commission.",
+    "output": "Dear [Brokerage Name],\n\nI represent [Agent Name] regarding the real estate commission earned from the closing of the recent property transaction. My client fulfilled all obligations and facilitated the successful closing of the sale, resulting in a commission of $5,500.\n\nDespite completion of the transaction, the commission remains unpaid. Nonpayment of earned compensation may breach the brokerage agreement. My client demands payment of the $5,500 commission within 21 days of receipt of this letter. If payment is not received by that date, my client reserves the right to pursue all remedies under the agreement and applicable law.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_027",
+    "task_type": "draft_demand_letter",
+    "instruction": "Draft a formal legal demand letter using the facts below.",
+    "input": "A borrower received a $4,000 personal loan from a friend with an agreement to repay within six months. The borrower has not repaid any of the loan.",
+    "output": "Dear [Borrower Name],\n\nI represent [Lender Name] regarding the personal loan of $4,000 provided to you with the understanding that the amount would be repaid within six months. The agreed repayment period has passed and the loan remains unpaid.\n\nFailure to repay as agreed is a breach of your repayment obligation. My client demands payment of the full $4,000 balance within 14 days of receipt of this letter. If payment is not received by that date, my client will consider referring this matter for collection or taking such other steps as may be necessary to recover the debt.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_028",
+    "task_type": "draft_demand_letter",
+    "instruction": "Write a legal demand letter for the situation described.",
+    "input": "A gym continued charging monthly membership fees after the customer canceled the membership and provided written notice.",
+    "output": "Dear [Gym Name],\n\nI represent [Customer Name] regarding unauthorized membership charges that continued after my client properly canceled the gym membership and provided written notice of cancellation.\n\nDespite confirmation of the cancellation, your company continued billing monthly membership fees. These charges are unauthorized. My client demands reimbursement of all improperly charged fees within 7 days of receipt of this letter. If reimbursement is not made by that date, my client will consider disputing the charges with the card issuer and pursuing any other available remedies.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_029",
+    "task_type": "draft_demand_letter",
+    "instruction": "Prepare a professional demand letter based on the dispute described.",
+    "input": "A small business delivered printed merchandise worth $6,300 to a retailer, but the retailer has not paid the invoice.",
+    "output": "Dear [Retailer Name],\n\nI represent [Business Name] regarding merchandise delivered to your store pursuant to your purchase order. The goods were delivered as agreed, and an invoice in the amount of $6,300 was issued. Payment has not been received.\n\nNonpayment for delivered goods is a breach of the parties' agreement. My client demands payment of the full $6,300 within 14 days of receipt of this letter. Please remit payment or contact us with a proposed payment plan by that date; otherwise we will advise our client to pursue collection and any applicable legal action for the outstanding balance.\n\nSincerely,\n[Sender Name]"
+  },
+  {
+    "id": "ld_030",
+    "task_type": "identify_claim",
+    "instruction": "Identify the most likely legal claim based on the facts.",
+    "input": "A consultant completed work for a company under a written agreement, submitted invoices, and the company refused to pay despite acknowledging the services.",
+    "output": "{\n  \"claim_type\": \"breach_of_contract\",\n  \"reasoning\": \"The consultant performed services under an agreement and submitted invoices, but the company failed to pay despite receiving the benefit of the services.\"\n}"
+  },
+  {
+    "id": "ld_031",
+    "task_type": "identify_claim",
+    "instruction": "Determine the strongest legal claim supported by the scenario.",
+    "input": "A landlord failed to repair a broken heating system during winter even after multiple written requests from the tenant.",
+    "output": "{\n  \"claim_type\": \"breach_of_habitability\",\n  \"reasoning\": \"Landlords are typically required to maintain safe and habitable living conditions, including functioning heating systems. Failure to repair after notice may violate this duty.\"\n}"
+  },
+  {
+    "id": "ld_032",
+    "task_type": "identify_claim",
+    "instruction": "Classify the likely legal claim and explain the reasoning.",
+    "input": "An online seller accepted payment for a laptop but never shipped the product and stopped responding to the buyer.",
+    "output": "{\n  \"claim_type\": \"fraud_or_misrepresentation\",\n  \"reasoning\": \"The seller accepted payment but failed to deliver the promised product and ceased communication, suggesting deceptive conduct.\"\n}"
+  },
+  {
+    "id": "ld_033",
+    "task_type": "identify_claim",
+    "instruction": "Identify the primary claim arising from the facts.",
+    "input": "A partner withdrew money from a joint business account for personal use without authorization.",
+    "output": "{\n  \"claim_type\": \"breach_of_fiduciary_duty\",\n  \"reasoning\": \"Business partners owe fiduciary duties to each other, and using partnership funds for personal purposes without consent may breach those duties.\"\n}"
+  },
+  {
+    "id": "ld_034",
+    "task_type": "identify_claim",
+    "instruction": "What is the most likely legal claim in this dispute?",
+    "input": "A moving company damaged a customer's furniture during transport and refused to compensate the customer.",
+    "output": "{\n  \"claim_type\": \"negligence_property_damage\",\n  \"reasoning\": \"The moving company had a duty to handle the customer's property with reasonable care and may be liable for damage caused during transport.\"\n}"
+  },
+  {
+    "id": "ld_035",
+    "task_type": "extract_elements",
+    "instruction": "Extract the key legal elements from the demand letter.",
+    "input": "Dear Mr. Lopez, I represent Emma Patel regarding the unpaid consulting invoice of $3,400 for services completed on January 20, 2026. Please remit payment within 10 days to resolve this matter.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Emma Patel\",\n    \"recipient\": \"Mr. Lopez\"\n  },\n  \"claim_type\": \"breach_of_contract\",\n  \"damages\": \"$3,400 unpaid invoice\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Payment of $3,400\"\n}"
+  },
+  {
+    "id": "ld_036",
+    "task_type": "extract_elements",
+    "instruction": "Identify the core legal elements from this demand letter.",
+    "input": "Dear Rapid Movers, my client, Jason Wright, seeks reimbursement of $2,100 for furniture damaged during your company's moving services on March 3, 2026. Please provide payment within 14 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Jason Wright\",\n    \"recipient\": \"Rapid Movers\"\n  },\n  \"claim_type\": \"negligence_property_damage\",\n  \"damages\": \"$2,100 furniture damage\",\n  \"deadline\": \"14 days\",\n  \"remedy_requested\": \"Reimbursement of $2,100\"\n}"
+  },
+  {
+    "id": "ld_037",
+    "task_type": "extract_elements",
+    "instruction": "Extract the claimant, recipient, damages, deadline, and remedy requested.",
+    "input": "Dear Metro Fitness, I represent Laura Chen regarding unauthorized membership charges totaling $360 after cancellation of her membership. Please refund the amount within 10 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Laura Chen\",\n    \"recipient\": \"Metro Fitness\"\n  },\n  \"claim_type\": \"unauthorized_billing\",\n  \"damages\": \"$360 in membership charges\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Refund of $360\"\n}"
+  },
+  {
+    "id": "ld_038",
+    "task_type": "extract_elements",
+    "instruction": "Extract the legal demand components from the letter below.",
+    "input": "Dear ClearView Electronics, my client David Ramirez demands reimbursement of $1,250 for a defective television purchased from your store that stopped functioning within two weeks. Please respond within 10 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"David Ramirez\",\n    \"recipient\": \"ClearView Electronics\"\n  },\n  \"claim_type\": \"defective_product\",\n  \"damages\": \"$1,250 television purchase\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Reimbursement of $1,250\"\n}"
+  },
+  {
+    "id": "ld_039",
+    "task_type": "evaluate_letter",
+    "instruction": "Evaluate whether the demand letter is sufficient.",
+    "input": "Dear Contractor, you messed up my kitchen renovation and I want my money back immediately.",
+    "output": "{\n  \"is_adequate\": false,\n  \"strengths\": [\"Requests a refund\"],\n  \"missing_elements\": [\"Amount of damages\", \"Description of the agreement\", \"Specific facts about the renovation issue\", \"Deadline for payment\", \"Potential escalation\"],\n  \"suggested_improvements\": [\"Describe the contract and work performed\", \"Specify the amount requested\", \"Provide a deadline for response\", \"Explain the consequences if unresolved\"]\n}"
+  },
+  {
+    "id": "ld_040",
+    "task_type": "evaluate_letter",
+    "instruction": "Assess whether the demand letter includes essential elements.",
+    "input": "Dear Online Seller, my client paid $1,200 for a laptop that was never delivered. Please refund the payment within 10 days or legal action may follow.",
+    "output": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"States the dispute clearly\", \"Identifies the amount paid\", \"Requests a specific remedy\", \"Provides a deadline\", \"Mentions potential escalation\"],\n  \"missing_elements\": [\"Could include order details or transaction date\"],\n  \"suggested_improvements\": [\"Include purchase date\", \"Provide proof of payment if available\"]\n}"
+  },
+  {
+    "id": "ld_041",
+    "task_type": "recommend_remedy",
+    "instruction": "Suggest appropriate remedies for the dispute described.",
+    "input": "A landscaper was paid $2,700 to install a fence but never started the work and stopped responding.",
+    "output": "{\n  \"recommended_remedies\": [\"Full refund of the $2,700 payment\", \"Written confirmation terminating the agreement\", \"Reimbursement of additional costs if another contractor is required\"],\n  \"reasoning\": \"The landscaper accepted payment but failed to perform the promised services, allowing the customer to seek refund and potentially additional completion costs.\"\n}"
+  },
+  {
+    "id": "ld_042",
+    "task_type": "recommend_remedy",
+    "instruction": "Recommend remedies based on the dispute.",
+    "input": "A tenant paid for parking access in an apartment complex but was never given the promised parking space.",
+    "output": "{\n  \"recommended_remedies\": [\"Refund of parking fees paid\", \"Immediate assignment of a parking space\", \"Written confirmation correcting the lease terms\"],\n  \"reasoning\": \"If the tenant paid for a parking amenity that was not provided, the tenant may seek refund or enforcement of the promised service.\"\n}"
+  },
+  {
+    "id": "ld_043",
+    "task_type": "recommend_remedy",
+    "instruction": "Identify the most suitable remedies for the following situation.",
+    "input": "A contractor installed defective flooring that began separating within weeks of installation.",
+    "output": "{\n  \"recommended_remedies\": [\"Repair or replacement of the defective flooring\", \"Refund of installation costs\", \"Reimbursement for additional repair expenses\"],\n  \"reasoning\": \"Defective installation may entitle the homeowner to repair, replacement, or reimbursement for costs necessary to correct the work.\"\n}"
+  },
+  {
+    "id": "ld_044",
+    "task_type": "recommend_remedy",
+    "instruction": "Recommend remedies for the dispute below.",
+    "input": "A business partner withheld profits from a joint venture and refused to provide financial records.",
+    "output": "{\n  \"recommended_remedies\": [\"Payment of withheld profits\", \"Access to financial records\", \"Formal accounting of partnership finances\"],\n  \"reasoning\": \"Partners generally have rights to profit distributions and financial transparency, making accounting and payment appropriate remedies.\"\n}"
+  },
+  {
+    "id": "ld_045",
+    "task_type": "recommend_remedy",
+    "instruction": "Suggest appropriate remedies based on the facts.",
+    "input": "A consumer purchased a smartphone online for $900 but received a counterfeit product.",
+    "output": "{\n  \"recommended_remedies\": [\"Full refund of $900\", \"Return authorization for the counterfeit item\", \"Written confirmation of refund processing\"],\n  \"reasoning\": \"Delivery of counterfeit goods may entitle the buyer to rescission of the transaction and full reimbursement.\"\n}"
+  },
+  {
+    "id": "ld_046",
+    "task_type": "recommend_remedy",
+    "instruction": "Provide recommended remedies for the dispute described.",
+    "input": "A cleaning service was paid in advance for monthly services but stopped showing up after the first visit.",
+    "output": "{\n  \"recommended_remedies\": [\"Refund of prepaid service fees\", \"Written termination of the service agreement\", \"Reimbursement for replacement cleaning services\"],\n  \"reasoning\": \"Failure to provide prepaid services may entitle the customer to refund and reimbursement for replacement service costs.\"\n}"
+  },
+  {
+    "id": "ld_047",
+    "task_type": "recommend_remedy",
+    "instruction": "Recommend legal remedies for this situation.",
+    "input": "A supplier delivered goods late, causing the buyer to miss a major retail event and lose revenue.",
+    "output": "{\n  \"recommended_remedies\": [\"Refund or reduction of the purchase price\", \"Compensation for reasonably foreseeable losses\", \"Written confirmation of contract termination if necessary\"],\n  \"reasoning\": \"Late delivery that causes financial losses may entitle the buyer to price reduction or damages depending on contract terms.\"\n}"
+  },
+  {
+    "id": "ld_048",
+    "task_type": "extract_elements",
+    "instruction": "Extract the main legal elements from the demand letter.",
+    "input": "Dear BrightTech Solutions, I represent Olivia Grant regarding unpaid software development services totaling $5,200. Please remit payment within 10 days to resolve this matter.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Olivia Grant\",\n    \"recipient\": \"BrightTech Solutions\"\n  },\n  \"claim_type\": \"breach_of_contract\",\n  \"damages\": \"$5,200 unpaid invoice\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Payment of $5,200\"\n}"
+  },
+  {
+    "id": "ld_049",
+    "task_type": "evaluate_letter",
+    "instruction": "Evaluate the adequacy of the demand letter.",
+    "input": "Dear Gym, you charged me again after I canceled my membership. Please refund the money.",
+    "output": "{\n  \"is_adequate\": false,\n  \"strengths\": [\"Requests refund\"],\n  \"missing_elements\": [\"Amount charged\", \"Date of cancellation\", \"Deadline for refund\", \"Potential escalation\"],\n  \"suggested_improvements\": [\"State the amount charged\", \"Provide cancellation date\", \"Set a deadline for refund\", \"Mention possible legal action if unresolved\"]\n}"
+  },
+  {
+    "id": "ld_050",
+    "task_type": "extract_elements",
+    "instruction": "Extract the legal elements from the following demand letter.",
+    "input": "Dear City Parking Services, my client Robert Hill requests reimbursement of $220 for towing fees improperly charged after his vehicle was parked in a permitted area. Please provide payment within 10 days.",
+    "output": "{\n  \"parties\": {\n    \"claimant\": \"Robert Hill\",\n    \"recipient\": \"City Parking Services\"\n  },\n  \"claim_type\": \"unauthorized_fees\",\n  \"damages\": \"$220 towing fees\",\n  \"deadline\": \"10 days\",\n  \"remedy_requested\": \"Reimbursement of $220\"\n}"
+  }
+]
