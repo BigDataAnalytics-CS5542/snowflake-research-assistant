@@ -6,7 +6,6 @@ from ragas import evaluate
 import math
 import json
 
-# CRITICAL FIX: Import the standard Metric classes, NOT the 'collections' ones.
 from ragas.metrics import Faithfulness, AnswerRelevancy
 
 # Modern Google GenAI Imports
