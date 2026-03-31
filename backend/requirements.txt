@@ -8,6 +8,8 @@ snowflake-connector-python>=3.0.0
 cryptography>=41.0.0
 
 google-genai>=1.0.0
+langchain-google-genai>=4.2.1
+ragas>=0.4.3
 
 sentence-transformers>=2.2.2
 spacy>=3.7.0,<3.9.0
