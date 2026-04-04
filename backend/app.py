@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from typing import Optional, List, Dict, Any
 from backend.retrieval import get_top_chunks, graph_search, use_snowflake_session_context
 from evaluation.evaluate import log_metrics_to_snowflake
 import os, time
@@ -83,16 +84,24 @@ def save_to_csv_log(req_question: str, result: dict):
 def save_to_history(query_text: str, answer: str, citations: list,
                     confidence: float = 0.0, latency_ms: int = 0,
                     retrieval_mode: str = "", tool_calls: list = None,
-                    num_iterations: int = 0):
+                    num_iterations: int = 0, chat_id: str = None):
     """
-    Saves the query details to /backend/history.json.
+    Saves the query details to /backend/history.json grouped by chat_id.
     """
-    # 1. Define path and ensure directory exists
     history_path = Path("backend/history.json")
     history_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # 2. Create the new history entry
-    new_entry = {
+    if history_path.exists():
+        with open(history_path, "r", encoding="utf-8") as f:
+            try:
+                history_data = json.load(f)
+            except json.JSONDecodeError:
+                history_data = []
+    else:
+        history_data = []
+
+    # Format the message packet
+    msg_packet = {
         "timestamp": datetime.now().isoformat(),
         "query": query_text,
         "answer": answer,
@@ -104,18 +113,28 @@ def save_to_history(query_text: str, answer: str, citations: list,
         "num_iterations": num_iterations,
     }
 
-    # 3. Load existing data or initialize a new list
-    if history_path.exists():
-        with open(history_path, "r", encoding="utf-8") as f:
-            try:
-                history_data = json.load(f)
-            except json.JSONDecodeError:
-                history_data = []
-    else:
-        history_data = []
+    # Search for an existing chat ID
+    found = False
+    if chat_id:
+        for chat in history_data:
+            if chat.get("chat_id") == chat_id:
+                chat["messages"].append(msg_packet)
+                chat["updated_at"] = datetime.now().isoformat()
+                found = True
+                break
+                
+    if not found:
+        # Create a new chat object
+        if not chat_id:
+            chat_id = uuid.uuid4().hex
+        new_chat = {
+            "chat_id": chat_id,
+            "title": query_text[:50] + "..." if len(query_text) > 50 else query_text,
+            "updated_at": datetime.now().isoformat(),
+            "messages": [msg_packet]
+        }
+        history_data.append(new_chat)
 
-    # 4. Append and save
-    history_data.append(new_entry)
     with open(history_path, "w", encoding="utf-8") as f:
         json.dump(history_data, f, indent=4, ensure_ascii=False)
 
@@ -125,6 +144,8 @@ class QueryRequest(BaseModel):
     question: str
     top_k: int = 5
     passcode: str = ""
+    chat_id: Optional[str] = None
+    chat_history: List[Dict[str, Any]] = []
 
 @app.post('/query')
 def query(req: QueryRequest):
@@ -189,7 +210,20 @@ def _query_logic(req: QueryRequest):
         "4. If you use information from the knowledge graph, explicitly state the relationship."
     )
 
-    contents = [types.Content(role="user", parts=[types.Part.from_text(text=req.question)])]
+    chat_id = req.chat_id if req.chat_id else uuid.uuid4().hex
+    
+    contents = []
+    
+    if req.chat_history:
+        history_text = "Here is the prior conversation history for context:\n"
+        for msg in req.chat_history:
+            role_label = "Assistant" if msg.get("role") in ["assistant", "model"] else "User"
+            history_text += f"{role_label}: {msg.get('content')}\n\n"
+        
+        history_text += f"Now, answer the user's newest question:\nUser: {req.question}"
+        contents.append(types.Content(role="user", parts=[types.Part.from_text(text=history_text)]))
+    else:
+        contents.append(types.Content(role="user", parts=[types.Part.from_text(text=req.question)]))
 
     max_iterations = 5
     iterations = 0
@@ -305,6 +339,7 @@ def _query_logic(req: QueryRequest):
     latency_var.set(f"{final_latency}ms") # Update logger context
 
     result = {
+        'chat_id': chat_id,
         'answer': answer,
         'citations': all_citations,
         'confidence': round(max_confidence, 3),
@@ -325,6 +360,7 @@ def _query_logic(req: QueryRequest):
         retrieval_mode=result['retrieval_mode'],
         tool_calls=result['tool_calls'],
         num_iterations=result['num_iterations'],
+        chat_id=chat_id
     )
 
     context_used = "\n".join([c['text'] for c in result['citations']])

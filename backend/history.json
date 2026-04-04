@@ -1,1193 +1,653 @@
 [
     {
-        "timestamp": "2026-03-02T00:11:08.524305",
-        "query": "How do additive models compare to nonparametric regression?",
-        "answer": "Additive models and nonparametric regression are two distinct approaches in statistical modeling. Additive models, as mentioned in the context [1], provide an important family of models for semiparametric regression or classification due to their increased flexibility compared to linear or generalized linear models, and increased interpretability compared to fully nonparametric models. This flexibility is largely attributed to the use of regularized kernel-based methods over a reproducing kernel Hilbert space (RKHS) [1].\n\nIn contrast, nonparametric regression models do not impose any specific structure on the relationship between the predictor variables and the response variable. Instead, they rely on the data to estimate the underlying function. However, nonparametric models can suffer from the curse of high dimensionality, where the number of predictor variables increases, leading to overfitting and poor generalization performance [1].\n\nOne key advantage of additive models is their ability to handle high-dimensional data without suffering from the curse of high dimensionality, thanks to the use of regularized kernel-based methods [1]. These methods are able to learn sparse representations of the data, which improves their statistical robustness.\n\nIn comparison, nonparametric regression models can be computationally expensive and may not provide interpretable results, especially when dealing with high-dimensional data [1]. However, nonparametric models can be useful when the relationship between the predictor variables and the response variable is complex and cannot be captured by a parametric model.\n\nIn terms of learning rates, additive models have been shown to have favorable performance compared to nonparametric models, especially in high-dimensional settings [2]. The learning rates for regularized kernel-based methods for additive models have been studied in [2], and it has been shown that these methods can achieve comparable or even better performance than recent results on optimal learning rates for purely nonparametric regularized kernel-based quantile regression.\n\nOverall, additive models offer a promising approach for semiparametric regression or classification, particularly in high-dimensional settings, due to their increased flexibility and interpretability. However, nonparametric regression models can still be useful in situations where the relationship between the predictor variables and the response variable is complex and cannot be captured by a parametric model.\n\nReferences:\n\n[1] arXiv Paper arxiv_000000\n[2] arXiv Paper arxiv_000000\n[3] arXiv Paper arxiv_000000\n[4] arXiv Paper arxiv_000396\n[5]",
-        "chunks": [
+        "chat_id": "035a3983891e4e28afaf27ce0d8abb04",
+        "title": "What is a LLM?",
+        "updated_at": "2026-04-04T18:10:23.429418",
+        "messages": [
             {
-                "chunk_id": "arxiv_000000_body_c000",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "additive models @xcite provide an important family of models for semiparametric regression or classification . some reasons for the success of additive models are their increased flexibility when comp",
-                "score": 0.5474451474569251
-            },
-            {
-                "chunk_id": "arxiv_000000_abstract_c000",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "abstract",
-                "text": "additive models play an important role in semiparametric statistics . this paper gives learning rates for regularized kernel based methods for additive models . these learning rates compare favourably",
-                "score": 0.49480433384871747
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c006",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "advantages of additive models , we provide two examples of comparing additive with product kernels . the first example deals with gaussian rbf kernels . all proofs will be given in section [ proofsect",
-                "score": 0.44489190332569106
-            },
-            {
-                "chunk_id": "arxiv_000396_body_c026",
-                "paper_id": "arxiv_000396",
-                "title": "arXiv Paper arxiv_000396",
-                "section": "body",
-                "text": "hollander , @xcite ) . * samaniego : * which ideas or results in your bayesian nonparametric papers seem to have had the most impact ? * hollander : * ramesh korwar and i had several interesting resul",
-                "score": 0.4069161665401049
-            },
-            {
-                "chunk_id": "arxiv_000396_body_c023",
-                "paper_id": "arxiv_000396",
-                "title": "arXiv Paper arxiv_000396",
-                "section": "body",
-                "text": ". * hollander : * in my early years at fsu i wrote nonparametric papers on bivariate symmetry , regression , uncorrelated nonparametric statistics , and did a little more on ordered alternatives . i a",
-                "score": 0.40191514343739543
+                "timestamp": "2026-04-04T18:10:23.429416",
+                "query": "What is a LLM?",
+                "answer": "I apologize, but I was unable to compile a complete answer after searching the databases.\nHowever, I did find some relevant sources, though I couldn't synthesize them in time.",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000878_body_c093",
+                        "paper_id": "arxiv_000878",
+                        "title": "arXiv Paper arxiv_000878",
+                        "section": "body",
+                        "text": "the lmc & 0.25 & 17 & & & & & + ... 30 dor & & 5 & 4.0 & 2.7 & 1.5 & 0.048 & 3.9 + ... n160 & & 8 & 4.2 & 2.7 & 1.5 & 0.17 & 5.0 + ... n159@xmath432 & & 1 & 4.1 & 2.7 & 1.5 & @xmath429 & @xmath428 + .",
+                        "score": 0.296382719709549
+                    },
+                    {
+                        "chunk_id": "arxiv_000396_body_c008",
+                        "paper_id": "arxiv_000396",
+                        "title": "arXiv Paper arxiv_000396",
+                        "section": "body",
+                        "text": "estimated for which the company was low bidder , the company lost money . i was biased low . but he said it was fine because the workers needed the work . ladish actually wanted me to work for them af",
+                        "score": 0.2891542143133756
+                    },
+                    {
+                        "chunk_id": "arxiv_000103_body_c011",
+                        "paper_id": "arxiv_000103",
+                        "title": "arXiv Paper arxiv_000103",
+                        "section": "body",
+                        "text": "close to zero than the cosmic sample . the llr yields better performance for cosmic background rejection for the same signal acceptance in the regime where the cosmic rejection is sufficient ( at leas",
+                        "score": 0.2874357402324697
+                    },
+                    {
+                        "chunk_id": "arxiv_000542_body_c022",
+                        "paper_id": "arxiv_000542",
+                        "title": "arXiv Paper arxiv_000542",
+                        "section": "body",
+                        "text": "used in that code . here we briefly summarize the main features . mlapm code uses the following internal units ( with subscript @xmath105 ) : @xmath106 in which @xmath107 is the present size of the si",
+                        "score": 0.2587279600284122
+                    },
+                    {
+                        "chunk_id": "arxiv_000542_body_c024",
+                        "paper_id": "arxiv_000542",
+                        "title": "arXiv Paper arxiv_000542",
+                        "section": "body",
+                        "text": "uses multilevel grids @xcite to accelerate the convergence of the ( nonlinear ) gauss - seidel relaxation method @xcite in solving boundary value partial differential equations . but more than this , ",
+                        "score": 0.257080420429682
+                    },
+                    {
+                        "chunk_id": "arxiv_000482_body_c028",
+                        "paper_id": "arxiv_000482",
+                        "title": "arXiv Paper arxiv_000482",
+                        "section": "body",
+                        "text": "otherwise , @xmath67 is drawn from the interval @xmath71 $ ] uniformly at random , which implies replacement of arguments . the fixed parameter @xmath72 is related to the physical limit in fig . [ del",
+                        "score": 0.46540079907777326
+                    },
+                    {
+                        "chunk_id": "arxiv_000286_body_c014",
+                        "paper_id": "arxiv_000286",
+                        "title": "arXiv Paper arxiv_000286",
+                        "section": "body",
+                        "text": "- processes it . each news item is split into sentences , each sentence is tokenized , lowercased , passed through a statistical compound word splitter , @xcite , and the named entity annotator module",
+                        "score": 0.4454310005389483
+                    },
+                    {
+                        "chunk_id": "arxiv_000482_body_c034",
+                        "paper_id": "arxiv_000482",
+                        "title": "arXiv Paper arxiv_000482",
+                        "section": "body",
+                        "text": "conditions . first , the title of article should exist in google 1-gram data set in 2008 , the latest year of the data set . second , the article should be visited at least once in 2014 . to avoid the",
+                        "score": 0.4108362304167502
+                    },
+                    {
+                        "chunk_id": "arxiv_000286_body_c017",
+                        "paper_id": "arxiv_000286",
+                        "title": "arXiv Paper arxiv_000286",
+                        "section": "body",
+                        "text": "our in - house system can be fed with a large number of articles per day and sensitive data without including third parties in the translation process . performance and translation time vary according",
+                        "score": 0.40537695224560166
+                    },
+                    {
+                        "chunk_id": "arxiv_000286_body_c006",
+                        "paper_id": "arxiv_000286",
+                        "title": "arXiv Paper arxiv_000286",
+                        "section": "body",
+                        "text": "translation _ @xcite and _ syntax - based statistical machine translation _ @xcite . to identify the most suitable system for our requirements , we run a set of experiments training the three models w",
+                        "score": 0.39518834338153447
+                    },
+                    {
+                        "chunk_id": "arxiv_000915_body_c006",
+                        "paper_id": "arxiv_000915",
+                        "title": "arXiv Paper arxiv_000915",
+                        "section": "body",
+                        "text": "power supply _ ( p ) covers the engineering aspects of the current converters . pulsed elements ( kicker , septa ) are very similar devices , but do not fit into this scheme - neither into the model n",
+                        "score": 0.45805272459983826
+                    },
+                    {
+                        "chunk_id": "arxiv_000915_body_c005",
+                        "paper_id": "arxiv_000915",
+                        "title": "arXiv Paper arxiv_000915",
+                        "section": "body",
+                        "text": "are compiled with db calls . _ ca _ gateway takes advantage of the naming convention by regular expression evaluation . facility modifications typically change the device inventory . the db supports c",
+                        "score": 0.3974348543545524
+                    },
+                    {
+                        "chunk_id": "arxiv_000915_body_c007",
+                        "paper_id": "arxiv_000915",
+                        "title": "arXiv Paper arxiv_000915",
+                        "section": "body",
+                        "text": "belonging to already described device classes ( like bipolar power supplies ) . the straightforward solution here is the extension of the device naming convention : substructures and naming rules have",
+                        "score": 0.324922899906463
+                    },
+                    {
+                        "chunk_id": "arxiv_000063_body_c058",
+                        "paper_id": "arxiv_000063",
+                        "title": "arXiv Paper arxiv_000063",
+                        "section": "body",
+                        "text": ": the rotation number of a usual circle rotation equals the rotation angle divided by @xmath559 . ) the @xmath560-axis will be called the _ abscissa , _ and the @xmath561-axis will be called the _ ord",
+                        "score": 0.3042886905153996
+                    },
+                    {
+                        "chunk_id": "arxiv_000471_body_c024",
+                        "paper_id": "arxiv_000471",
+                        "title": "arXiv Paper arxiv_000471",
+                        "section": "body",
+                        "text": "hence we call it conducting . the other one is not carrying @xmath118 s and accordingly we call it insulating . equation ( [ decogp ] ) allows for a schematic decomposition of the principal diagrams i",
+                        "score": 0.30039825434705775
+                    },
+                    {
+                        "chunk_id": "arxiv_000968_body_c006",
+                        "paper_id": "arxiv_000968",
+                        "title": "arXiv Paper arxiv_000968",
+                        "section": "body",
+                        "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
+                        "score": 0.45559842188386607
+                    },
+                    {
+                        "chunk_id": "arxiv_000157_body_c019",
+                        "paper_id": "arxiv_000157",
+                        "title": "arXiv Paper arxiv_000157",
+                        "section": "body",
+                        "text": "intell . , vol . 8 , no . 2 , pp . 9198 , 2004 . a. rizzi , m. panella , and f. m. f. mascioli , adaptive resolution min - max classifiers , ieee trans . neural netw . 2 , pp . 402414 , mar . a. v. na",
+                        "score": 0.4318068108788985
+                    },
+                    {
+                        "chunk_id": "arxiv_000157_abstract_c000",
+                        "paper_id": "arxiv_000157",
+                        "title": "arXiv Paper arxiv_000157",
+                        "section": "abstract",
+                        "text": "recently , a multi - level fuzzy min max neural network ( mlf ) was proposed , which improves the classification accuracy by handling an overlapped region ( area of confusion ) with the help of a tree",
+                        "score": 0.4166599313426129
+                    },
+                    {
+                        "chunk_id": "arxiv_000968_body_c013",
+                        "paper_id": "arxiv_000968",
+                        "title": "arXiv Paper arxiv_000968",
+                        "section": "body",
+                        "text": "the input unit representation @xmath36 + b^ )\\ ] ] where the notation of @xmath37 $ ] equals to @xmath38 s linear combination @xmath39 and @xmath40 is the bias . after obtaining the representation for",
+                        "score": 0.40468530003007935
+                    },
+                    {
+                        "chunk_id": "arxiv_000157_body_c000",
+                        "paper_id": "arxiv_000157",
+                        "title": "arXiv Paper arxiv_000157",
+                        "section": "body",
+                        "text": "set theory was proposed with the intended use to the fields of pattern classification and information processing [ 1 ] . indeed , it has attracted many researchers , and their applications to real - l",
+                        "score": 0.4021289704961263
+                    }
+                ],
+                "confidence": 0.465,
+                "latency_ms": 16858,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_vector_database",
+                    "search_knowledge_graph",
+                    "search_vector_database",
+                    "search_vector_database"
+                ],
+                "num_iterations": 5
             }
         ]
     },
     {
-        "timestamp": "2026-03-03T21:33:42.840337",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a robust regression method that is defined as [1] for a probability measure @xmath164 on @xmath165 and @xmath166 . A real number @xmath167 is called @xmath159-quantile of @xmath164, if and only if @xmath167 belongs to the set @xmath168 ) q ([t , ) ) 1- \\}\\,.\\ ] ].\n\nIn other words, a @xmath159-quantile of type @xmath170 * of a probability measure @xmath164 on @xmath165 is a real number @xmath171 that belongs to a compact interval @xmath169 and has a constant @xmath172 such that for all @xmath173 $ ] , we have @xmath174 2 . This implies that @xmath164 has a @xmath159-quantile of type @xmath170 * if and only if there exists a @xmath159-quantile @xmath171 and a constant @xmath172 such that for all @xmath173 $ ] , we have @xmath174 2 .\n\nFurthermore, @xmath164 has a @xmath159-quantile of type @xmath170 if and only if it has a unique @xmath159-quantile @xmath183 . This is because if @xmath164 has a @xmath159-quantile of type @xmath170, then it has a unique @xmath159-quantile @xmath183.\n\nAdditionally, if @xmath164 has a Lebesgue density @xmath184 that is bounded away from zero on @xmath185, then @xmath164 has a @xmath159-quantile of type @xmath170 if and only if @xmath184 is bounded away from zero on @xmath185 [tauquantileoftype2formula].\n\nQuantile regression is a special case of regression analysis where the goal is to estimate a function that maps the input variables to a @xmath159-quantile of the output variable. The quantile regression function is defined as a value @xmath158 that is a @xmath159-quantile of @xmath160.\n\nIn practice, quantile regression is used to estimate the quantile regression function, which is a function that maps the input variables to a @xmath159-quantile of the output variable. The",
-        "chunks": [
+        "chat_id": "5269f69fdfe545ddb04a34abc285ec62",
+        "title": "What is RAG?",
+        "updated_at": "2026-04-04T18:11:00.395911",
+        "messages": [
             {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
+                "timestamp": "2026-04-04T18:11:00.395909",
+                "query": "What is RAG?",
+                "answer": "I am unable to provide a definition for RAG (Retrieval Augmented Generation) based on the current search results",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000084_body_c031",
+                        "paper_id": "arxiv_000084",
+                        "title": "arXiv Paper arxiv_000084",
+                        "section": "body",
+                        "text": ", @xmath211 and @xmath212 . ] if @xmath31 is a rauzy class , we define @xmath213 we have thus defined the rauzy - veech map on the space @xmath214 . it is easy to check that it defines an almost every",
+                        "score": 0.23364368276075495
+                    },
+                    {
+                        "chunk_id": "arxiv_000848_body_c012",
+                        "paper_id": "arxiv_000848",
+                        "title": "arXiv Paper arxiv_000848",
+                        "section": "body",
+                        "text": "mean of the clump major and minor ` sizes ' ( @xmath35 ) . each size is formed from the standard deviation of the clump co - ordinates about the centroid position , weighted by the pixel data values .",
+                        "score": 0.22970544164679538
+                    },
+                    {
+                        "chunk_id": "arxiv_000153_body_c019",
+                        "paper_id": "arxiv_000153",
+                        "title": "arXiv Paper arxiv_000153",
+                        "section": "body",
+                        "text": "impose on the profiles at the uv brane , _ i.e. _ , they indicate untwisted and twisted even functions - parity , which obey dirichlet bc on the uv brane and are thus not smooth at this orbifold fix p",
+                        "score": 0.22835737724812463
+                    },
+                    {
+                        "chunk_id": "arxiv_000188_body_c003",
+                        "paper_id": "arxiv_000188",
+                        "title": "arXiv Paper arxiv_000188",
+                        "section": "body",
+                        "text": "continuous variable representing the _ observed _ value of the same quantity of physical interest , after detector smearing effects and loss of events ( if any ) due to inefficiencies . @xmath4 is the",
+                        "score": 0.22750300437176338
+                    },
+                    {
+                        "chunk_id": "arxiv_000083_body_c013",
+                        "paper_id": "arxiv_000083",
+                        "title": "arXiv Paper arxiv_000083",
+                        "section": "body",
+                        "text": "the amount of surrounding filament , which is linear in bead radius in this formulation . if we consider dna applications , we could imagine each bead as a tracker for individual base pairs at interva",
+                        "score": 0.22697076887763515
+                    },
+                    {
+                        "chunk_id": "arxiv_000288_body_c064",
+                        "paper_id": "arxiv_000288",
+                        "title": "arXiv Paper arxiv_000288",
+                        "section": "body",
+                        "text": "x. wu , s. ding , and l. zhang . end - to - end photo - sketch generation via fully convolutional representation learning . in _ proceedings of the 5th acm on international conference on multimedia re",
+                        "score": 0.3722032045307642
+                    },
+                    {
+                        "chunk_id": "arxiv_000968_body_c012",
+                        "paper_id": "arxiv_000968",
+                        "title": "arXiv Paper arxiv_000968",
+                        "section": "body",
+                        "text": "is the fine - tuning of segment embeddings . fine - tuning can learn a task - specific segment embeddings for the segments that occur in the training data , but it breaks their relations with the un -",
+                        "score": 0.3409175872802759
+                    },
+                    {
+                        "chunk_id": "arxiv_000443_body_c009",
+                        "paper_id": "arxiv_000443",
+                        "title": "arXiv Paper arxiv_000443",
+                        "section": "body",
+                        "text": "the process @xmath12 , we can focus on a reference user located at the origin , called a _ typical user_. in this paper , we adopt _ random content placement _ where the caching helpers independently ",
+                        "score": 0.3381420172368332
+                    },
+                    {
+                        "chunk_id": "arxiv_000968_body_c004",
+                        "paper_id": "arxiv_000968",
+                        "title": "arXiv Paper arxiv_000968",
+                        "section": "body",
+                        "text": "subsequence @xmath3 . segment _ of @xmath4 is defined as @xmath5 which means the subsequence @xmath6 is associated with label @xmath7 . a _ segmentation _ of @xmath4 is a _ segment _ sequence @xmath8 ",
+                        "score": 0.33543064209405493
+                    },
+                    {
+                        "chunk_id": "arxiv_000915_body_c011",
+                        "paper_id": "arxiv_000915",
+                        "title": "arXiv Paper arxiv_000915",
+                        "section": "body",
+                        "text": "model is tailored for modelling applications . for the archiver retrieval it is useless continuously causing errors and inconsistencies . in a kind of clean - up effort the existing fragments used for",
+                        "score": 0.33108932786648043
+                    }
+                ],
+                "confidence": 0.372,
+                "latency_ms": 9941,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_knowledge_graph",
+                    "search_vector_database"
+                ],
+                "num_iterations": 4
             }
         ]
     },
     {
-        "timestamp": "2026-03-03T21:38:20.510036",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a statistical technique that is defined in [1] as a method for estimating the conditional quantile of a random variable, given a set of covariates. It is based on the idea that the quantile of a distribution is the value below which a certain proportion of the data falls. In other words, a real number is called a q-quantile of a probability measure if and only if it belongs to the interval (t, ∞] with probability q, for t ≤ 1.\n\nThe concept of q-quantile is used to extend the traditional regression analysis, which focuses on the mean. In quantile regression, the goal is to estimate the conditional quantile of the response variable, rather than the mean. This allows for a more nuanced understanding of the relationship between the covariates and the response variable.\n\nTo achieve this, quantile regression assumes that the distribution of the response variable has a bounded support, i.e., it has a Lebesgue density that is bounded away from zero [2]. This assumption is general enough to cover many distributions used in parametric statistics, such as Gaussian, Student's t, and logistic distributions.\n\nThe quantile regression function is defined as the value that is a q-quantile of the conditional distribution of the response variable, given the covariates. The regularization scheme for quantile regression is based on the pinball loss function, which is a loss function that is commonly used in regression analysis.\n\nThe learning rate for the regularization scheme in quantile regression is given by Theorem [quantilethm], which provides a bound on the approximation error of the quantile regression function. The theorem assumes that the kernel function is bounded and that the data is noisy with respect to the hypothesis space.\n\nIn addition to the regularity assumptions, quantile regression also requires a condition on the noise level in the measure [4]. This condition is similar to the one used in definition [noisecond] and is necessary to ensure that the quantile regression function converges to the true value.\n\nOverall, quantile regression is a powerful technique for estimating the conditional quantile of a random variable, given a set of covariates. It is based on the concept of q-quantile and uses a regularization scheme that is similar to that used in traditional regression analysis.",
-        "chunks": [
+        "chat_id": "b213dda7af9b4fd5bac54ddb922ef783",
+        "title": "What is quantile regression",
+        "updated_at": "2026-04-04T18:15:04.519480",
+        "messages": [
             {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
+                "timestamp": "2026-04-04T18:15:04.519464",
+                "query": "What is quantile regression",
+                "answer": "Quantile regression is a type of regression analysis that models the conditional quantile functions of a response variable, rather than just the conditional mean [5]. Specifically, the quantile regression function for a given quantile parameter (e.g., the 0.5-quantile for the median) is defined by its value being that specific quantile of the conditional distribution [5]. This means it aims to estimate the effect of predictor variables on different parts of the response variable's distribution, not just its average.\n\nThe regularization scheme for quantile regression often utilizes the pinball loss function [5]. A real number is considered a $\\tau$-quantile of a probability measure if it satisfies a specific mathematical condition related to the probability distribution [1]. A distribution can have a unique $\\tau$-quantile under certain conditions, such as having a Lebesgue density that is bounded away from zero [2]. This assumption is broad enough to encompass many common distributions in parametric statistics, including Gaussian, Student's t, logistic, gamma, log-normal, uniform, and beta distributions [2].",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.7218083143234304
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.6406553601828106
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.6090584527323786
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5784072028641236
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c013",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                        "score": 0.5621710754734929
+                    }
+                ],
+                "confidence": 0.722,
+                "latency_ms": 7438,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_knowledge_graph"
+                ],
+                "num_iterations": 3
             }
         ]
     },
     {
-        "timestamp": "2026-03-03T21:42:13.200377",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a statistical technique used to estimate the conditional quantile of a continuous random variable. For a probability measure P on a measurable space (Ω, Σ), a real number x is called a P-quantile of order α, denoted as P^{α}, if and only if it belongs to the set {x ∈ ℝ : P({x} ≤ x) ≥ α} [1]. This set is called the α-quantile set.\n\nA probability measure P on Ω has a P-quantile of type α if there exist a P-quantile P^{α} and a constant c such that, for all x ∈ ℝ, we have P^{α} ≤ x ≤ c P^{α} [1].\n\nIn the context of quantile regression, a distribution P has a P-quantile of type α-average if the conditional probability measure P|X has P^{α}-almost surely a P-quantile of type α and the function f(x) = P^{α} + (c - P^{α})I_{(-∞, x]}(X), where c is the constant defined in part (1), satisfies P-I(0, f(x)) ≤ 0 [1].\n\nThe assumption of an additive model is satisfied if the distribution P can be written as an expectation of a mixture of probability measures, each concentrated on a single component of the additive decomposition [2].\n\nIn the special case of quantile regression, the quantile regression function f(x) is defined by its value x to be a P-quantile of order α, i.e., a value x satisfying P({x} ≤ x) ≥ α [4]. The regularization scheme for quantile regression considered here takes the form (algor) with the loss function given by the pinball loss [4].\n\nA noise condition on P for quantile regression is defined as follows: for a probability measure P on Ω and a quantile parameter α, let P^{α} be the P-quantile of order α. Then, for any x ∈ ℝ and ε > 0, with confidence at least 1 - ε, we have P^{α} - ε ≤ f(x) ≤ P^{α} + ε, where f(x) is the quantile regression function [5].\n\nThe learning rate for the regularization scheme (algor) in the special case of quantile regression is given by theorem [quantilethm], which states",
-        "chunks": [
+        "chat_id": "b3f0e7c4276440669fdf61b05d7bd455",
+        "title": "What is quantile regression",
+        "updated_at": "2026-04-04T18:21:01.789407",
+        "messages": [
             {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
+                "timestamp": "2026-04-04T18:18:40.479799",
+                "query": "What is quantile regression",
+                "answer": "I apologize, but I was unable to compile a complete answer after searching the databases.\nHowever, I did find some relevant sources, though I couldn't synthesize them in time.",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.7537104927819099
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.6584663609346483
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.625166140486838
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5938914306293255
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c017",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "need an assumption on a _ variance - expectation bound _ which is similar to definition [ noisecond ] in the special case of quantile regression . [ assumption3 ] we assume that there exist an exponen",
+                        "score": 0.5912426844997385
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.7218083143234304
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.6406553601828106
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.6090584527323786
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5784072028641236
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c013",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                        "score": 0.5621710754734929
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.7511255293413694
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.7229556771569688
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.690041881206149
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.6592656373977661
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c013",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                        "score": 0.6415568590164185
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.6929901425248312
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.593816567204412
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.5579398010933291
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5464134216308594
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c017",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "need an assumption on a _ variance - expectation bound _ which is similar to definition [ noisecond ] in the special case of quantile regression . [ assumption3 ] we assume that there exist an exponen",
+                        "score": 0.5351367273845249
+                    }
+                ],
+                "confidence": 0.754,
+                "latency_ms": 15198,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_vector_database",
+                    "search_knowledge_graph",
+                    "search_vector_database",
+                    "search_vector_database"
+                ],
+                "num_iterations": 5
             },
             {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
+                "timestamp": "2026-04-04T18:21:01.789404",
+                "query": "What is quantile regression?",
+                "answer": "Quantile regression is a statistical method used to define a specific *quantile* of a probability measure [1]. The quantile regression function's value is determined by a τ-quantile (where τ is a designated quantile parameter) of a conditional probability measure [4]. This approach frequently utilizes the *pinball loss function* [4]. Quantile regression is versatile and can be applied to a variety of distributions commonly encountered in parametric statistics, including Gaussian, Student's t, logistic, gamma, log-normal, uniform, and beta distributions [2]. The method is also linked to kernel methods and Support Vector Machines (SVMs) in the context of quantile regression [3].",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.6741096169817904
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.6035436504703203
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.560255765914921
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c013",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                        "score": 0.5341841856131453
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5283053798493526
+                    }
+                ],
+                "confidence": 0.674,
+                "latency_ms": 6932,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_knowledge_graph"
+                ],
+                "num_iterations": 3
             }
         ]
     },
     {
-        "timestamp": "2026-03-03T21:56:36.133649",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a method used to estimate the conditional quantile of a response variable given a set of predictor variables. It is defined as the value of the response variable that corresponds to a certain quantile of the distribution of the response variable, given the predictor variables [1]. \n\nIn other words, the conditional quantile of a response variable is the value of the response variable that falls within a certain percentage of the distribution of the response variable, given the predictor variables. This can be denoted as E[Y ≤ q(X)] or E[Y ≥ (1-q)(X)], where q is the quantile parameter, Y is the response variable, and X is the set of predictor variables.\n\nThe concept of a quantile regression is closely related to the concept of a conditional expectation, but unlike conditional expectation, which estimates the expected value of the response variable, quantile regression estimates a specific quantile of the response variable [2].\n\nIn the context of machine learning, quantile regression is often used to model the relationship between a response variable and a set of predictor variables, where the goal is to estimate the conditional quantile of the response variable. This can be particularly useful in situations where the relationship between the variables is non-linear, or where the data is heavily skewed [3].\n\nOne of the key advantages of quantile regression is its ability to handle non-linear relationships and non-normal data. This is because quantile regression estimates a specific quantile of the response variable, rather than estimating the expected value of the response variable [4].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T22:49:11.073720",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a statistical method used to estimate conditional quantile functions. The quantile regression function is defined by its value to be a τ-quantile of a conditional probability distribution [4]. A real number is considered a τ-quantile of a probability measure if it belongs to a specific set defined by the probability measure [1]. The regularization scheme for quantile regression typically uses the pinball loss function [4].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T22:52:17.213584",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a type of regression analysis used to estimate the conditional quantile functions of a response variable [4]. Unlike ordinary least squares (OLS) regression, which focuses on estimating the conditional mean, quantile regression aims to model the relationship between a set of predictor variables and specific quantiles (e.g., median, 25th percentile, 75th percentile) of the response variable [4].\n\nFormally, for a given quantile parameter (denoted as τ), the quantile regression function is defined such that its value is a τ-quantile of a conditional probability measure [4]. A real number is considered a τ-quantile of a probability measure if it falls within a specific set defined by the probability distribution [1]. The regularization scheme for quantile regression often utilizes the pinball loss function [4].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.674109729486299
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035438362190096
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255703865169
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842834008929
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283054925011862
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T23:19:00.476026",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a statistical method used to estimate conditional quantile functions. The quantile regression function (denoted as @xmath157) is defined by its value @xmath158, which is a @xmath159-quantile of @xmath160 [4]. In a broader sense, a real number @xmath167 is considered a @xmath159-quantile of a probability measure @xmath164 if it belongs to a specific set [1].\n\nThe regularization scheme for quantile regression typically employs the pinball loss function [4]. This approach is used to analyze the relationship between variables at different quantiles of the response variable, rather than just focusing on the conditional mean as in ordinary least squares regression [4].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.6741096169817904
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035436504703203
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255765914921
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341841856131453
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283053798493526
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T23:20:22.488263",
-        "query": "What is quantile regression?",
-        "answer": "Quantile regression is a statistical method where the regression function is defined by its value being a specific quantile of a conditional distribution [4]. Unlike traditional regression methods that focus on modeling the conditional mean, quantile regression allows for the modeling of conditional quantiles (e.g., the 0.1, 0.5, or 0.9 quantiles) of the response variable [4].\n\nA key aspect is the definition of a quantile. A real number is considered a τ-quantile of a probability measure if it belongs to a specific set defined by the probability measure [1]. Distributions with a certain \"quantile of type\" can have a unique quantile [1], [2]. The regularization scheme for quantile regression often utilizes the pinball loss function [4].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.6741096169817904
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.6035436504703203
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.560255765914921
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341841856131453
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283053798493526
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T23:21:51.522796",
-        "query": "What methods improve retrieval-augmented generation and how are they evaluated?",
-        "answer": "I apologize, but I was unable to find specific information regarding methods to improve retrieval-augmented generation (RAG) in the context of large language models and their evaluation within the provided database. The search results primarily focused on statistical machine translation (SMT) and related evaluation metrics like BLEU scores [21, 22, 28, 30], rather than modern RAG techniques.",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000286_body_c009",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
-                "score": 0.41514558611565094
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c012",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
-                "score": 0.40769050625676134
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c018",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "of the 2003 conference of the north american chapter of the association for computational linguistics on human language technology , pages 4854 . edmonton , canada . p. koehn and h. hoang and a. birch",
-                "score": 0.4023314176600334
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c011",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
-                "score": 0.388135171643784
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c013",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "better performance , this depends on the choice of the test sets which are not made of news data but of data that is fairly homogeneous in terms of style and genre with the training sets . the impact ",
-                "score": 0.3776009678840637
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c004",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "see @xcite . this allows us to maintain a database containing over 1,15 million named entities and 200,000 variants . the major part of this resource can be downloaded from all news items are categori",
-                "score": 0.37562410525988543
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c008",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
-                "score": 0.3732555321829181
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c010",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
-                "score": 0.3708310502272225
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c005",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
-                "score": 0.36938343552897696
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c017",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "parsing with stack long short - term memory . in _ acl-2015 _ , pages 334343 , beijing , china , july 2015 . acl . wenbin jiang , meng sun , yajuan l , yating yang , and qun liu . discriminative learn",
-                "score": 0.3679338255007501
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c012",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
-                "score": 0.44139658438594376
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c011",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
-                "score": 0.421184378231039
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c013",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "better performance , this depends on the choice of the test sets which are not made of news data but of data that is fairly homogeneous in terms of style and genre with the training sets . the impact ",
-                "score": 0.4156187598591675
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c009",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
-                "score": 0.41113045116093155
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c010",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
-                "score": 0.3983585119736654
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c006",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "translation _ @xcite and _ syntax - based statistical machine translation _ @xcite . to identify the most suitable system for our requirements , we run a set of experiments training the three models w",
-                "score": 0.38459947017428103
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c005",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
-                "score": 0.37073739592655874
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c008",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
-                "score": 0.3663240591480767
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c007",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "is four times faster . * which training data can we use ? * it is known in statistical machine translation that more training data implies better translation . although , the number of parallel corpor",
-                "score": 0.3649740110345494
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c012",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "is the fine - tuning of segment embeddings . fine - tuning can learn a task - specific segment embeddings for the segments that occur in the training data , but it breaks their relations with the un -",
-                "score": 0.3643574308050459
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c006",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "translation _ @xcite and _ syntax - based statistical machine translation _ @xcite . to identify the most suitable system for our requirements , we run a set of experiments training the three models w",
-                "score": 0.46635071832986846
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c011",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "blue score improvements : title - testset : 0.3706 ( @xmath1 ) , 0.3511 ( @xmath0 ) ; news - testset : 0.1768 ( @xmath1 ) , 0.1945 ( @xmath0 ) . this behaviour was present also in different language p",
-                "score": 0.44807109546237694
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c014",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "- processes it . each news item is split into sentences , each sentence is tokenized , lowercased , passed through a statistical compound word splitter , @xcite , and the named entity annotator module",
-                "score": 0.445509797869948
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c008",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "12 model sentences for the content model and 4.7 million for the title model . both sets are extracted from english news . for less resourced languages such as farsi and turkish , we tried to extend t",
-                "score": 0.4411644769061948
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c009",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "2 ) part of the name is a common word in the target language and it is wrongly translated , e.g. the french name `` bruno le maire '' which risks to be translated into english as `` bruno mayor '' . t",
-                "score": 0.4395228696438261
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c005",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
-                "score": 0.43799088710519357
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c017",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "our in - house system can be fed with a large number of articles per day and sensitive data without including third parties in the translation process . performance and translation time vary according",
-                "score": 0.43591351080972135
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c010",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "from this assumption , we investigated if this phenomenon can affect the translation performance of our system . we trained two smt systems , @xmath0 and @xmath1 , using the europarl v4 german - engli",
-                "score": 0.4263710125463605
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c018",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "of the 2003 conference of the north american chapter of the association for computational linguistics on human language technology , pages 4854 . edmonton , canada . p. koehn and h. hoang and a. birch",
-                "score": 0.42507458179744667
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c012",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "test sets proposed in @xcite , for french and italian the news test sets presented in @xcite , for arabic , farsi and turkish , sets of 2,000 news sentences extracted from the arabic - english and eng",
-                "score": 0.4203805422329286
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T23:23:37.316920",
-        "query": "How are neural networks used for text summarization?",
-        "answer": "Based on the provided search results, the information primarily focuses on the application of neural networks in conjunction with Semi-CRF models for segmentation problems in Natural Language Processing (NLP), such as Chinese Word Segmentation (CWS) and Named Entity Recognition (NER) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].\n\nWhile the papers highlight the general strengths of neural networks in NLP, such as their ability to model language compositionality and learn distributed representations from large datasets [4, 6], they do not contain specific details on how neural networks are used for text summarization.",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.4610643661656606
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.45782673107545047
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c015",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
-                "score": 0.45620626211166704
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.44723577325663944
-            },
-            {
-                "chunk_id": "arxiv_000968_abstract_c000",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "abstract",
-                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
-                "score": 0.41497805207837013
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.46989096790877266
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c015",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
-                "score": 0.4448666638294859
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.439682517070621
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.4332173208464797
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c006",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
-                "score": 0.43154344778735065
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-09T23:25:05.468070",
-        "query": "What methods relate to attention mechanisms?",
-        "answer": "Based on the searches conducted, the available tools did not directly link specific methods to \"attention mechanisms\" in the context of deep learning or machine learning.\n\nThe initial vector database search for \"methods related to attention mechanisms\" yielded results [1], [2], [3], [4], [5] that discussed biological and psychological concepts like long-term potentiation (LTP), short-term potentiation (STP), short-term memory (STM), long-term memory (LTM) models, and the perception/recognition of stimuli. These results relate more to neuroscience and cognitive science than to computational methods.\n\nSubsequent searches using the knowledge graph for \"attention mechanisms\" and even the broader term \"attention\" did not yield any co-occurrence relationships.\n\nA more specific vector database search for \"deep learning methods with attention mechanisms\" returned results [6], [7], [8], [9], [10] that mentioned deep learning techniques such as Bi-LSTMs (bidirectional Long Short-Term Memory), neural semi-CRF models, segment embeddings, and conditional random fields. However, these passages did not explicitly describe how these particular methods relate to or incorporate attention mechanisms.",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000007_body_c004",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "junction . this phenomenon is termed as long - term potentiation ( ltp ) . while stp is a meta - stable state and lasts for a very small time duration , ltp is a stable synaptic state which can last f",
-                "score": 0.4534402219390745
-            },
-            {
-                "chunk_id": "arxiv_000007_body_c014",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "hence , stimulation rate indeed plays a critical role in the mtj synapse to determine the probability of ltp transition . the psychological model of stm and ltm utilizing such mtj synapses was further",
-                "score": 0.4344301223754914
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c035",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "by the intentionality - of - perception slogan : `` seeing is seeing - as '' ) of the stimulus as a perception of , say , a tree where the internal re - cognition is represented by the homomorphism @x",
-                "score": 0.423682021388949
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c044",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "understanding while the words in a familiar language prompt an internal process of generating a meaning so that we understand the words . thus it could be said that `` understanding a language '' mean",
-                "score": 0.42317608914660343
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c034",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "the adjunction in a het - free manner . another payoff from analyzing the important but molecular concept of an adjunction into two atomic representations is that we can then reassemble those atomic p",
-                "score": 0.3974655155899206
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c006",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
-                "score": 0.47309411053166883
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c013",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "the input unit representation @xmath36 + b^ )\\ ] ] where the notation of @xmath37 $ ] equals to @xmath38 s linear combination @xmath39 and @xmath40 is the bias . after obtaining the representation for",
-                "score": 0.44585565378002795
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c012",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "is the fine - tuning of segment embeddings . fine - tuning can learn a task - specific segment embeddings for the segments that occur in the training data , but it breaks their relations with the un -",
-                "score": 0.42067991125346893
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c016",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "boundary and the entire segment was not considered in their work . our model explicitly uses the entire segment . in this paper , we systematically study the problem of representing a segment in neura",
-                "score": 0.4196957743530572
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c017",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "parsing with stack long short - term memory . in _ acl-2015 _ , pages 334343 , beijing , china , july 2015 . acl . wenbin jiang , meng sun , yajuan l , yating yang , and qun liu . discriminative learn",
-                "score": 0.41019018645520533
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-22T16:49:20.609655",
-        "query": "What methods relate to attention mechanisms?",
-        "answer": "I was unable to find specific methods related to attention mechanisms using the available tools. The vector database search, even with specific terms like \"self-attention mechanism transformer,\" returned results related to neuromorphic systems, magnetic tunnel junctions, and biological synaptic memory [6, 7, 8, 10]. These results discuss long-term potentiation (LTP) and short-term memory (STM) in biological synapses and their hardware implementations, but not the computational attention mechanisms typically found in AI models.\n\nAdditionally, searching the knowledge graph for relationships involving \"attention mechanisms\" did not yield any results. Therefore, based on the information accessible through the provided tools, I cannot identify specific computational methods related to attention mechanisms.",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000007_body_c004",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "junction . this phenomenon is termed as long - term potentiation ( ltp ) . while stp is a meta - stable state and lasts for a very small time duration , ltp is a stable synaptic state which can last f",
-                "score": 0.45344023267746686
-            },
-            {
-                "chunk_id": "arxiv_000007_body_c014",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "hence , stimulation rate indeed plays a critical role in the mtj synapse to determine the probability of ltp transition . the psychological model of stm and ltm utilizing such mtj synapses was further",
-                "score": 0.4344301016119215
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c035",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "by the intentionality - of - perception slogan : `` seeing is seeing - as '' ) of the stimulus as a perception of , say , a tree where the internal re - cognition is represented by the homomorphism @x",
-                "score": 0.42368205926907415
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c044",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "understanding while the words in a familiar language prompt an internal process of generating a meaning so that we understand the words . thus it could be said that `` understanding a language '' mean",
-                "score": 0.4231760673768517
-            },
-            {
-                "chunk_id": "arxiv_000745_body_c034",
-                "paper_id": "arxiv_000745",
-                "title": "arXiv Paper arxiv_000745",
-                "section": "body",
-                "text": "the adjunction in a het - free manner . another payoff from analyzing the important but molecular concept of an adjunction into two atomic representations is that we can then reassemble those atomic p",
-                "score": 0.39746555112610743
-            },
-            {
-                "chunk_id": "arxiv_000007_body_c016",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": ", that input stimulus magnitudes are usually in the range of volts ( 1.3v in @xcite and 80mv in @xcite ) and stimulus durations are of the order of a few msecs ( 1ms in @xcite and 0.5s in @xcite ) . i",
-                "score": 0.4432054493900874
-            },
-            {
-                "chunk_id": "arxiv_000007_body_c015",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "the simulation not only provides a visual depiction of the temporal evolution of a large array of mtj conductances as a function of stimulus but also provides inspiration for the realization of adapti",
-                "score": 0.4063850510623967
-            },
-            {
-                "chunk_id": "arxiv_000007_abstract_c000",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "abstract",
-                "text": "synaptic memory is considered to be the main element responsible for learning and cognition in humans . although traditionally non - volatile long - term plasticity changes have been implemented in na",
-                "score": 0.3948227229820066
-            },
-            {
-                "chunk_id": "arxiv_000339_body_c043",
-                "paper_id": "arxiv_000339",
-                "title": "arXiv Paper arxiv_000339",
-                "section": "body",
-                "text": "for the feedback mechanism depicted in fig . [ fig4 ] . 33ifxundefined [ 1 ] ifx#1 ifnum [ 1 ] # 1firstoftwo secondoftwo ifx [ 1 ] # 1firstoftwo secondoftwo `` `` # 1''''@noop [ 0]secondoftwosanitize@",
-                "score": 0.39374823644778295
-            },
-            {
-                "chunk_id": "arxiv_000007_body_c017",
-                "paper_id": "arxiv_000007",
-                "title": "arXiv Paper arxiv_000007",
-                "section": "body",
-                "text": "schemmel , j. fieres , and k. meier , in _ neural networks , 2008 . ijcnn 2008.(ieee world congress on computational intelligence ) . ieee international joint conference on_.1em plus 0.5em minus 0.4em",
-                "score": 0.3929568060688012
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-22T16:59:15.837935",
-        "query": "How are neural networks used for text summarization?",
-        "answer": "While direct information specifically on \"neural networks for text summarization\" was not found in the provided academic paper excerpts or the knowledge graph, the search results offer insights into how neural networks process sequential data for various NLP tasks, which can be extrapolated to summarization.\n\nNeural networks are utilized in NLP for their ability to model the compositionality of language and learn distributed representations from large-scale unlabeled data [3, 6]. This capability is crucial for tasks involving sequential inputs, such as text summarization.\n\nSpecifically, Recurrent Neural Networks (RNNs), including architectures like Long Short-Term Memory (LSTM) and Bidirectional LSTMs (Bi-LSTMs), are employed to compose input units and represent segments of text [3, 4, 7, 8, 10]. In the context of segmentation problems like Chinese Word Segmentation (CWS) and Named Entity Recognition (NER), these networks process sequences of input units (e.g., words or characters), encoding their contextual information [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14]. For instance, a Segmental Recurrent Neural Network (SRNN) represents a segment by composing input units with an RNN",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.4644439220428467
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c015",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
-                "score": 0.4616005741595888
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.45242364562820353
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.45127469301223755
-            },
-            {
-                "chunk_id": "arxiv_000968_abstract_c000",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "abstract",
-                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
-                "score": 0.4254690408706665
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.5104513320461315
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.48891666531562805
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c006",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "network model . in srnn , @xmath29 is parameterized as a bidirectional lstm ( bi - lstm ) . for a segment @xmath9 , each input unit @xmath30 in subsequence @xmath31 is encoded as _ embedding _ and fed",
-                "score": 0.47328034202573727
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.46616941690444946
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c013",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "the input unit representation @xmath36 + b^ )\\ ] ] where the notation of @xmath37 $ ] equals to @xmath38 s linear combination @xmath39 and @xmath40 is the bias . after obtaining the representation for",
-                "score": 0.4637719988822937
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c004",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "subsequence @xmath3 . segment _ of @xmath4 is defined as @xmath5 which means the subsequence @xmath6 is associated with label @xmath7 . a _ segmentation _ of @xmath4 is a _ segment _ sequence @xmath8 ",
-                "score": 0.41373351730504604
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c004",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "see @xcite . this allows us to maintain a database containing over 1,15 million named entities and 200,000 variants . the major part of this resource can be downloaded from all news items are categori",
-                "score": 0.41268147599432375
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c005",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "friendly , and it lends itself to dealing with many languages , @xcite . in this section , we describe our statistical machine translation ( smt ) service based on the open - source toolkit moses @xci",
-                "score": 0.41196699702838235
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c000",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "given an input sequence , _ segmentation _ is the problem of identifying and assigning tags to its subsequences . many natural language processing ( nlp ) tasks can be cast into the segmentation probl",
-                "score": 0.41071436341319373
-            },
-            {
-                "chunk_id": "arxiv_000286_body_c017",
-                "paper_id": "arxiv_000286",
-                "title": "arXiv Paper arxiv_000286",
-                "section": "body",
-                "text": "our in - house system can be fed with a large number of articles per day and sensitive data without including third parties in the translation process . performance and translation time vary according",
-                "score": 0.39921151413711725
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-22T23:32:45.878537",
-        "query": " How are neural networks used for text summarization?",
-        "answer": "Based on the available information from the vector database and knowledge graph, there is no direct evidence explaining how neural networks are specifically",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.46106451749801636
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.4578268229961395
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c015",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
-                "score": 0.4562063243266159
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.4472358062039558
-            },
-            {
-                "chunk_id": "arxiv_000968_abstract_c000",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "abstract",
-                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
-                "score": 0.4149780869483948
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c014",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "calculated as @xmath49+b^ )\\ ] ] where @xmath50 is the embedding for the label of a segment . .hyper - parameter settings [ cols= \" > , < \" , ] table [ tbl : cws - stoa ] shows the comparison with the",
-                "score": 0.4644440827766749
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c015",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "crf has been successfully used in many nlp tasks like information extraction @xcite , opinion extraction @xcite and chinese word segmentation @xcite . its combination with neural network is relatively",
-                "score": 0.46160070483687154
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c001",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "- markov chain on the input sequence is explicitly modeled , whose each state corresponds to a subsequence of input units , which makes semi - crf a natural choice for segmentation problem . however ,",
-                "score": 0.4524238052873387
-            },
-            {
-                "chunk_id": "arxiv_000968_body_c005",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "body",
-                "text": "allows using efficient dynamic programming algorithm for inference . to find the best segmentation in semi - crf , let @xmath20 denote the best segmentation ends with @xmath21^th^ input and @xmath20 i",
-                "score": 0.45127482276631975
-            },
-            {
-                "chunk_id": "arxiv_000968_abstract_c000",
-                "paper_id": "arxiv_000968",
-                "title": "arXiv Paper arxiv_000968",
-                "section": "abstract",
-                "text": "many natural language processing ( nlp ) tasks can be generalized into segmentation problem . in this paper , we combine semi - crf with neural network to solve nlp segmentation tasks . our model repr",
-                "score": 0.4254692577245185
-            }
-        ]
-    },
-    {
-        "timestamp": "2026-03-22T23:39:11.414565",
-        "query": " What is quantile regression?",
-        "answer": "Quantile regression defines the conditional quantile function, where its value is a τ-quantile of a conditional distribution [4]. Mathematically, for a probability measure on a given space, a real number is considered a τ-quantile if it belongs to a specific set defined by the probability measure [1]. A distribution can have a unique τ-quantile if it possesses a τ-quantile of a certain type [2]. If the distribution has a Lebesgue density, then it has a τ-quantile of type if the density is bounded away from zero [2].\n\nThe regularization scheme for quantile regression often utilizes the pinball loss function [4]. Support Vector Machines (SVM) can be used for quantile regression, and research explores learning rates for these models, particularly in the context of additive models [3].",
-        "chunks": [
-            {
-                "chunk_id": "arxiv_000000_body_c014",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
-                "score": 0.6741095768017346
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c015",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
-                "score": 0.603543614496323
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c019",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
-                "score": 0.5602558517303645
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c013",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
-                "score": 0.5341842729825687
-            },
-            {
-                "chunk_id": "arxiv_000000_body_c016",
-                "paper_id": "arxiv_000000",
-                "title": "arXiv Paper arxiv_000000",
-                "section": "body",
-                "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
-                "score": 0.5283055867784553
+        "chat_id": "025db56d62c044e5885279dfff1e9cc9",
+        "title": "What is quantile regression?",
+        "updated_at": "2026-04-04T18:20:39.142586",
+        "messages": [
+            {
+                "timestamp": "2026-04-04T18:20:39.142579",
+                "query": "What is quantile regression?",
+                "answer": "Quantile regression is a type of regression analysis that models the conditional quantile function of a response variable. Specifically, the quantile regression function for a given quantile parameter τ (tau) is defined by its value 'a' such that the probability of the response variable (Y) being less than or equal to 'a', given the predictors (X=x), is greater than or equal to τ, and the probability of Y being greater than or equal to 'a', given X=x, is greater than or equal to 1-τ [4]. This can be written as P(Y ≤ a|X=x) ≥ τ and P(Y ≥ a|X=x) ≥ 1-τ [4].\n\nA probability measure is said to have a τ-quantile of a certain type if there exists a τ-quantile and a constant satisfying specific conditions [1]. If a distribution has a Lebesgue density, it has a τ-quantile of a certain type if the density is bounded away from zero on a relevant interval [2]. This covers many common distributions in parametric statistics, such as Gaussian, Student's t, logistic, gamma, log-normal, uniform, and beta distributions [2]. The regularization scheme for quantile regression often uses the pinball loss function [4].",
+                "chunks": [
+                    {
+                        "chunk_id": "arxiv_000000_body_c014",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "for quantile regression is defined in @xcite as follows . to this end , let @xmath164 be a probability measure on @xmath165 and @xmath166 . then a real number @xmath167 is called @xmath159-quantile of",
+                        "score": 0.6741096169817904
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c015",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": ", satisfies @xmath182 . one can show that a distribution @xmath164 having a @xmath159-quantile of type @xmath170 has a unique @xmath159-quantile @xmath183 . moreover , if @xmath164 has a lebesgue dens",
+                        "score": 0.6035436504703203
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c019",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "the assumption of an additive model is satisfied . our learning rate in theorem [ quantilethm ] is new and optimal in the literature of svm for quantile regression . most learning rates in the literat",
+                        "score": 0.560255765914921
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c013",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "@xmath154 here the power @xmath155 depends linearly on the dimension @xmath148 . similar dimension - dependent bounds for the covering numbers of the rkhss associated with gaussian rbf - kernels can b",
+                        "score": 0.5341841856131453
+                    },
+                    {
+                        "chunk_id": "arxiv_000000_body_c016",
+                        "paper_id": "arxiv_000000",
+                        "title": "arXiv Paper arxiv_000000",
+                        "section": "body",
+                        "text": "assumption [ assumption1 ] holds with @xmath112 and @xmath6 has a @xmath159-quantile of @xmath177-average type @xmath170 for some @xmath196 $ ] , then by taking @xmath197 , for any @xmath198 and @xmat",
+                        "score": 0.5283053798493526
+                    }
+                ],
+                "confidence": 0.674,
+                "latency_ms": 7608,
+                "retrieval_mode": "agentic",
+                "tool_calls": [
+                    "search_vector_database",
+                    "search_knowledge_graph"
+                ],
+                "num_iterations": 3
             }
         ]
     }
