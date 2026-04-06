@@ -271,7 +271,7 @@ SPACY_MODEL          = "en_core_sci_sm"
 
 ## Demo Video
 
-> 🎥 **[Video link — coming soon]**
+> 🎥 **[Demo video (Panopto)](https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7eae7017-971e-4075-9582-b42400a5b484)**
 
 ---
 
