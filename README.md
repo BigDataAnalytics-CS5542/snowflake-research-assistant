@@ -265,7 +265,7 @@ SPACY_MODEL          = "en_core_sci_sm"
 
 ## Poster
 
-> 🔗 **[Poster link — coming soon]**
+> 🔗 **[Project Link (Google Slides)](https://docs.google.com/presentation/d/1GGYKNhI07vQA3K-Xk9h90Ihc7OdY8SzvEchBAxT4qWw/edit?usp=sharing)**
 
 ---
 
